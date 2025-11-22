@@ -8,7 +8,7 @@ import { QuizQuestion } from '../types/quiz';
 export const javascriptQuizzes: QuizQuestion[] = [
   {
     id: 'js-001',
-    question: "What's the output?\n\n```javascript\nconsole.log(typeof typeof 1);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconsole.log(typeof typeof 1);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -25,7 +25,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-002',
-    question: "What's the output?\n\n```javascript\n!!null;\n!!\"\";\n!!1;\n```",
+    question: "🖥️ What's the output?\n\n```javascript\n!!null;\n!!\"\";\n!!1;\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -42,7 +42,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-003',
-    question: "What's the output?\n\n```javascript\nfunction sum(a, b) {\n  return a + b;\n}\n\nsum(1, \"2\");\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction sum(a, b) {\n  return a + b;\n}\n\nsum(1, \"2\");\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -59,7 +59,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-004',
-    question: "What's the output?\n\n```javascript\nconst groceries = [\"banana\", \"apple\", \"peanuts\"];\n\nif (groceries.indexOf(\"banana\")) {\n  console.log(\"We have to buy bananas!\");\n} else {\n  console.log(`We don't have to buy bananas!`);\n}\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst groceries = [\"banana\", \"apple\", \"peanuts\"];\n\nif (groceries.indexOf(\"banana\")) {\n  console.log(\"We have to buy bananas!\");\n} else {\n  console.log(`We don't have to buy bananas!`);\n}\n```",
     category: 'javascript',
     subcategory: 'closures',
     difficulty: 'medium',
@@ -76,14 +76,15 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-005',
-    question: "What's the output?\n\n```javascript\n+true;\n!\"Lydia\";\n```",
+    question: "🖥️ What's the output?\n\n```javascript\n+true;\n!\"Lydia\";\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
     options: [
           "1 and false",
           "false and NaN",
-          "false and false"
+          "false and false",
+          "1 and true"
     ],
     correctAnswer: 0,
     explanation: "The unary plus tries to convert an operand to a number. `true` is `1`, and `false` is `0`.\n\nThe string `'Lydia'` is a truthy value. What we're actually asking, is \"Is this truthy value falsy?\". This returns `false`.",
@@ -92,7 +93,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-006',
-    question: "What's the output?\n\n```javascript\nlet number = 0;\nconsole.log(number++);\nconsole.log(++number);\nconsole.log(number);\n```",
+    question: "📝 What's the output?\n\n```javascript\nlet number = 0;\nconsole.log(number++);\nconsole.log(++number);\nconsole.log(number);\n```",
     category: 'javascript',
     subcategory: 'operators',
     difficulty: 'medium',
@@ -109,7 +110,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-007',
-    question: "What does this return?\n\n```javascript\n[...\"Lydia\"];\n```",
+    question: "📤 What does this return?\n\n```javascript\n[...\"Lydia\"];\n```",
     category: 'javascript',
     subcategory: 'operators',
     difficulty: 'medium',
@@ -126,7 +127,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-008',
-    question: "What's the output?\n\n```javascript\nconsole.log(3 + 4 + \"5\");\n```",
+    question: "📝 What's the output?\n\n```javascript\nconsole.log(3 + 4 + \"5\");\n```",
     category: 'javascript',
     subcategory: 'operators',
     difficulty: 'medium',
@@ -143,7 +144,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-009',
-    question: "What's the output?\n\n```javascript\nconsole.log(\"🥑\" + \"💻\");\n```",
+    question: "📝 What's the output?\n\n```javascript\nconsole.log(\"🥑\" + \"💻\");\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -160,7 +161,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-010',
-    question: "What's the output?\n\n```javascript\nlet num = 10;\n\nconst increaseNumber = () => num++;\nconst increasePassedNumber = (number) => number++;\n\nconst num1 = increaseNumber();\nconst num2 = increasePassedNumber(num1);\n\nconsole.log(num1);\nconsole.log(num2);\n```",
+    question: "📝 What's the output?\n\n```javascript\nlet num = 10;\n\nconst increaseNumber = () => num++;\nconst increasePassedNumber = (number) => number++;\n\nconst num1 = increaseNumber();\nconst num2 = increasePassedNumber(num1);\n\nconsole.log(num1);\nconsole.log(num2);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -177,7 +178,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-011',
-    question: "What's the output?\n\n```javascript\nfor (let i = 1; i < 5; i++) {\n  if (i === 3) continue;\n  console.log(i);\n}\n```",
+    question: "📝 What's the output?\n\n```javascript\nfor (let i = 1; i < 5; i++) {\n  if (i === 3) continue;\n  console.log(i);\n}\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
@@ -194,7 +195,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-012',
-    question: "What's the output?\n\n```javascript\n(() => {\n  let x = (y = 10);\n})();\n\nconsole.log(typeof x);\nconsole.log(typeof y);\n```",
+    question: "📝 What's the output?\n\n```javascript\n(() => {\n  let x = (y = 10);\n})();\n\nconsole.log(typeof x);\nconsole.log(typeof y);\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
@@ -211,7 +212,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-013',
-    question: "What's the output?\n\n```javascript\nconst name = \"Lydia\";\nage = 21;\n\nconsole.log(delete name);\nconsole.log(delete age);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst name = \"Lydia\";\nage = 21;\n\nconsole.log(delete name);\nconsole.log(delete age);\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
@@ -228,7 +229,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-014',
-    question: "What's the output?\n\n```javascript\nconst user = { name: \"Lydia\", age: 21 };\nconst admin = { admin: true, ...user };\n\nconsole.log(admin);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst user = { name: \"Lydia\", age: 21 };\nconst admin = { admin: true, ...user };\n\nconsole.log(admin);\n```",
     category: 'javascript',
     subcategory: 'operators',
     difficulty: 'medium',
@@ -245,7 +246,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-015',
-    question: "What's the output?\n\n```javascript\nconst value = { number: 10 };\n\nconst multiply = (x = { ...value }) => {\n  console.log((x.number *= 2));\n};\n\nmultiply();\nmultiply();\nmultiply(value);\nmultiply(value);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst value = { number: 10 };\n\nconst multiply = (x = { ...value }) => {\n  console.log((x.number *= 2));\n};\n\nmultiply();\nmultiply();\nmultiply(value);\nmultiply(value);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -262,7 +263,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-016',
-    question: "What's the value of output?\n\n```javascript\n// 🎉✨ This is my 100th question! ✨🎉\n\nconst output = `${[] && \"Im\"}possible!\nYou should${\"\" && `n't`} see a therapist after so much JavaScript lol`;\n```",
+    question: "🖥️ What's the value of output?\n\n```javascript\n// 🎉✨ This is my 100th question! ✨🎉\n\nconst output = `${[] && \"Im\"}possible!\nYou should${\"\" && `n't`} see a therapist after so much JavaScript lol`;\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
@@ -279,7 +280,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-017',
-    question: "What's the value of output?\n\n```javascript\nconst one = false || {} || null;\nconst two = null || false || \"\";\nconst three = [] || 0 || true;\n\nconsole.log(one, two, three);\n```",
+    question: "🖥️ What's the value of output?\n\n```javascript\nconst one = false || {} || null;\nconst two = null || false || \"\";\nconst three = [] || 0 || true;\n\nconsole.log(one, two, three);\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
@@ -296,7 +297,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-018',
-    question: "What's the value of output?\n\n```javascript\nconst set = new Set();\n\nset.add(1);\nset.add(\"Lydia\");\nset.add({ name: \"Lydia\" });\n\nfor (let item of set) {\n  console.log(item + 2);\n}\n```",
+    question: "🖥️ What's the value of output?\n\n```javascript\nconst set = new Set();\n\nset.add(1);\nset.add(\"Lydia\");\nset.add({ name: \"Lydia\" });\n\nfor (let item of set) {\n  console.log(item + 2);\n}\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -313,7 +314,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-019',
-    question: "Which of the following options will return `6`?\n\n```javascript\nfunction sumValues(x, y, z) {\n  return x + y + z;\n}\n```",
+    question: "🔤 Which of the following options will return `6`?\n\n```javascript\nfunction sumValues(x, y, z) {\n  return x + y + z;\n}\n```",
     category: 'javascript',
     subcategory: 'operators',
     difficulty: 'medium',
@@ -330,7 +331,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-020',
-    question: "What's the output?\n\n```javascript\nlet randomValue = { name: \"Lydia\" };\nrandomValue = 23;\n\nif (!typeof randomValue === \"string\") {\n  console.log(\"It's not a string!\");\n} else {\n  console.log(\"Yay it's a string!\");\n}\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nlet randomValue = { name: \"Lydia\" };\nrandomValue = 23;\n\nif (!typeof randomValue === \"string\") {\n  console.log(\"It's not a string!\");\n} else {\n  console.log(\"Yay it's a string!\");\n}\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -347,7 +348,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-021',
-    question: "What's the output?\n\n```javascript\nlet num = 1;\nconst list = [\"🥳\", \"🤠\", \"🥰\", \"🤪\"];\n\nconsole.log(list[(num += 1)]);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nlet num = 1;\nconst list = [\"🥳\", \"🤠\", \"🥰\", \"🤪\"];\n\nconsole.log(list[(num += 1)]);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -364,7 +365,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-022',
-    question: "What's the output?\n\n```javascript\nfunction createFunctions() {\n  const funcs = [];\n  for (var i = 0; i < 3; i++) {\n    funcs.push(() => i);\n  }\n  return funcs;\n}\n\nconst fns = createFunctions();\nconsole.log(fns[0]());\nconsole.log(fns[1]());\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction createFunctions() {\n  const funcs = [];\n  for (var i = 0; i < 3; i++) {\n    funcs.push(() => i);\n  }\n  return funcs;\n}\n\nconst fns = createFunctions();\nconsole.log(fns[0]());\nconsole.log(fns[1]());\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'hard',
@@ -381,7 +382,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-023',
-    question: "What's the output?\n\n```javascript\n// index.js\nconsole.log(\"running index.js\");\nimport { sum } from \"./sum.js\";\nconsole.log(sum(1, 2));\n\n// sum.js\nconsole.log(\"running sum.js\");\nexport const sum = (a, b) => a + b;\n```",
+    question: "📝 What's the output?\n\n```javascript\n// index.js\nconsole.log(\"running index.js\");\nimport { sum } from \"./sum.js\";\nconsole.log(sum(1, 2));\n\n// sum.js\nconsole.log(\"running sum.js\");\nexport const sum = (a, b) => a + b;\n```",
     category: 'javascript',
     subcategory: 'modules',
     difficulty: 'medium',
@@ -398,7 +399,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-024',
-    question: "What is the output?\n\n```javascript\nconst myLifeSummedUp = [\"☕\", \"💻\", \"🍷\", \"🍫\"];\n\nfor (let item in myLifeSummedUp) {\n  console.log(item);\n}\n\nfor (let item of myLifeSummedUp) {\n  console.log(item);\n}\n```",
+    question: "🖥️ What is the output?\n\n```javascript\nconst myLifeSummedUp = [\"☕\", \"💻\", \"🍷\", \"🍫\"];\n\nfor (let item in myLifeSummedUp) {\n  console.log(item);\n}\n\nfor (let item of myLifeSummedUp) {\n  console.log(item);\n}\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -415,7 +416,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-025',
-    question: "Which of the options result(s) in an error?\n\n```javascript\nconst emojis = [\"🎄\", \"🎅🏼\", \"🎁\", \"⭐\"];\n\n/* 1 */ emojis.push(\"🦌\");\n/* 2 */ emojis.splice(0, 2);\n/* 3 */ emojis = [...emojis, \"🥂\"];\n/* 4 */ emojis.length = 0;\n```",
+    question: "❌ Which of the options result(s) in an error?\n\n```javascript\nconst emojis = [\"🎄\", \"🎅🏼\", \"🎁\", \"⭐\"];\n\n/* 1 */ emojis.push(\"🦌\");\n/* 2 */ emojis.splice(0, 2);\n/* 3 */ emojis = [...emojis, \"🥂\"];\n/* 4 */ emojis.length = 0;\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -432,7 +433,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-026',
-    question: "What's the output?\n\n```javascript\nconst arr1 = [1, 2, 3];\nconst arr2 = arr1;\narr2.push(4);\n\nconsole.log(arr1.length);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr1 = [1, 2, 3];\nconst arr2 = arr1;\narr2.push(4);\n\nconsole.log(arr1.length);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'easy',
@@ -449,7 +450,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-027',
-    question: "What's the value of `num`?\n\n```javascript\nconst num = parseInt(\"7*6\", 10);\n```",
+    question: "📚 What's the value of `num`?\n\n```javascript\nconst num = parseInt(\"7*6\", 10);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -466,7 +467,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-028',
-    question: "What's the output?\n\n```javascript\nconst name = \"Lydia\";\n\nconsole.log(name());\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst name = \"Lydia\";\n\nconsole.log(name());\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -483,13 +484,15 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-029',
-    question: "Is this a pure function?\n\n```javascript\nfunction sum(a, b) {\n  return a + b;\n}\n```",
+    question: "🔤 Is this a pure function?\n\n```javascript\nfunction sum(a, b) {\n  return a + b;\n}\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
     options: [
           "Yes",
-          "No"
+          "No",
+          "Only if a and b are numbers",
+          "Only in strict mode"
     ],
     correctAnswer: 0,
     explanation: "A pure function is a function that _always_ returns the same result, if the same arguments are passed.\n\nThe `sum` function always returns the same result. If we pass `1` and `2`, it will _always_ return `3` without side effects. If we pass `5` and `10`, it will _always_ return `15`, and so on. This is the definition of a pure function.",
@@ -498,7 +501,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-030',
-    question: "What is the output?\n\n```javascript\nfunction sayHi(name) {\n  return `Hi there, ${name}`;\n}\n\nconsole.log(sayHi());\n```",
+    question: "📝 What is the output?\n\n```javascript\nfunction sayHi(name) {\n  return `Hi there, ${name}`;\n}\n\nconsole.log(sayHi());\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -515,7 +518,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-031',
-    question: "What's the output?\n\n```javascript\nfunction sum(num1, num2 = num1) {\n  console.log(num1 + num2);\n}\n\nsum(10);\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction sum(num1, num2 = num1) {\n  console.log(num1 + num2);\n}\n\nsum(10);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -532,7 +535,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-032',
-    question: "What's the output?\n\n```javascript\nfunction nums(a, b) {\n  if (a > b) console.log(\"a is bigger\");\n  else console.log(\"b is bigger\");\n  return;\n  a + b;\n}\n\nconsole.log(nums(4, 2));\nconsole.log(nums(1, 2));\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction nums(a, b) {\n  if (a > b) console.log(\"a is bigger\");\n  else console.log(\"b is bigger\");\n  return;\n  a + b;\n}\n\nconsole.log(nums(4, 2));\nconsole.log(nums(1, 2));\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -549,7 +552,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-033',
-    question: "What's the output?\n\n```javascript\nconsole.log(`${((x) => x)(\"I love\")} to program`);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconsole.log(`${((x) => x)(\"I love\")} to program`);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -566,7 +569,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-034',
-    question: "What's the output?\n\n```javascript\nconst add = (x) => (y) => (z) => {\n  console.log(x, y, z);\n  return x + y + z;\n};\n\nadd(4)(5)(6);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst add = (x) => (y) => (z) => {\n  console.log(x, y, z);\n  return x + y + z;\n};\n\nadd(4)(5)(6);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -583,7 +586,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-035',
-    question: "How can we invoke `sum` in `sum.js` from `index.js?`?\n\n```javascript\n// sum.js\nexport default function sum(x) {\n  return x + x;\n}\n\n// index.js\nimport * as sum from \"./sum\";\n```",
+    question: "⚡ How can we invoke `sum` in `sum.js` from `index.js?`?\n\n```javascript\n// sum.js\nexport default function sum(x) {\n  return x + x;\n}\n\n// index.js\nimport * as sum from \"./sum\";\n```",
     category: 'javascript',
     subcategory: 'modules',
     difficulty: 'medium',
@@ -600,7 +603,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-036',
-    question: "What's the output?\n\n```javascript\nconst add = (x) => x + x;\n\nfunction myFunc(num = 2, value = add(num)) {\n  console.log(num, value);\n}\n\nmyFunc();\nmyFunc(3);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst add = (x) => x + x;\n\nfunction myFunc(num = 2, value = add(num)) {\n  console.log(num, value);\n}\n\nmyFunc();\nmyFunc(3);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -617,7 +620,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-037',
-    question: "What's the output?\n\n```javascript\nfunction greet(name) {\n  return `Hello, ${name}!`;\n}\n\nconsole.log(greet('World'));\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction greet(name) {\n  return `Hello, ${name}!`;\n}\n\nconsole.log(greet('World'));\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'easy',
@@ -634,7 +637,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-038',
-    question: "What's the output?\n\n```javascript\nconst multiply = (a, b = 2) => a * b;\n\nconsole.log(multiply(5));\nconsole.log(multiply(5, 3));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst multiply = (a, b = 2) => a * b;\n\nconsole.log(multiply(5));\nconsole.log(multiply(5, 3));\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'easy',
@@ -651,7 +654,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-039',
-    question: "What's the output?\n\n```javascript\nconst fn = function factorial(n) {\n  return n <= 1 ? 1 : n * factorial(n - 1);\n};\n\nconsole.log(fn(5));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst fn = function factorial(n) {\n  return n <= 1 ? 1 : n * factorial(n - 1);\n};\n\nconsole.log(fn(5));\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -668,7 +671,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-040',
-    question: "What's the output?\n\n```javascript\nfunction add(a) {\n  return function(b) {\n    return a + b;\n  };\n}\n\nconsole.log(add(2)(3));\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction add(a) {\n  return function(b) {\n    return a + b;\n  };\n}\n\nconsole.log(add(2)(3));\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -685,7 +688,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-041',
-    question: "What's the output?\n\n```javascript\nvar num = 8;\nvar num = 10;\n\nconsole.log(num);\n```",
+    question: "📝 What's the output?\n\n```javascript\nvar num = 8;\nvar num = 10;\n\nconsole.log(num);\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
@@ -702,7 +705,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-042',
-    question: "What's the output?\n\n```javascript\nfunction sayHi() {\n  console.log(name);\n  console.log(age);\n  var name = \"Lydia\";\n  let age = 21;\n}\n\nsayHi();\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction sayHi() {\n  console.log(name);\n  console.log(age);\n  var name = \"Lydia\";\n  let age = 21;\n}\n\nsayHi();\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -719,7 +722,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-043',
-    question: "What's the output?\n\n```javascript\n(() => {\n  let x, y;\n  try {\n    throw new Error();\n  } catch (x) {\n    (x = 1), (y = 2);\n    console.log(x);\n  }\n  console.log(x);\n  console.log(y);\n})();\n```",
+    question: "📝 What's the output?\n\n```javascript\n(() => {\n  let x, y;\n  try {\n    throw new Error();\n  } catch (x) {\n    (x = 1), (y = 2);\n    console.log(x);\n  }\n  console.log(x);\n  console.log(y);\n})();\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -736,7 +739,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-044',
-    question: "What is the output?\n\n```javascript\nfunction checkAge(age) {\n  if (age < 18) {\n    const message = \"Sorry, you're too young.\";\n  } else {\n    const message = \"Yay! You're old enough!\";\n  }\n\n  return message;\n}\n\nconsole.log(checkAge(21));\n```",
+    question: "🖥️ What is the output?\n\n```javascript\nfunction checkAge(age) {\n  if (age < 18) {\n    const message = \"Sorry, you're too young.\";\n  } else {\n    const message = \"Yay! You're old enough!\";\n  }\n\n  return message;\n}\n\nconsole.log(checkAge(21));\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
@@ -753,7 +756,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-045',
-    question: "What's the output?\n\n```javascript\nlet name = \"Lydia\";\n\nfunction getName() {\n  console.log(name);\n  let name = \"Sarah\";\n}\n\ngetName();\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nlet name = \"Lydia\";\n\nfunction getName() {\n  console.log(name);\n  let name = \"Sarah\";\n}\n\ngetName();\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
@@ -770,7 +773,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-046',
-    question: "What's the output?\n\n```javascript\nconst randomValue = 21;\n\nfunction getInfo() {\n  console.log(typeof randomValue);\n  const randomValue = \"Lydia Hallie\";\n}\n\ngetInfo();\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst randomValue = 21;\n\nfunction getInfo() {\n  console.log(typeof randomValue);\n  const randomValue = \"Lydia Hallie\";\n}\n\ngetInfo();\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -787,7 +790,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-047',
-    question: "What's the difference between function declarations and function expressions?",
+    question: "🔤 What's the difference between function declarations and function expressions?",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -804,7 +807,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-048',
-    question: "What's the output?\n\n```javascript\nlet x = 10;\n\nfunction test() {\n  console.log(x);\n  let x = 20;\n}\n\ntest();\n```",
+    question: "📝 What's the output?\n\n```javascript\nlet x = 10;\n\nfunction test() {\n  console.log(x);\n  let x = 20;\n}\n\ntest();\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
@@ -821,7 +824,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-049',
-    question: "What's the output?\n\n```javascript\nconst { firstName: myName } = { firstName: \"Lydia\" };\n\nconsole.log(firstName);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst { firstName: myName } = { firstName: \"Lydia\" };\n\nconsole.log(firstName);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -838,7 +841,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-050',
-    question: "What's the output?\n\n```javascript\nfunction outer() {\n  let count = 0;\n  return function inner() {\n    count++;\n    return count;\n  };\n}\n\nconst counter = outer();\nconsole.log(counter());\nconsole.log(counter());\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction outer() {\n  let count = 0;\n  return function inner() {\n    count++;\n    return count;\n  };\n}\n\nconst counter = outer();\nconsole.log(counter());\nconsole.log(counter());\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -855,7 +858,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-051',
-    question: "What's the output?\n\n```javascript\nconst shape = {\n  radius: 10,\n  diameter() {\n    return this.radius * 2;\n  },\n  perimeter: () => 2 * Math.PI * this.radius,\n};\n\nconsole.log(shape.diameter());\nconsole.log(shape.perimeter());\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst shape = {\n  radius: 10,\n  diameter() {\n    return this.radius * 2;\n  },\n  perimeter: () => 2 * Math.PI * this.radius,\n};\n\nconsole.log(shape.diameter());\nconsole.log(shape.perimeter());\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -872,14 +875,15 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-052',
-    question: "What's the output?\n\n```javascript\nlet greeting;\ngreetign = {}; // Typo!\nconsole.log(greetign);\n```",
+    question: "📝 What's the output?\n\n```javascript\nlet greeting;\ngreetign = {}; // Typo!\nconsole.log(greetign);\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
     options: [
           "{}",
           "ReferenceError: greetign is not defined",
-          "undefined"
+          "undefined",
+          "SyntaxError"
     ],
     correctAnswer: 0,
     explanation: "It logs the object, because we just created an empty object on the global object! When we mistyped `greeting` as `greetign`, the JS interpreter actually saw this as:\n\n1. `global.greetign = {}` in Node.js\n2. `window.greetign = {}`, `frames.greetign = {}` and `self.greetign` in browsers.\n3. `self.greetign` in web workers.\n4. `globalThis.greetign` in all environments.\n\nIn order to avoid this, we can use `\"use strict\"`. This makes sure that you have declared a variable before setting it equal to anything.",
@@ -888,7 +892,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-053',
-    question: "What's the output?\n\n```javascript\nfunction Person(firstName, lastName) {\n  this.firstName = firstName;\n  this.lastName = lastName;\n}\n\nconst lydia = new Person(\"Lydia\", \"Hallie\");\nconst sarah = Person(\"Sarah\", \"Smith\");\n\nconsole.log(lydia);\nconsole.log(sarah);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction Person(firstName, lastName) {\n  this.firstName = firstName;\n  this.lastName = lastName;\n}\n\nconst lydia = new Person(\"Lydia\", \"Hallie\");\nconst sarah = Person(\"Sarah\", \"Smith\");\n\nconsole.log(lydia);\nconsole.log(sarah);\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
@@ -905,7 +909,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-054',
-    question: "What's the output?\n\n```javascript\nconst person = { name: \"Lydia\" };\n\nfunction sayHi(age) {\n  return `${this.name} is ${age}`;\n}\n\nconsole.log(sayHi.call(person, 21));\nconsole.log(sayHi.bind(person, 21));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst person = { name: \"Lydia\" };\n\nfunction sayHi(age) {\n  return `${this.name} is ${age}`;\n}\n\nconsole.log(sayHi.call(person, 21));\nconsole.log(sayHi.bind(person, 21));\n```",
     category: 'javascript',
     subcategory: 'this',
     difficulty: 'medium',
@@ -922,7 +926,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-055',
-    question: "What's the output?\n\n```javascript\nconst person = {\n  firstName: \"Lydia\",\n  lastName: \"Hallie\",\n  pet: {\n    name: \"Mara\",\n    breed: \"Dutch Tulip Hound\",\n  },\n  getFullName() {\n    return `${this.firstName} ${this.lastName}`;\n  },\n};\n\nconsole.log(person.pet?.name);\nconsole.log(person.pet?.family?.name);\nconsole.log(person.getFullName?.());\nconsole.log(member.getLastName?.());\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst person = {\n  firstName: \"Lydia\",\n  lastName: \"Hallie\",\n  pet: {\n    name: \"Mara\",\n    breed: \"Dutch Tulip Hound\",\n  },\n  getFullName() {\n    return `${this.firstName} ${this.lastName}`;\n  },\n};\n\nconsole.log(person.pet?.name);\nconsole.log(person.pet?.family?.name);\nconsole.log(person.getFullName?.());\nconsole.log(member.getLastName?.());\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -939,7 +943,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-056',
-    question: "What's the output?\n\n```javascript\nconst config = {\n  languages: [],\n  set language(lang) {\n    return this.languages.push(lang);\n  },\n};\n\nconsole.log(config.language);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst config = {\n  languages: [],\n  set language(lang) {\n    return this.languages.push(lang);\n  },\n};\n\nconsole.log(config.language);\n```",
     category: 'javascript',
     subcategory: 'objects',
     difficulty: 'medium',
@@ -956,7 +960,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-057',
-    question: "What's the output?\n\n```javascript\nconst user = {\n  email: \"my@email.com\",\n  updateEmail: (email) => {\n    this.email = email;\n  },\n};\n\nuser.updateEmail(\"new@email.com\");\nconsole.log(user.email);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst user = {\n  email: \"my@email.com\",\n  updateEmail: (email) => {\n    this.email = email;\n  },\n};\n\nuser.updateEmail(\"new@email.com\");\nconsole.log(user.email);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -973,7 +977,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-058',
-    question: "What's the output?\n\n```javascript\nconst person = {\n  name: 'John',\n  greet: function() {\n    return () => console.log(this.name);\n  }\n};\n\nconst greetFn = person.greet();\ngreetFn();\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst person = {\n  name: 'John',\n  greet: function() {\n    return () => console.log(this.name);\n  }\n};\n\nconst greetFn = person.greet();\ngreetFn();\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'hard',
@@ -990,7 +994,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-059',
-    question: "What's the output?\n\n```javascript\nconst obj = {\n  value: 42,\n  getValue: function() {\n    return this.value;\n  }\n};\n\nconst getValue = obj.getValue;\nconsole.log(getValue());\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst obj = {\n  value: 42,\n  getValue: function() {\n    return this.value;\n  }\n};\n\nconst getValue = obj.getValue;\nconsole.log(getValue());\n```",
     category: 'javascript',
     subcategory: 'this',
     difficulty: 'medium',
@@ -1007,7 +1011,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-060',
-    question: "What are the three phases of event propagation?",
+    question: "👈 What are the three phases of event propagation?",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -1024,7 +1028,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-061',
-    question: "What's the value of `sum`?\n\n```javascript\nconst sum = eval(\"10*10+5\");\n```",
+    question: "🤝 What's the value of `sum`?\n\n```javascript\nconst sum = eval(\"10*10+5\");\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1041,7 +1045,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-062',
-    question: "How long is cool_secret accessible?\n\n```javascript\nsessionStorage.setItem(\"cool_secret\", 123);\n```",
+    question: "🔤 How long is cool_secret accessible?\n\n```javascript\nsessionStorage.setItem(\"cool_secret\", 123);\n```",
     category: 'javascript',
     subcategory: 'closures',
     difficulty: 'medium',
@@ -1058,7 +1062,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-063',
-    question: "What is the event.target when clicking the button?",
+    question: "🔒 What is the event.target when clicking the button?",
     category: 'javascript',
     subcategory: 'closures',
     difficulty: 'medium',
@@ -1075,7 +1079,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-064',
-    question: "When you click the paragraph, what's the logged output?",
+    question: "🖥️ When you click the paragraph, what's the logged output?",
     category: 'javascript',
     subcategory: 'proxy-reflect',
     difficulty: 'medium',
@@ -1092,7 +1096,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-065',
-    question: "What's the output?\n\n```javascript\n// counter.js\nlet counter = 10;\nexport default counter;\n```",
+    question: "🖥️ What's the output?\n\n```javascript\n// counter.js\nlet counter = 10;\nexport default counter;\n```",
     category: 'javascript',
     subcategory: 'modules',
     difficulty: 'medium',
@@ -1109,7 +1113,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-066',
-    question: "What's the output?\n\n```javascript\nconsole.log(String.raw`Hello\\nworld`);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconsole.log(String.raw`Hello\\nworld`);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1126,13 +1130,15 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-067',
-    question: "What's its value?\n\n```javascript\nconsole.log(\"❤️\" === \"❤️\");\n```",
+    question: "📝 What's its value?\n\n```javascript\nconsole.log(\"❤️\" === \"❤️\");\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
     options: [
           "true",
-          "false"
+          "false",
+          "undefined",
+          "SyntaxError"
     ],
     correctAnswer: 0,
     explanation: "Under the hood, emojis are unicodes. The unicodes for the heart emoji is `\"U+2764 U+FE0F\"`. These are always the same for the same emojis, so we're comparing two equal strings to each other, which returns true.",
@@ -1141,7 +1147,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-068',
-    question: "What's the output?\n\n```javascript\nconst name = \"Lydia Hallie\";\nconst age = 21;\n\nconsole.log(Number.isNaN(name));\nconsole.log(Number.isNaN(age));\n\nconsole.log(isNaN(name));\nconsole.log(isNaN(age));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst name = \"Lydia Hallie\";\nconst age = 21;\n\nconsole.log(Number.isNaN(name));\nconsole.log(Number.isNaN(age));\n\nconsole.log(isNaN(name));\nconsole.log(isNaN(age));\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
@@ -1158,7 +1164,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-069',
-    question: "What does the `setInterval` method return in the browser?\n\n```javascript\nsetInterval(() => console.log(\"Hi\"), 1000);\n```",
+    question: "📝 What does the `setInterval` method return in the browser?\n\n```javascript\nsetInterval(() => console.log(\"Hi\"), 1000);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1175,7 +1181,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-070',
-    question: "What kind of information would get logged?\n\n```javascript\nfetch(\"https://www.website.com/api/user/1\")\n  .then((res) => res.json())\n  .then((res) => console.log(res));\n```",
+    question: "⚡ What kind of information would get logged?\n\n```javascript\nfetch(\"https://www.website.com/api/user/1\")\n  .then((res) => res.json())\n  .then((res) => console.log(res));\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -1192,7 +1198,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-071',
-    question: "What's the output?\n\n```javascript\nlet c = { greeting: \"Hey!\" };\nlet d;\n\nd = c;\nc.greeting = \"Hello\";\nconsole.log(d.greeting);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nlet c = { greeting: \"Hey!\" };\nlet d;\n\nd = c;\nc.greeting = \"Hello\";\nconsole.log(d.greeting);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1200,8 +1206,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
           "Hello",
           "Hey!",
           "undefined",
-          "ReferenceError",
-          "TypeError"
+          "ReferenceError"
     ],
     correctAnswer: 0,
     explanation: "In JavaScript, all objects interact by _reference_ when setting them equal to each other.\n\nFirst, variable `c` holds a value to an object. Later, we assign `d` with the same reference that `c` has to the object.\n\nWhen you change one object, you change all of them.",
@@ -1210,7 +1215,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-072',
-    question: "What happens when we do this?\n\n```javascript\nfunction bark() {\n  console.log(\"Woof!\");\n}\n\nbark.animal = \"dog\";\n```",
+    question: "📝 What happens when we do this?\n\n```javascript\nfunction bark() {\n  console.log(\"Woof!\");\n}\n\nbark.animal = \"dog\";\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1227,14 +1232,15 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-073',
-    question: "What's the output?\n\n```javascript\nfunction checkAge(data) {\n  if (data === { age: 18 }) {\n    console.log(\"You are an adult!\");\n  } else if (data == { age: 18 }) {\n    console.log(\"You are still an adult.\");\n  } else {\n    console.log(`Hmm.. You don't have an age I guess`);\n  }\n}\n\ncheckAge({ age: 18 });\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction checkAge(data) {\n  if (data === { age: 18 }) {\n    console.log(\"You are an adult!\");\n  } else if (data == { age: 18 }) {\n    console.log(\"You are still an adult.\");\n  } else {\n    console.log(`Hmm.. You don't have an age I guess`);\n  }\n}\n\ncheckAge({ age: 18 });\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
     options: [
           "You are an adult!",
           "You are still an adult.",
-          "Hmm.. You don't have an age I guess"
+          "Hmm.. You don't have an age I guess",
+          "TypeError"
     ],
     correctAnswer: 2,
     explanation: "When testing equality, primitives are compared by their _value_, while objects are compared by their _reference_. JavaScript checks if the objects have a reference to the same location in memory.\n\nThe two objects that we are comparing don't have that: the object we passed as a parameter refers to a different location in memory than the object we used in order to check equality.\n\nThis is why both `{ age: 18 } === { age: 18 }` and `{ age: 18 } == { age: 18 }` return `false`.",
@@ -1243,7 +1249,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-074',
-    question: "What's the output?\n\n```javascript\nfunction getAge() {\n  \"use strict\";\n  age = 21;\n  console.log(age);\n}\n\ngetAge();\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction getAge() {\n  \"use strict\";\n  age = 21;\n  console.log(age);\n}\n\ngetAge();\n```",
     category: 'javascript',
     subcategory: 'closures',
     difficulty: 'medium',
@@ -1260,7 +1266,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-075',
-    question: "What's the output?\n\n```javascript\nconst obj = { a: \"one\", b: \"two\", a: \"three\" };\nconsole.log(obj);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst obj = { a: \"one\", b: \"two\", a: \"three\" };\nconsole.log(obj);\n```",
     category: 'javascript',
     subcategory: 'closures',
     difficulty: 'medium',
@@ -1277,14 +1283,15 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-076',
-    question: "The JavaScript global execution context creates two things for you: the global object, and the \"this\" keyword.",
+    question: "📦 The JavaScript global execution context creates two things for you: the global object, and the \"this\" keyword.",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
     options: [
           "true",
           "false",
-          "it depends"
+          "it depends",
+          "only in strict mode"
     ],
     correctAnswer: 0,
     explanation: "The base execution context is the global execution context: it's what's accessible everywhere in your code.",
@@ -1293,7 +1300,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-077',
-    question: "What's the output?\n\n```javascript\nconst a = {};\nconst b = { key: \"b\" };\nconst c = { key: \"c\" };\n\na[b] = 123;\na[c] = 456;\n\nconsole.log(a[b]);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst a = {};\nconst b = { key: \"b\" };\nconst c = { key: \"c\" };\n\na[b] = 123;\na[c] = 456;\n\nconsole.log(a[b]);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1310,7 +1317,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-078',
-    question: "What's the output?\n\n```javascript\n[\n  [0, 1],\n  [2, 3],\n].reduce(\n  (acc, cur) => {\n    return acc.concat(cur);\n  },\n  [1, 2]\n);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\n[\n  [0, 1],\n  [2, 3],\n].reduce(\n  (acc, cur) => {\n    return acc.concat(cur);\n  },\n  [1, 2]\n);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1327,7 +1334,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-079',
-    question: "What's the output?\n\n```javascript\nfunction getInfo(member, year) {\n  member.name = \"Lydia\";\n  year = \"1998\";\n}\n\nconst person = { name: \"Sarah\" };\nconst birthYear = \"1997\";\n\ngetInfo(person, birthYear);\n\nconsole.log(person, birthYear);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction getInfo(member, year) {\n  member.name = \"Lydia\";\n  year = \"1998\";\n}\n\nconst person = { name: \"Sarah\" };\nconst birthYear = \"1997\";\n\ngetInfo(person, birthYear);\n\nconsole.log(person, birthYear);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1344,7 +1351,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-080',
-    question: "What's the output?\n\n```javascript\nfunction greeting() {\n  throw \"Hello world!\";\n}\n\nfunction sayHi() {\n  try {\n    const data = greeting();\n    console.log(\"It worked!\", data);\n  } catch (e) {\n    console.log(\"Oh no an error:\", e);\n  }\n}\n\nsayHi();\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction greeting() {\n  throw \"Hello world!\";\n}\n\nfunction sayHi() {\n  try {\n    const data = greeting();\n    console.log(\"It worked!\", data);\n  } catch (e) {\n    console.log(\"Oh no an error:\", e);\n  }\n}\n\nsayHi();\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1361,7 +1368,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-081',
-    question: "What's the output?\n\n```javascript\nconst set = new Set([1, 1, 2, 3, 4]);\n\nconsole.log(set);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst set = new Set([1, 1, 2, 3, 4]);\n\nconsole.log(set);\n```",
     category: 'javascript',
     subcategory: 'iterators',
     difficulty: 'medium',
@@ -1378,7 +1385,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-082',
-    question: "What is the output?\n\n```javascript\nconst add = () => {\n  const cache = {};\n  return (num) => {\n    if (num in cache) {\n      return `From cache! ${cache[num]}`;\n    } else {\n      const result = num + 10;\n      cache[num] = result;\n      return `Calculated! ${result}`;\n    }\n  };\n};\n\nconst addFunction = add();\nconsole.log(addFunction(10));\nconsole.log(addFunction(10));\nconsole.log(addFunction(5 * 2));\n```",
+    question: "📝 What is the output?\n\n```javascript\nconst add = () => {\n  const cache = {};\n  return (num) => {\n    if (num in cache) {\n      return `From cache! ${cache[num]}`;\n    } else {\n      const result = num + 10;\n      cache[num] = result;\n      return `Calculated! ${result}`;\n    }\n  };\n};\n\nconst addFunction = add();\nconsole.log(addFunction(10));\nconsole.log(addFunction(10));\nconsole.log(addFunction(5 * 2));\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1395,7 +1402,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-083',
-    question: "What is the output?\n\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n};\n\nlet city = person.city;\ncity = \"Amsterdam\";\n\nconsole.log(person);\n```",
+    question: "🖥️ What is the output?\n\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n};\n\nlet city = person.city;\ncity = \"Amsterdam\";\n\nconsole.log(person);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1412,7 +1419,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-084',
-    question: "Which option is a way to set `hasName` equal to `true`, provided you cannot pass `true` as an argument?\n\n```javascript\nfunction getName(name) {\n  const hasName = //\n}\n```",
+    question: "✅ Which option is a way to set `hasName` equal to `true`, provided you cannot pass `true` as an argument?\n\n```javascript\nfunction getName(name) {\n  const hasName = //\n}\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1429,7 +1436,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-085',
-    question: "What's the output?\n\n```javascript\n// module.js\nexport default () => \"Hello world\";\nexport const name = \"Lydia\";\n\n// index.js\nimport * as data from \"./module\";\n\nconsole.log(data);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\n// module.js\nexport default () => \"Hello world\";\nexport const name = \"Lydia\";\n\n// index.js\nimport * as data from \"./module\";\n\nconsole.log(data);\n```",
     category: 'javascript',
     subcategory: 'modules',
     difficulty: 'medium',
@@ -1446,7 +1453,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-086',
-    question: "What's its value?\n\n```javascript\nfunction compareMembers(person1, person2 = person) {\n  if (person1 !== person2) {\n    console.log(\"Not the same!\");\n  } else {\n    console.log(\"They are the same!\");\n  }\n}\n\nconst person = { name: \"Lydia\" };\n\ncompareMembers(person);\n```",
+    question: "📝 What's its value?\n\n```javascript\nfunction compareMembers(person1, person2 = person) {\n  if (person1 !== person2) {\n    console.log(\"Not the same!\");\n  } else {\n    console.log(\"They are the same!\");\n  }\n}\n\nconst person = { name: \"Lydia\" };\n\ncompareMembers(person);\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
@@ -1463,7 +1470,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-087',
-    question: "What's its value?\n\n```javascript\nconst colorConfig = {\n  red: true,\n  blue: false,\n  green: true,\n  black: true,\n  yellow: false,\n};\n\nconst colors = [\"pink\", \"red\", \"blue\"];\n\nconsole.log(colorConfig.colors[1]);\n```",
+    question: "✅ What's its value?\n\n```javascript\nconst colorConfig = {\n  red: true,\n  blue: false,\n  green: true,\n  black: true,\n  yellow: false,\n};\n\nconst colors = [\"pink\", \"red\", \"blue\"];\n\nconsole.log(colorConfig.colors[1]);\n```",
     category: 'javascript',
     subcategory: 'closures',
     difficulty: 'medium',
@@ -1480,7 +1487,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-088',
-    question: "What will happen?\n\n```javascript\nlet config = {\n  alert: setInterval(() => {\n    console.log(\"Alert!\");\n  }, 1000),\n};\n\nconfig = null;\n```",
+    question: "📝 What will happen?\n\n```javascript\nlet config = {\n  alert: setInterval(() => {\n    console.log(\"Alert!\");\n  }, 1000),\n};\n\nconfig = null;\n```",
     category: 'javascript',
     subcategory: 'this',
     difficulty: 'medium',
@@ -1497,7 +1504,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-089',
-    question: "Which method(s) will return the value `'Hello world!'`?\n\n```javascript\nconst myMap = new Map();\nconst myFunc = () => \"greeting\";\n\nmyMap.set(myFunc, \"Hello world!\");\n\n//1\nmyMap.get(\"greeting\");\n//2\nmyMap.get(myFunc);\n//3\nmyMap.get(() => \"greeting\");\n```",
+    question: "🗺️ Which method(s) will return the value `'Hello world!'`?\n\n```javascript\nconst myMap = new Map();\nconst myFunc = () => \"greeting\";\n\nmyMap.set(myFunc, \"Hello world!\");\n\n//1\nmyMap.get(\"greeting\");\n//2\nmyMap.get(myFunc);\n//3\nmyMap.get(() => \"greeting\");\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1514,7 +1521,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-090',
-    question: "What's the output?\n\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n};\n\nconst changeAge = (x = { ...person }) => (x.age += 1);\nconst changeAgeAndName = (x = { ...person }) => {\n  x.age += 1;\n  x.name = \"Sarah\";\n};\n\nchangeAge(person);\nchangeAgeAndName();\n\nconsole.log(person);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n};\n\nconst changeAge = (x = { ...person }) => (x.age += 1);\nconst changeAgeAndName = (x = { ...person }) => {\n  x.age += 1;\n  x.name = \"Sarah\";\n};\n\nchangeAge(person);\nchangeAgeAndName();\n\nconsole.log(person);\n```",
     category: 'javascript',
     subcategory: 'objects',
     difficulty: 'medium',
@@ -1531,7 +1538,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-091',
-    question: "What's the output?\n\n```javascript\nconst name = \"Lydia Hallie\";\n\nconsole.log(!typeof name === \"object\");\nconsole.log(!typeof name === \"string\");\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst name = \"Lydia Hallie\";\n\nconsole.log(!typeof name === \"object\");\nconsole.log(!typeof name === \"string\");\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1548,7 +1555,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-092',
-    question: "What's the output?\n\n```javascript\nconst myFunc = ({ x, y, z }) => {\n  console.log(x, y, z);\n};\n\nmyFunc(1, 2, 3);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst myFunc = ({ x, y, z }) => {\n  console.log(x, y, z);\n};\n\nmyFunc(1, 2, 3);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1565,7 +1572,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-093',
-    question: "What's the output?\n\n```javascript\nfunction getFine(speed, amount) {\n  const formattedSpeed = new Intl.NumberFormat(\"en-US\", {\n    style: \"unit\",\n    unit: \"mile-per-hour\",\n  }).format(speed);\n\n  const formattedAmount = new Intl.NumberFormat(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\",\n  }).format(amount);\n\n  return `The driver drove ${formattedSpeed} and has to pay ${formattedAmount}`;\n}\n\nconsole.log(getFine(130, 300));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction getFine(speed, amount) {\n  const formattedSpeed = new Intl.NumberFormat(\"en-US\", {\n    style: \"unit\",\n    unit: \"mile-per-hour\",\n  }).format(speed);\n\n  const formattedAmount = new Intl.NumberFormat(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\",\n  }).format(amount);\n\n  return `The driver drove ${formattedSpeed} and has to pay ${formattedAmount}`;\n}\n\nconsole.log(getFine(130, 300));\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1582,7 +1589,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-094',
-    question: "What's the output?\n\n```javascript\nconst animals = {};\nlet dog = { emoji: \"🐶\" };\nlet cat = { emoji: \"🐈\" };\n\nanimals[dog] = { ...dog, name: \"Mara\" };\nanimals[cat] = { ...cat, name: \"Sara\" };\n\nconsole.log(animals[dog]);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst animals = {};\nlet dog = { emoji: \"🐶\" };\nlet cat = { emoji: \"🐈\" };\n\nanimals[dog] = { ...dog, name: \"Mara\" };\nanimals[cat] = { ...cat, name: \"Sara\" };\n\nconsole.log(animals[dog]);\n```",
     category: 'javascript',
     subcategory: 'this',
     difficulty: 'medium',
@@ -1599,7 +1606,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-095',
-    question: "What's the output?\n\n```javascript\nconst createMember = ({ email, address = {} }) => {\n  const validEmail = /.+\\@.+\\..+/.test(email);\n  if (!validEmail) throw new Error(\"Valid email pls\");\n\n  return {\n    email,\n    address: address ? address : null,\n  };\n};\n\nconst member = createMember({ email: \"my@email.com\" });\nconsole.log(member);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst createMember = ({ email, address = {} }) => {\n  const validEmail = /.+\\@.+\\..+/.test(email);\n  if (!validEmail) throw new Error(\"Valid email pls\");\n\n  return {\n    email,\n    address: address ? address : null,\n  };\n};\n\nconst member = createMember({ email: \"my@email.com\" });\nconsole.log(member);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1616,7 +1623,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-096',
-    question: "What is the purpose of the 'use strict' directive?",
+    question: "⚡ What is the purpose of the 'use strict' directive?",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -1633,7 +1640,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-097',
-    question: "What's the output?\n\n```javascript\nconst person = { name: \"Lydia\" };\n\nObject.defineProperty(person, \"age\", { value: 21 });\n\nconsole.log(person);\nconsole.log(Object.keys(person));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst person = { name: \"Lydia\" };\n\nObject.defineProperty(person, \"age\", { value: 21 });\n\nconsole.log(person);\nconsole.log(Object.keys(person));\n```",
     category: 'javascript',
     subcategory: 'objects',
     difficulty: 'medium',
@@ -1650,7 +1657,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-098',
-    question: "What's the output?\n\n```javascript\nconst box = { x: 10, y: 20 };\n\nObject.freeze(box);\n\nconst shape = box;\nshape.x = 100;\n\nconsole.log(shape);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst box = { x: 10, y: 20 };\n\nObject.freeze(box);\n\nconst shape = box;\nshape.x = 100;\n\nconsole.log(shape);\n```",
     category: 'javascript',
     subcategory: 'objects',
     difficulty: 'medium',
@@ -1667,7 +1674,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-099',
-    question: "Which of the following will modify the `person` object?\n\n```javascript\nconst person = { name: \"Lydia Hallie\" };\n\nObject.seal(person);\n```",
+    question: "📦 Which of the following will modify the `person` object?\n\n```javascript\nconst person = { name: \"Lydia Hallie\" };\n\nObject.seal(person);\n```",
     category: 'javascript',
     subcategory: 'objects',
     difficulty: 'medium',
@@ -1684,7 +1691,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-100',
-    question: "Which of the following will modify the `person` object?\n\n```javascript\nconst person = {\n  name: \"Lydia Hallie\",\n  address: {\n    street: \"100 Main St\",\n  },\n};\n\nObject.freeze(person);\n```",
+    question: "📦 Which of the following will modify the `person` object?\n\n```javascript\nconst person = {\n  name: \"Lydia Hallie\",\n  address: {\n    street: \"100 Main St\",\n  },\n};\n\nObject.freeze(person);\n```",
     category: 'javascript',
     subcategory: 'objects',
     difficulty: 'medium',
@@ -1701,7 +1708,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-101',
-    question: "What's the output?\n\n```javascript\nconst user = {\n  email: \"e@mail.com\",\n  password: \"12345\",\n};\n\nconst updateUser = ({ email, password }) => {\n  if (email) {\n    Object.assign(user, { email });\n  }\n\n  if (password) {\n    user.password = password;\n  }\n\n  return user;\n};\n\nconst updatedUser = updateUser({ email: \"new@email.com\" });\n\nconsole.log(updatedUser === user);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst user = {\n  email: \"e@mail.com\",\n  password: \"12345\",\n};\n\nconst updateUser = ({ email, password }) => {\n  if (email) {\n    Object.assign(user, { email });\n  }\n\n  if (password) {\n    user.password = password;\n  }\n\n  return user;\n};\n\nconst updatedUser = updateUser({ email: \"new@email.com\" });\n\nconsole.log(updatedUser === user);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1718,22 +1725,24 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-102',
-    question: "All object have prototypes.",
+    question: "📦 All object have prototypes.",
     category: 'javascript',
     subcategory: 'prototypes',
     difficulty: 'medium',
     options: [
           "true",
-          "false"
+          "false",
+          "only if created with 'new'",
+          "only in ES6+"
     ],
     correctAnswer: 1,
-    explanation: "All objects have prototypes, except for the **base object**. The base object is the object created by the user, or an object that is created using the `new` keyword. The base object has access to some methods and properties, such as `.toString`. This is the reason why you can use built-in JavaScript methods! All of such methods are available on the prototype. Although JavaScript can't find it directly on your object, it goes down the prototype chain and finds it there, which makes it accessible for you.",
+    explanation: "The answer is **false** because `Object.prototype` itself doesn't have a prototype - its prototype is `null`. This is the top of the prototype chain. You can verify this: `Object.getPrototypeOf(Object.prototype) === null` returns `true`. Additionally, you can create objects without prototypes using `Object.create(null)`, which is useful for creating true dictionaries/hash maps without inherited properties.",
     tags: ["javascript","quiz"],
   },
 
   {
     id: 'js-103',
-    question: "What's the output?\n\n```javascript\nconsole.log(\"I want pizza\"[0]);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconsole.log(\"I want pizza\"[0]);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1750,7 +1759,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-104',
-    question: "What's the output?\n\n```javascript\nfunction getAge(...args) {\n  console.log(typeof args);\n}\n\ngetAge(21);\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction getAge(...args) {\n  console.log(typeof args);\n}\n\ngetAge(21);\n```",
     category: 'javascript',
     subcategory: 'operators',
     difficulty: 'medium',
@@ -1767,7 +1776,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-105',
-    question: "What's the output?\n\n```javascript\nlet person = { name: \"Lydia\" };\nconst members = [person];\nperson = null;\n\nconsole.log(members);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nlet person = { name: \"Lydia\" };\nconst members = [person];\nperson = null;\n\nconsole.log(members);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1784,7 +1793,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-106',
-    question: "What's the output?\n\n```javascript\nconst numbers = [1, 2, 3, 4, 5];\nconst [y] = numbers;\n\nconsole.log(y);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst numbers = [1, 2, 3, 4, 5];\nconst [y] = numbers;\n\nconsole.log(y);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1801,7 +1810,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-107',
-    question: "What's the output?\n\n```javascript\nconst settings = {\n  username: \"lydiahallie\",\n  level: 19,\n  health: 90,\n};\n\nconst data = JSON.stringify(settings, [\"level\", \"health\"]);\nconsole.log(data);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst settings = {\n  username: \"lydiahallie\",\n  level: 19,\n  health: 90,\n};\n\nconst data = JSON.stringify(settings, [\"level\", \"health\"]);\nconsole.log(data);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -1818,7 +1827,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-108',
-    question: "What is the output?\n\n```javascript\nconst list = [1 + 2, 1 * 2, 1 / 2];\nconsole.log(list);\n```",
+    question: "📝 What is the output?\n\n```javascript\nconst list = [1 + 2, 1 * 2, 1 / 2];\nconsole.log(list);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1835,7 +1844,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-109',
-    question: "What's the output?\n\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n};\n\nfor (const [x, y] of Object.entries(person)) {\n  console.log(x, y);\n}\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n};\n\nfor (const [x, y] of Object.entries(person)) {\n  console.log(x, y);\n}\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -1852,7 +1861,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-110',
-    question: "What's the output?\n\n```javascript\nconst getList = ([x, ...y]) => [x, y]\nconst getUser = user => { name: user.name, age: user.age }\n\nconst list = [1, 2, 3, 4]\nconst user = { name: \"Lydia\", age: 21 }\n\nconsole.log(getList(list))\nconsole.log(getUser(user))\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst getList = ([x, ...y]) => [x, y]\nconst getUser = user => { name: user.name, age: user.age }\n\nconst list = [1, 2, 3, 4]\nconst user = { name: \"Lydia\", age: 21 }\n\nconsole.log(getList(list))\nconsole.log(getUser(user))\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -1869,7 +1878,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-111',
-    question: "What's the output?\n\n```javascript\nconst food = [\"🍕\", \"🍫\", \"🥑\", \"🍔\"];\nconst info = { favoriteFood: food[0] };\n\ninfo.favoriteFood = \"🍝\";\n\nconsole.log(food);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst food = [\"🍕\", \"🍫\", \"🥑\", \"🍔\"];\nconst info = { favoriteFood: food[0] };\n\ninfo.favoriteFood = \"🍝\";\n\nconsole.log(food);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1886,7 +1895,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-112',
-    question: "What does this method do?\n\n```javascript\nJSON.parse();\n```",
+    question: "🔤 What does this method do?\n\n```javascript\nJSON.parse();\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1903,7 +1912,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-113',
-    question: "What's the output?\n\n```javascript\nconst spookyItems = [\"👻\", \"🎃\", \"🕸\"];\n({ item: spookyItems[3] } = { item: \"💀\" });\n\nconsole.log(spookyItems);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst spookyItems = [\"👻\", \"🎃\", \"🕸\"];\n({ item: spookyItems[3] } = { item: \"💀\" });\n\nconsole.log(spookyItems);\n```",
     category: 'javascript',
     subcategory: 'objects',
     difficulty: 'medium',
@@ -1920,7 +1929,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-114',
-    question: "What's the output?\n\n```javascript\nfunction getFruit(fruits) {\n  console.log(fruits?.[1]?.[1]);\n}\n\ngetFruit([[\"🍊\", \"🍌\"], [\"🍍\"]]);\ngetFruit();\ngetFruit([[\"🍍\"], [\"🍊\", \"🍌\"]]);\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction getFruit(fruits) {\n  console.log(fruits?.[1]?.[1]);\n}\n\ngetFruit([[\"🍊\", \"🍌\"], [\"🍍\"]]);\ngetFruit();\ngetFruit([[\"🍍\"], [\"🍊\", \"🍌\"]]);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -1937,14 +1946,15 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-115',
-    question: "What's the output?\n\n```javascript\nfunction getPersonInfo(one, two, three) {\n  console.log(one);\n  console.log(two);\n  console.log(three);\n}\n\nconst person = \"Lydia\";\nconst age = 21;\n\ngetPersonInfo`${person} is ${age} years old`;\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction getPersonInfo(one, two, three) {\n  console.log(one);\n  console.log(two);\n  console.log(three);\n}\n\nconst person = \"Lydia\";\nconst age = 21;\n\ngetPersonInfo`${person} is ${age} years old`;\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
     options: [
           "\"Lydia\" 21 [\"\", \" is \", \" years old\"]",
           "[\"\", \" is \", \" years old\"] \"Lydia\" 21",
-          "\"Lydia\" [\"\", \" is \", \" years old\"] 21"
+          "\"Lydia\" [\"\", \" is \", \" years old\"] 21",
+          "SyntaxError"
     ],
     correctAnswer: 1,
     explanation: "If you use tagged template literals, the value of the first argument is always an array of the string values. The remaining arguments get the values of the passed expressions!",
@@ -1953,7 +1963,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-116',
-    question: "What's the output?\n\n```javascript\nconst numbers = [1, 2, 3];\nnumbers[10] = 11;\nconsole.log(numbers);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst numbers = [1, 2, 3];\nnumbers[10] = 11;\nconsole.log(numbers);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1970,7 +1980,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-117',
-    question: "What's the output?\n\n```javascript\nconst name = \"Lydia Hallie\";\nconsole.log(name.padStart(13));\nconsole.log(name.padStart(2));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst name = \"Lydia Hallie\";\nconsole.log(name.padStart(13));\nconsole.log(name.padStart(2));\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -1987,7 +1997,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-118',
-    question: "What's the output?\n\n```javascript\nfunction getItems(fruitList, ...args, favoriteFruit) {\n  return [...fruitList, ...args, favoriteFruit]\n}\n\ngetItems([\"banana\", \"apple\"], \"pear\", \"orange\")\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction getItems(fruitList, ...args, favoriteFruit) {\n  return [...fruitList, ...args, favoriteFruit]\n}\n\ngetItems([\"banana\", \"apple\"], \"pear\", \"orange\")\n```",
     category: 'javascript',
     subcategory: 'operators',
     difficulty: 'medium',
@@ -2004,7 +2014,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-119',
-    question: "What's the output?\n\n```javascript\nlet count = 0;\nconst nums = [0, 1, 2, 3];\n\nnums.forEach((num) => {\n  if (num) count += 1;\n});\n\nconsole.log(count);\n```",
+    question: "📝 What's the output?\n\n```javascript\nlet count = 0;\nconst nums = [0, 1, 2, 3];\n\nnums.forEach((num) => {\n  if (num) count += 1;\n});\n\nconsole.log(count);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -2021,7 +2031,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-120',
-    question: "What's the output?\n\n```javascript\nfunction test() {\n  console.log(arguments[0]);\n  console.log(arguments.length);\n}\n\ntest('a', 'b', 'c');\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction test() {\n  console.log(arguments[0]);\n  console.log(arguments.length);\n}\n\ntest('a', 'b', 'c');\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'easy',
@@ -2038,7 +2048,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-121',
-    question: "What's the output?\n\n```javascript\nconst arr = [1, 2, 3];\narr[10] = 99;\n\nconsole.log(arr.length);\nconsole.log(arr[5]);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, 2, 3];\narr[10] = 99;\n\nconsole.log(arr.length);\nconsole.log(arr[5]);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -2055,7 +2065,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-122',
-    question: "What's the output?\n\n```javascript\nconst arr = [1, 2, 3, 4, 5];\nconst found = arr.find(n => n > 2);\nconst foundIndex = arr.findIndex(n => n > 2);\n\nconsole.log(found, foundIndex);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, 2, 3, 4, 5];\nconst found = arr.find(n => n > 2);\nconst foundIndex = arr.findIndex(n => n > 2);\n\nconsole.log(found, foundIndex);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'easy',
@@ -2072,7 +2082,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-123',
-    question: "What's the output?\n\n```javascript\nconst person = {\n  name: \"Lydia Hallie\",\n  hobbies: [\"coding\"],\n};\n\nfunction addHobby(hobby, hobbies = person.hobbies) {\n  hobbies.push(hobby);\n  return hobbies;\n}\n\naddHobby(\"running\", []);\naddHobby(\"dancing\");\naddHobby(\"baking\", person.hobbies);\n\nconsole.log(person.hobbies);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst person = {\n  name: \"Lydia Hallie\",\n  hobbies: [\"coding\"],\n};\n\nfunction addHobby(hobby, hobbies = person.hobbies) {\n  hobbies.push(hobby);\n  return hobbies;\n}\n\naddHobby(\"running\", []);\naddHobby(\"dancing\");\naddHobby(\"baking\", person.hobbies);\n\nconsole.log(person.hobbies);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -2089,7 +2099,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-124',
-    question: "What should the value of `method` be to log `{ name: \"Lydia\", age: 22 }`?\n\n```javascript\nconst keys = [\"name\", \"age\"];\nconst values = [\"Lydia\", 22];\n\nconst method =\n  /* ?? */\n  Object[method](\n    keys.map((_, i) => {\n      return [keys[i], values[i]];\n    })\n  ); // { name: \"Lydia\", age: 22 }\n```",
+    question: "📚 What should the value of `method` be to log `{ name: \"Lydia\", age: 22 }`?\n\n```javascript\nconst keys = [\"name\", \"age\"];\nconst values = [\"Lydia\", 22];\n\nconst method =\n  /* ?? */\n  Object[method](\n    keys.map((_, i) => {\n      return [keys[i], values[i]];\n    })\n  ); // { name: \"Lydia\", age: 22 }\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -2106,7 +2116,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-125',
-    question: "What's the output?\n\n```javascript\n[1, 2, 3].map((num) => {\n  if (typeof num === \"number\") return;\n  return num * 2;\n});\n```",
+    question: "🖥️ What's the output?\n\n```javascript\n[1, 2, 3].map((num) => {\n  if (typeof num === \"number\") return;\n  return num * 2;\n});\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
@@ -2123,7 +2133,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-126',
-    question: "What's the output?\n\n```javascript\n[1, 2, 3, 4].reduce((x, y) => console.log(x, y));\n```",
+    question: "📝 What's the output?\n\n```javascript\n[1, 2, 3, 4].reduce((x, y) => console.log(x, y));\n```",
     category: 'javascript',
     subcategory: 'this',
     difficulty: 'medium',
@@ -2140,7 +2150,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-127',
-    question: "What's the output?\n\n```javascript\nfunction addToList(item, list) {\n  return list.push(item);\n}\n\nconst result = addToList(\"apple\", [\"banana\"]);\nconsole.log(result);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction addToList(item, list) {\n  return list.push(item);\n}\n\nconst result = addToList(\"apple\", [\"banana\"]);\nconsole.log(result);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -2157,7 +2167,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-128',
-    question: "What's the output?\n\n```javascript\nlet newList = [1, 2, 3].push(4);\n\nconsole.log(newList.push(5));\n```",
+    question: "📝 What's the output?\n\n```javascript\nlet newList = [1, 2, 3].push(4);\n\nconsole.log(newList.push(5));\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -2174,7 +2184,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-129',
-    question: "Which of these methods modifies the original array?\n\n```javascript\nconst emojis = [\"✨\", \"🥑\", \"😍\"];\n\nemojis.map((x) => x + \"✨\");\nemojis.filter((x) => x !== \"🥑\");\nemojis.find((x) => x !== \"🥑\");\nemojis.reduce((acc, cur) => acc + \"✨\");\nemojis.slice(1, 2, \"✨\");\nemojis.splice(1, 2, \"✨\");\n```",
+    question: "📚 Which of these methods modifies the original array?\n\n```javascript\nconst emojis = [\"✨\", \"🥑\", \"😍\"];\n\nemojis.map((x) => x + \"✨\");\nemojis.filter((x) => x !== \"🥑\");\nemojis.find((x) => x !== \"🥑\");\nemojis.reduce((acc, cur) => acc + \"✨\");\nemojis.slice(1, 2, \"✨\");\nemojis.splice(1, 2, \"✨\");\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -2191,7 +2201,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-130',
-    question: "What's the output?\n\n```javascript\nconst emojis = [\"🥑\", [\"✨\", \"✨\", [\"🍕\", \"🍕\"]]];\n\nconsole.log(emojis.flat(1));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst emojis = [\"🥑\", [\"✨\", \"✨\", [\"🍕\", \"🍕\"]]];\n\nconsole.log(emojis.flat(1));\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -2208,7 +2218,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-131',
-    question: "What's the output?\n\n```javascript\nconst fruit = [\"🍌\", \"🍊\", \"🍎\"];\n\nfruit.slice(0, 1);\nfruit.splice(0, 1);\nfruit.unshift(\"🍇\");\n\nconsole.log(fruit);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst fruit = [\"🍌\", \"🍊\", \"🍎\"];\n\nfruit.slice(0, 1);\nfruit.splice(0, 1);\nfruit.unshift(\"🍇\");\n\nconsole.log(fruit);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -2225,7 +2235,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-132',
-    question: "What's the output?\n\n```javascript\nfunction sum(...numbers) {\n  return numbers.reduce((a, b) => a + b, 0);\n}\n\nconsole.log(sum(1, 2, 3, 4));\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction sum(...numbers) {\n  return numbers.reduce((a, b) => a + b, 0);\n}\n\nconsole.log(sum(1, 2, 3, 4));\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -2242,7 +2252,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-133',
-    question: "What's the output?\n\n```javascript\nconst arr = [1, 2, 3, 4, 5];\nconst result = arr.filter(n => n > 2).map(n => n * 2);\n\nconsole.log(result);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, 2, 3, 4, 5];\nconst result = arr.filter(n => n > 2).map(n => n * 2);\n\nconsole.log(result);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'easy',
@@ -2259,7 +2269,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-134',
-    question: "What's the output?\n\n```javascript\nconst arr = [1, [2, [3, [4]]]];\nconst flat = arr.flat(2);\n\nconsole.log(flat);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, [2, [3, [4]]]];\nconst flat = arr.flat(2);\n\nconsole.log(flat);\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2276,7 +2286,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-135',
-    question: "Which of these values are falsy?\n\n```javascript\n0;\nnew Number(0);\n(\"\");\n(\" \");\nnew Boolean(false);\nundefined;\n```",
+    question: "🔢 Which of these values are falsy?\n\n```javascript\n0;\nnew Number(0);\n(\"\");\n(\" \");\nnew Boolean(false);\nundefined;\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -2293,7 +2303,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-136',
-    question: "What's the output?\n\n```javascript\nlet a = 3;\nlet b = new Number(3);\nlet c = 3;\n\nconsole.log(a == b);\nconsole.log(a === b);\nconsole.log(b === c);\n```",
+    question: "📝 What's the output?\n\n```javascript\nlet a = 3;\nlet b = new Number(3);\nlet c = 3;\n\nconsole.log(a == b);\nconsole.log(a === b);\nconsole.log(b === c);\n```",
     category: 'javascript',
     subcategory: 'type-coercion',
     difficulty: 'medium',
@@ -2310,7 +2320,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-137',
-    question: "What's the output?\n\n```javascript\nfunction Car() {\n  this.make = \"Lamborghini\";\n  return { make: \"Maserati\" };\n}\n\nconst myCar = new Car();\nconsole.log(myCar.make);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction Car() {\n  this.make = \"Lamborghini\";\n  return { make: \"Maserati\" };\n}\n\nconst myCar = new Car();\nconsole.log(myCar.make);\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2327,7 +2337,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-138',
-    question: "What's the output?\n\n```javascript\nclass Chameleon {\n  static colorChange(newColor) {\n    this.newColor = newColor;\n    return this.newColor;\n  }\n\n  constructor({ newColor = \"green\" } = {}) {\n    this.newColor = newColor;\n  }\n}\n\nconst freddie = new Chameleon({ newColor: \"purple\" });\nconsole.log(freddie.colorChange(\"orange\"));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nclass Chameleon {\n  static colorChange(newColor) {\n    this.newColor = newColor;\n    return this.newColor;\n  }\n\n  constructor({ newColor = \"green\" } = {}) {\n    this.newColor = newColor;\n  }\n}\n\nconst freddie = new Chameleon({ newColor: \"purple\" });\nconsole.log(freddie.colorChange(\"orange\"));\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2344,7 +2354,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-139',
-    question: "What's the output?\n\n```javascript\nfunction Person(firstName, lastName) {\n  this.firstName = firstName;\n  this.lastName = lastName;\n}\n\nconst member = new Person(\"Lydia\", \"Hallie\");\nPerson.getFullName = function () {\n  return `${this.firstName} ${this.lastName}`;\n};\n\nconsole.log(member.getFullName());\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction Person(firstName, lastName) {\n  this.firstName = firstName;\n  this.lastName = lastName;\n}\n\nconst member = new Person(\"Lydia\", \"Hallie\");\nPerson.getFullName = function () {\n  return `${this.firstName} ${this.lastName}`;\n};\n\nconsole.log(member.getFullName());\n```",
     category: 'javascript',
     subcategory: 'prototypes',
     difficulty: 'medium',
@@ -2361,7 +2371,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-140',
-    question: "What's the output?\n\n```javascript\nString.prototype.giveLydiaPizza = () => {\n  return \"Just give Lydia pizza already!\";\n};\n\nconst name = \"Lydia\";\n\nconsole.log(name.giveLydiaPizza());\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nString.prototype.giveLydiaPizza = () => {\n  return \"Just give Lydia pizza already!\";\n};\n\nconst name = \"Lydia\";\n\nconsole.log(name.giveLydiaPizza());\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -2378,7 +2388,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-141',
-    question: "What's the output?\n\n```javascript\nclass Dog {\n  constructor(name) {\n    this.name = name;\n  }\n}\n\nDog.prototype.bark = function () {\n  console.log(`Woof I am ${this.name}`);\n};\n\nconst pet = new Dog(\"Mara\");\n\npet.bark();\n\ndelete Dog.prototype.bark;\n\npet.bark();\n```",
+    question: "📝 What's the output?\n\n```javascript\nclass Dog {\n  constructor(name) {\n    this.name = name;\n  }\n}\n\nDog.prototype.bark = function () {\n  console.log(`Woof I am ${this.name}`);\n};\n\nconst pet = new Dog(\"Mara\");\n\npet.bark();\n\ndelete Dog.prototype.bark;\n\npet.bark();\n```",
     category: 'javascript',
     subcategory: 'prototypes',
     difficulty: 'medium',
@@ -2395,7 +2405,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-142',
-    question: "With which constructor can we successfully extend the `Dog` class?\n\n```javascript\nclass Dog {\n  constructor(name) {\n    this.name = name;\n  }\n};\n\nclass Labrador extends Dog {\n  // 1\n  constructor(name, size) {\n    this.size = size;\n  }\n  // 2\n  constructor(name, size) {\n    super(name);\n    this.size = size;\n  }\n  // 3\n  constructor(size) {\n    super(name);\n    this.size = size;\n  }\n  // 4\n  constructor(name, size) {\n    this.name = name;\n    this.size = size;\n  }\n\n};\n```",
+    question: "🏛️ With which constructor can we successfully extend the `Dog` class?\n\n```javascript\nclass Dog {\n  constructor(name) {\n    this.name = name;\n  }\n};\n\nclass Labrador extends Dog {\n  // 1\n  constructor(name, size) {\n    this.size = size;\n  }\n  // 2\n  constructor(name, size) {\n    super(name);\n    this.size = size;\n  }\n  // 3\n  constructor(size) {\n    super(name);\n    this.size = size;\n  }\n  // 4\n  constructor(name, size) {\n    this.name = name;\n    this.size = size;\n  }\n\n};\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2412,7 +2422,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-143',
-    question: "What's the output?\n\n```javascript\nclass Person {\n  constructor(name) {\n    this.name = name;\n  }\n}\n\nconst member = new Person(\"John\");\nconsole.log(typeof member);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nclass Person {\n  constructor(name) {\n    this.name = name;\n  }\n}\n\nconst member = new Person(\"John\");\nconsole.log(typeof member);\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2429,7 +2439,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-144',
-    question: "What's the output?\n\n```javascript\nfunction giveLydiaPizza() {\n  return \"Here is pizza!\";\n}\n\nconst giveLydiaChocolate = () =>\n  \"Here's chocolate... now go hit the gym already.\";\n\nconsole.log(giveLydiaPizza.prototype);\nconsole.log(giveLydiaChocolate.prototype);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction giveLydiaPizza() {\n  return \"Here is pizza!\";\n}\n\nconst giveLydiaChocolate = () =>\n  \"Here's chocolate... now go hit the gym already.\";\n\nconsole.log(giveLydiaPizza.prototype);\nconsole.log(giveLydiaChocolate.prototype);\n```",
     category: 'javascript',
     subcategory: 'prototypes',
     difficulty: 'medium',
@@ -2446,7 +2456,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-145',
-    question: "What's the output?\n\n```javascript\nclass Person {\n  constructor() {\n    this.name = \"Lydia\";\n  }\n}\n\nPerson = class AnotherPerson {\n  constructor() {\n    this.name = \"Sarah\";\n  }\n};\n\nconst member = new Person();\nconsole.log(member.name);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nclass Person {\n  constructor() {\n    this.name = \"Lydia\";\n  }\n}\n\nPerson = class AnotherPerson {\n  constructor() {\n    this.name = \"Sarah\";\n  }\n};\n\nconst member = new Person();\nconsole.log(member.name);\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2463,7 +2473,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-146',
-    question: "What's the output?\n\n```javascript\nclass Counter {\n  constructor() {\n    this.count = 0;\n  }\n\n  increment() {\n    this.count++;\n  }\n}\n\nconst counterOne = new Counter();\ncounterOne.increment();\ncounterOne.increment();\n\nconst counterTwo = counterOne;\ncounterTwo.increment();\n\nconsole.log(counterOne.count);\n```",
+    question: "📝 What's the output?\n\n```javascript\nclass Counter {\n  constructor() {\n    this.count = 0;\n  }\n\n  increment() {\n    this.count++;\n  }\n}\n\nconst counterOne = new Counter();\ncounterOne.increment();\ncounterOne.increment();\n\nconst counterTwo = counterOne;\ncounterTwo.increment();\n\nconsole.log(counterOne.count);\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2480,7 +2490,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-147',
-    question: "What's the output?\n\n```javascript\nclass Counter {\n  #number = 10;\n\n  increment() {\n    this.#number++;\n  }\n\n  getNum() {\n    return this.#number;\n  }\n}\n\nconst counter = new Counter();\ncounter.increment();\n\nconsole.log(counter.#number);\n```",
+    question: "📝 What's the output?\n\n```javascript\nclass Counter {\n  #number = 10;\n\n  increment() {\n    this.#number++;\n  }\n\n  getNum() {\n    return this.#number;\n  }\n}\n\nconst counter = new Counter();\ncounter.increment();\n\nconsole.log(counter.#number);\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2497,7 +2507,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-148',
-    question: "What's the output?\n\n```javascript\nclass Bird {\n  constructor() {\n    console.log(\"I'm a bird. 🦢\");\n  }\n}\n\nclass Flamingo extends Bird {\n  constructor() {\n    console.log(\"I'm pink. 🌸\");\n    super();\n  }\n}\n\nconst pet = new Flamingo();\n```",
+    question: "📝 What's the output?\n\n```javascript\nclass Bird {\n  constructor() {\n    console.log(\"I'm a bird. 🦢\");\n  }\n}\n\nclass Flamingo extends Bird {\n  constructor() {\n    console.log(\"I'm pink. 🌸\");\n    super();\n  }\n}\n\nconst pet = new Flamingo();\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2514,7 +2524,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-149',
-    question: "What's the output?\n\n```javascript\nclass Calc {\n  constructor() {\n    this.count = 0;\n  }\n\n  increase() {\n    this.count++;\n  }\n}\n\nconst calc = new Calc();\nnew Calc().increase();\n\nconsole.log(calc.count);\n```",
+    question: "📝 What's the output?\n\n```javascript\nclass Calc {\n  constructor() {\n    this.count = 0;\n  }\n\n  increase() {\n    this.count++;\n  }\n}\n\nconst calc = new Calc();\nnew Calc().increase();\n\nconsole.log(calc.count);\n```",
     category: 'javascript',
     subcategory: 'classes',
     difficulty: 'medium',
@@ -2531,7 +2541,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-150',
-    question: "What's the output?\n\n```javascript\nconst foo = () => console.log(\"First\");\nconst bar = () => setTimeout(() => console.log(\"Second\"));\nconst baz = () => console.log(\"Third\");\n\nbar();\nfoo();\nbaz();\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst foo = () => console.log(\"First\");\nconst bar = () => setTimeout(() => console.log(\"Second\"));\nconst baz = () => console.log(\"Third\");\n\nbar();\nfoo();\nbaz();\n```",
     category: 'javascript',
     subcategory: 'event-loop',
     difficulty: 'medium',
@@ -2548,14 +2558,15 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-151',
-    question: "What's the output?\n\n```javascript\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\n\nfor (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\n```",
+    question: "📝 What's the output?\n\n```javascript\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\n\nfor (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\n```",
     category: 'javascript',
     subcategory: 'scope',
     difficulty: 'medium',
     options: [
           "0 1 2 and 0 1 2",
           "0 1 2 and 3 3 3",
-          "3 3 3 and 0 1 2"
+          "3 3 3 and 0 1 2",
+          "3 3 3 and 3 3 3"
     ],
     correctAnswer: 2,
     explanation: "Because of the event queue in JavaScript, the `setTimeout` callback function is called _after_ the loop has been executed. Since the variable `i` in the first loop was declared using the `var` keyword, this value was global. During the loop, we incremented the value of `i` by `1` each time, using the unary operator `++`. By the time the `setTimeout` callback function was invoked, `i` was equal to `3` in the first example.\n\nIn the second loop, the variable `i` was declared using the `let` keyword: variables declared with the `let` (and `const`) keyword are block-scoped (a block is anything between `{ }`). During each iteration, `i` will have a new value, and each value is scoped inside the loop.",
@@ -2564,7 +2575,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-152',
-    question: "What is the output?\n\n```javascript\nvar status = \"😎\";\n\nsetTimeout(() => {\n  const status = \"😍\";\n\n  const data = {\n    status: \"🥑\",\n    getStatus() {\n      return this.status;\n    },\n  };\n\n  console.log(data.getStatus());\n  console.log(data.getStatus.call(this));\n}, 0);\n```",
+    question: "🖥️ What is the output?\n\n```javascript\nvar status = \"😎\";\n\nsetTimeout(() => {\n  const status = \"😍\";\n\n  const data = {\n    status: \"🥑\",\n    getStatus() {\n      return this.status;\n    },\n  };\n\n  console.log(data.getStatus());\n  console.log(data.getStatus.call(this));\n}, 0);\n```",
     category: 'javascript',
     subcategory: 'objects',
     difficulty: 'medium',
@@ -2581,7 +2592,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-153',
-    question: "What does this return?\n\n```javascript\nconst firstPromise = new Promise((res, rej) => {\n  setTimeout(res, 500, \"one\");\n});\n\nconst secondPromise = new Promise((res, rej) => {\n  setTimeout(res, 100, \"two\");\n});\n\nPromise.race([firstPromise, secondPromise]).then((res) => console.log(res));\n```",
+    question: "🤝 What does this return?\n\n```javascript\nconst firstPromise = new Promise((res, rej) => {\n  setTimeout(res, 500, \"one\");\n});\n\nconst secondPromise = new Promise((res, rej) => {\n  setTimeout(res, 100, \"two\");\n});\n\nPromise.race([firstPromise, secondPromise]).then((res) => console.log(res));\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2598,7 +2609,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-154',
-    question: "What's the output?\n\n```javascript\nasync function getData() {\n  return await Promise.resolve(\"I made it!\");\n}\n\nconst data = getData();\nconsole.log(data);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nasync function getData() {\n  return await Promise.resolve(\"I made it!\");\n}\n\nconst data = getData();\nconsole.log(data);\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2615,7 +2626,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-155',
-    question: "What's the value of output?\n\n```javascript\nconst myPromise = () => Promise.resolve(\"I have resolved!\");\n\nfunction firstFunction() {\n  myPromise().then((res) => console.log(res));\n  console.log(\"second\");\n}\n\nasync function secondFunction() {\n  console.log(await myPromise());\n  console.log(\"second\");\n}\n\nfirstFunction();\nsecondFunction();\n```",
+    question: "🖥️ What's the value of output?\n\n```javascript\nconst myPromise = () => Promise.resolve(\"I have resolved!\");\n\nfunction firstFunction() {\n  myPromise().then((res) => console.log(res));\n  console.log(\"second\");\n}\n\nasync function secondFunction() {\n  console.log(await myPromise());\n  console.log(\"second\");\n}\n\nfirstFunction();\nsecondFunction();\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2632,7 +2643,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-156',
-    question: "What's its value?\n\n```javascript\nPromise.resolve(5);\n```",
+    question: "🤝 What's its value?\n\n```javascript\nPromise.resolve(5);\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2649,7 +2660,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-157',
-    question: "What's the output?\n\n```javascript\nasync function* range(start, end) {\n  for (let i = start; i <= end; i++) {\n    yield Promise.resolve(i);\n  }\n}\n\n(async () => {\n  const gen = range(1, 3);\n  for await (const item of gen) {\n    console.log(item);\n  }\n})();\n```",
+    question: "📝 What's the output?\n\n```javascript\nasync function* range(start, end) {\n  for (let i = start; i <= end; i++) {\n    yield Promise.resolve(i);\n  }\n}\n\n(async () => {\n  const gen = range(1, 3);\n  for await (const item of gen) {\n    console.log(item);\n  }\n})();\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2666,7 +2677,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-158',
-    question: "What's the output?\n\n```javascript\nconst myPromise = Promise.resolve(\"Woah some cool data\");\n\n(async () => {\n  try {\n    console.log(await myPromise);\n  } catch {\n    throw new Error(`Oops didn't work`);\n  } finally {\n    console.log(\"Oh finally!\");\n  }\n})();\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst myPromise = Promise.resolve(\"Woah some cool data\");\n\n(async () => {\n  try {\n    console.log(await myPromise);\n  } catch {\n    throw new Error(`Oops didn't work`);\n  } finally {\n    console.log(\"Oh finally!\");\n  }\n})();\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2683,7 +2694,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-159',
-    question: "What's the output?\n\n```javascript\nconst myPromise = Promise.resolve(Promise.resolve(\"Promise\"));\n\nfunction funcOne() {\n  setTimeout(() => console.log(\"Timeout 1!\"), 0);\n  myPromise.then((res) => res).then((res) => console.log(`${res} 1!`));\n  console.log(\"Last line 1!\");\n}\n\nasync function funcTwo() {\n  const res = await myPromise;\n  console.log(`${res} 2!`);\n  setTimeout(() => console.log(\"Timeout 2!\"), 0);\n  console.log(\"Last line 2!\");\n}\n\nfuncOne();\nfuncTwo();\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst myPromise = Promise.resolve(Promise.resolve(\"Promise\"));\n\nfunction funcOne() {\n  setTimeout(() => console.log(\"Timeout 1!\"), 0);\n  myPromise.then((res) => res).then((res) => console.log(`${res} 1!`));\n  console.log(\"Last line 1!\");\n}\n\nasync function funcTwo() {\n  const res = await myPromise;\n  console.log(`${res} 2!`);\n  setTimeout(() => console.log(\"Timeout 2!\"), 0);\n  console.log(\"Last line 2!\");\n}\n\nfuncOne();\nfuncTwo();\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2700,7 +2711,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-160',
-    question: "What's the output?\n\n```javascript\nconst promise1 = Promise.resolve(\"First\");\nconst promise2 = Promise.resolve(\"Second\");\nconst promise3 = Promise.reject(\"Third\");\nconst promise4 = Promise.resolve(\"Fourth\");\n\nconst runPromises = async () => {\n  const res1 = await Promise.all([promise1, promise2]);\n  const res2 = await Promise.all([promise3, promise4]);\n  return [res1, res2];\n};\n\nrunPromises()\n  .then((res) => console.log(res))\n  .catch((err) => console.log(err));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst promise1 = Promise.resolve(\"First\");\nconst promise2 = Promise.resolve(\"Second\");\nconst promise3 = Promise.reject(\"Third\");\nconst promise4 = Promise.resolve(\"Fourth\");\n\nconst runPromises = async () => {\n  const res1 = await Promise.all([promise1, promise2]);\n  const res2 = await Promise.all([promise3, promise4]);\n  return [res1, res2];\n};\n\nrunPromises()\n  .then((res) => console.log(res))\n  .catch((err) => console.log(err));\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2717,7 +2728,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-161',
-    question: "Which one is true?\n\n```javascript\nconst bird = {\n  size: \"small\",\n};\n\nconst mouse = {\n  name: \"Mickey\",\n  small: true,\n};\n```",
+    question: "✅ Which one is true?\n\n```javascript\nconst bird = {\n  size: \"small\",\n};\n\nconst mouse = {\n  name: \"Mickey\",\n  small: true,\n};\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -2734,7 +2745,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-162',
-    question: "What's the output?\n\n```javascript\nconst obj = { 1: \"a\", 2: \"b\", 3: \"c\" };\nconst set = new Set([1, 2, 3, 4, 5]);\n\nobj.hasOwnProperty(\"1\");\nobj.hasOwnProperty(1);\nset.has(\"1\");\nset.has(1);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst obj = { 1: \"a\", 2: \"b\", 3: \"c\" };\nconst set = new Set([1, 2, 3, 4, 5]);\n\nobj.hasOwnProperty(\"1\");\nobj.hasOwnProperty(1);\nset.has(\"1\");\nset.has(1);\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -2751,7 +2762,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-163',
-    question: "What's the output?\n\n```javascript\nfunction sayHi() {\n  return (() => 0)();\n}\n\nconsole.log(typeof sayHi());\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction sayHi() {\n  return (() => 0)();\n}\n\nconsole.log(typeof sayHi());\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -2768,7 +2779,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-164',
-    question: "Everything in JavaScript is either a...",
+    question: "📤 Everything in JavaScript is either a...",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -2785,7 +2796,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-165',
-    question: "What's the output?\n\n```javascript\nfunction* generator(i) {\n  yield i;\n  yield i * 2;\n}\n\nconst gen = generator(10);\n\nconsole.log(gen.next().value);\nconsole.log(gen.next().value);\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction* generator(i) {\n  yield i;\n  yield i * 2;\n}\n\nconst gen = generator(10);\n\nconsole.log(gen.next().value);\nconsole.log(gen.next().value);\n```",
     category: 'javascript',
     subcategory: 'generators',
     difficulty: 'medium',
@@ -2802,7 +2813,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-166',
-    question: "What's the output?\n\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n};\n\nfor (const item in person) {\n  console.log(item);\n}\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n};\n\nfor (const item in person) {\n  console.log(item);\n}\n```",
     category: 'javascript',
     subcategory: 'promises',
     difficulty: 'medium',
@@ -2819,7 +2830,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-167',
-    question: "What's the output?\n\n```javascript\nconsole.log(Number(2) === Number(2));\nconsole.log(Boolean(false) === Boolean(false));\nconsole.log(Symbol(\"foo\") === Symbol(\"foo\"));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconsole.log(Number(2) === Number(2));\nconsole.log(Boolean(false) === Boolean(false));\nconsole.log(Symbol(\"foo\") === Symbol(\"foo\"));\n```",
     category: 'javascript',
     subcategory: 'symbols',
     difficulty: 'medium',
@@ -2836,7 +2847,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-168',
-    question: "How can we log the values that are commented out after the console.log statement?\n\n```javascript\nfunction* startGame() {\n  const answer = yield \"Do you love JavaScript?\";\n  if (answer !== \"Yes\") {\n    return \"Oh wow... Guess we're done here\";\n  }\n  return \"JavaScript loves you back ❤️\";\n}\n\nconst game = startGame();\nconsole.log(/* 1 */); // Do you love JavaScript?\nconsole.log(/* 2 */); // JavaScript loves you back ❤️\n```",
+    question: "📝 How can we log the values that are commented out after the console.log statement?\n\n```javascript\nfunction* startGame() {\n  const answer = yield \"Do you love JavaScript?\";\n  if (answer !== \"Yes\") {\n    return \"Oh wow... Guess we're done here\";\n  }\n  return \"JavaScript loves you back ❤️\";\n}\n\nconst game = startGame();\nconsole.log(/* 1 */); // Do you love JavaScript?\nconsole.log(/* 2 */); // JavaScript loves you back ❤️\n```",
     category: 'javascript',
     subcategory: 'generators',
     difficulty: 'medium',
@@ -2853,7 +2864,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-169',
-    question: "What's the output?\n\n```javascript\nconst info = {\n  [Symbol(\"a\")]: \"b\",\n};\n\nconsole.log(info);\nconsole.log(Object.keys(info));\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nconst info = {\n  [Symbol(\"a\")]: \"b\",\n};\n\nconsole.log(info);\nconsole.log(Object.keys(info));\n```",
     category: 'javascript',
     subcategory: 'symbols',
     difficulty: 'medium',
@@ -2870,7 +2881,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-170',
-    question: "What's the output?\n\n```javascript\nfunction* generatorOne() {\n  yield [\"a\", \"b\", \"c\"];\n}\n\nfunction* generatorTwo() {\n  yield* [\"a\", \"b\", \"c\"];\n}\n\nconst one = generatorOne();\nconst two = generatorTwo();\n\nconsole.log(one.next().value);\nconsole.log(two.next().value);\n```",
+    question: "🖥️ What's the output?\n\n```javascript\nfunction* generatorOne() {\n  yield [\"a\", \"b\", \"c\"];\n}\n\nfunction* generatorTwo() {\n  yield* [\"a\", \"b\", \"c\"];\n}\n\nconst one = generatorOne();\nconst two = generatorTwo();\n\nconsole.log(one.next().value);\nconsole.log(two.next().value);\n```",
     category: 'javascript',
     subcategory: 'generators',
     difficulty: 'medium',
@@ -2887,7 +2898,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-171',
-    question: "What's the output?\n\n```javascript\nconst handler = {\n  set: () => console.log(\"Added a new property!\"),\n  get: () => console.log(\"Accessed a property!\"),\n};\n\nconst person = new Proxy({}, handler);\n\nperson.name = \"Lydia\";\nperson.name;\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst handler = {\n  set: () => console.log(\"Added a new property!\"),\n  get: () => console.log(\"Accessed a property!\"),\n};\n\nconst person = new Proxy({}, handler);\n\nperson.name = \"Lydia\";\nperson.name;\n```",
     category: 'javascript',
     subcategory: 'proxy-reflect',
     difficulty: 'medium',
@@ -2904,7 +2915,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-172',
-    question: "What's missing?\n\n```javascript\nconst teams = [\n  { name: \"Team 1\", members: [\"Paul\", \"Lisa\"] },\n  { name: \"Team 2\", members: [\"Laura\", \"Tim\"] },\n];\n\nfunction* getMembers(members) {\n  for (let i = 0; i < members.length; i++) {\n    yield members[i];\n  }\n}\n\nfunction* getTeams(teams) {\n  for (let i = 0; i < teams.length; i++) {\n    // ✨ SOMETHING IS MISSING HERE ✨\n  }\n}\n\nconst obj = getTeams(teams);\nobj.next(); // { value: \"Paul\", done: false }\nobj.next(); // { value: \"Lisa\", done: false }\n```",
+    question: "🪞 What's missing?\n\n```javascript\nconst teams = [\n  { name: \"Team 1\", members: [\"Paul\", \"Lisa\"] },\n  { name: \"Team 2\", members: [\"Laura\", \"Tim\"] },\n];\n\nfunction* getMembers(members) {\n  for (let i = 0; i < members.length; i++) {\n    yield members[i];\n  }\n}\n\nfunction* getTeams(teams) {\n  for (let i = 0; i < teams.length; i++) {\n    // ✨ SOMETHING IS MISSING HERE ✨\n  }\n}\n\nconst obj = getTeams(teams);\nobj.next(); // { value: \"Paul\", done: false }\nobj.next(); // { value: \"Lisa\", done: false }\n```",
     category: 'javascript',
     subcategory: 'generators',
     difficulty: 'medium',
@@ -2921,7 +2932,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-173',
-    question: "What do we need to add to the `person` object to get `[\"Lydia Hallie\", 21]` as the output of `[...person]`?\n\n```javascript\nconst person = {\n  name: \"Lydia Hallie\",\n  age: 21\n}\n\n[...person] // [\"Lydia Hallie\", 21]\n```",
+    question: "📦 What do we need to add to the `person` object to get `[\"Lydia Hallie\", 21]` as the output of `[...person]`?\n\n```javascript\nconst person = {\n  name: \"Lydia Hallie\",\n  age: 21\n}\n\n[...person] // [\"Lydia Hallie\", 21]\n```",
     category: 'javascript',
     subcategory: 'generators',
     difficulty: 'medium',
@@ -2938,7 +2949,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-174',
-    question: "What's the output?\n\n```javascript\nconst double = n => n * 2;\nconst square = n => n * n;\nconst compose = (f, g) => x => f(g(x));\n\nconst doubleThenSquare = compose(square, double);\nconsole.log(doubleThenSquare(3));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst double = n => n * 2;\nconst square = n => n * n;\nconst compose = (f, g) => x => f(g(x));\n\nconst doubleThenSquare = compose(square, double);\nconsole.log(doubleThenSquare(3));\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'hard',
@@ -2955,7 +2966,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-175',
-    question: "What's the output?\n\n```javascript\nfunction* generator() {\n  yield 1;\n  yield 2;\n  yield 3;\n}\n\nconst gen = generator();\nconsole.log(gen.next().value);\nconsole.log(gen.next().value);\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction* generator() {\n  yield 1;\n  yield 2;\n  yield 3;\n}\n\nconst gen = generator();\nconsole.log(gen.next().value);\nconsole.log(gen.next().value);\n```",
     category: 'javascript',
     subcategory: 'generators',
     difficulty: 'hard',
@@ -2973,7 +2984,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
   // New questions for missing concepts (WeakMap/WeakSet, Nullish Coalescing, Array methods, Closures, etc.)
   {
     id: 'js-176',
-    question: "What's the difference between WeakMap and Map?\n\n```javascript\nconst map = new Map();\nconst weakMap = new WeakMap();\n\nlet obj = { name: 'John' };\nmap.set(obj, 'value1');\nweakMap.set(obj, 'value2');\n\nobj = null;\n```",
+    question: "🗺️ What's the difference between WeakMap and Map?\n\n```javascript\nconst map = new Map();\nconst weakMap = new WeakMap();\n\nlet obj = { name: 'John' };\nmap.set(obj, 'value1');\nweakMap.set(obj, 'value2');\n\nobj = null;\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'hard',
@@ -2990,7 +3001,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-177',
-    question: "What's the output?\n\n```javascript\nconst ws = new WeakSet();\nconst obj1 = {};\nconst obj2 = {};\n\nws.add(obj1);\nws.add(obj2);\nws.add(obj1);\n\nconsole.log(ws.has(obj1));\nconsole.log(ws.size);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst ws = new WeakSet();\nconst obj1 = {};\nconst obj2 = {};\n\nws.add(obj1);\nws.add(obj2);\nws.add(obj1);\n\nconsole.log(ws.has(obj1));\nconsole.log(ws.size);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'hard',
@@ -3007,7 +3018,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-178',
-    question: "What's the output?\n\n```javascript\nconst foo = null ?? 'default';\nconst bar = 0 ?? 'default';\nconst baz = '' ?? 'default';\n\nconsole.log(foo, bar, baz);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst foo = null ?? 'default';\nconst bar = 0 ?? 'default';\nconst baz = '' ?? 'default';\n\nconsole.log(foo, bar, baz);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -3024,7 +3035,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-179',
-    question: "What's the difference between ?? and ||?\n\n```javascript\nconst a = 0 || 'fallback';\nconst b = 0 ?? 'fallback';\n\nconsole.log(a);\nconsole.log(b);\n```",
+    question: "📝 What's the difference between ?? and ||?\n\n```javascript\nconst a = 0 || 'fallback';\nconst b = 0 ?? 'fallback';\n\nconsole.log(a);\nconsole.log(b);\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -3041,7 +3052,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-180',
-    question: "What's the output?\n\n```javascript\nconst numbers = [1, 2, 3, 4, 5];\n\nconsole.log(numbers.some(n => n > 3));\nconsole.log(numbers.every(n => n > 0));\nconsole.log(numbers.every(n => n > 3));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst numbers = [1, 2, 3, 4, 5];\n\nconsole.log(numbers.some(n => n > 3));\nconsole.log(numbers.every(n => n > 0));\nconsole.log(numbers.every(n => n > 3));\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'easy',
@@ -3058,7 +3069,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-181',
-    question: "What's the output?\n\n```javascript\nconst arr = [1, [2, [3, [4]]]];\n\nconsole.log(arr.flat());\nconsole.log(arr.flat(2));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, [2, [3, [4]]]];\n\nconsole.log(arr.flat());\nconsole.log(arr.flat(2));\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -3075,7 +3086,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-182',
-    question: "What's the output?\n\n```javascript\nconsole.log(Array.isArray([]));\nconsole.log(Array.isArray({}));\nconsole.log(typeof []);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconsole.log(Array.isArray([]));\nconsole.log(Array.isArray({}));\nconsole.log(typeof []);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'easy',
@@ -3092,7 +3103,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-183',
-    question: "What's the output?\n\n```javascript\nconst str = 'hello';\nconst arr = Array.from(str);\nconst arr2 = Array.from([1, 2, 3], x => x * 2);\n\nconsole.log(arr);\nconsole.log(arr2);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst str = 'hello';\nconst arr = Array.from(str);\nconst arr2 = Array.from([1, 2, 3], x => x * 2);\n\nconsole.log(arr);\nconsole.log(arr2);\n```",
     category: 'javascript',
     subcategory: 'arrays',
     difficulty: 'medium',
@@ -3109,7 +3120,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-184',
-    question: "What's the output?\n\n```javascript\nconst arr = [1, 2, 3, 4, 5];\n\nconsole.log(arr.includes(3));\nconsole.log(arr.includes(6));\nconsole.log(arr.includes(3, 3));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, 2, 3, 4, 5];\n\nconsole.log(arr.includes(3));\nconsole.log(arr.includes(6));\nconsole.log(arr.includes(3, 3));\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'easy',
@@ -3126,7 +3137,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-185',
-    question: "What's the output?\n\n```javascript\nconst str = 'hello';\n\nconsole.log(str.startsWith('hel'));\nconsole.log(str.endsWith('lo'));\nconsole.log(str.startsWith('llo', 2));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst str = 'hello';\n\nconsole.log(str.startsWith('hel'));\nconsole.log(str.endsWith('lo'));\nconsole.log(str.startsWith('llo', 2));\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'easy',
@@ -3143,7 +3154,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-186',
-    question: "What's the output?\n\n```javascript\nconst str = '  hello  ';\n\nconsole.log(str.trim());\nconsole.log(str.trimStart());\nconsole.log(str.trimEnd());\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst str = '  hello  ';\n\nconsole.log(str.trim());\nconsole.log(str.trimStart());\nconsole.log(str.trimEnd());\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'easy',
@@ -3160,7 +3171,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-187',
-    question: "What's the output?\n\n```javascript\nconst str = 'ha';\n\nconsole.log(str.repeat(3));\nconsole.log(str.repeat(0));\nconsole.log(str.repeat(1));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst str = 'ha';\n\nconsole.log(str.repeat(3));\nconsole.log(str.repeat(0));\nconsole.log(str.repeat(1));\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'easy',
@@ -3177,7 +3188,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-188',
-    question: "What's the output?\n\n```javascript\nconst num = 5;\n\nconsole.log(num.toString().padStart(3, '0'));\nconsole.log('Hello'.padEnd(10, '!'));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst num = 5;\n\nconsole.log(num.toString().padStart(3, '0'));\nconsole.log('Hello'.padEnd(10, '!'));\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -3194,7 +3205,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-189',
-    question: "What's the output?\n\n```javascript\nfunction createCounter() {\n  let count = 0;\n  return function() {\n    count++;\n    return count;\n  };\n}\n\nconst counter1 = createCounter();\nconst counter2 = createCounter();\n\nconsole.log(counter1());\nconsole.log(counter1());\nconsole.log(counter2());\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction createCounter() {\n  let count = 0;\n  return function() {\n    count++;\n    return count;\n  };\n}\n\nconst counter1 = createCounter();\nconst counter2 = createCounter();\n\nconsole.log(counter1());\nconsole.log(counter1());\nconsole.log(counter2());\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -3211,7 +3222,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-190',
-    question: "What will be logged?\n\n```javascript\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}\n\nfor (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log(j), 0);\n}\n```",
+    question: "📝 What will be logged?\n\n```javascript\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}\n\nfor (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log(j), 0);\n}\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'hard',
@@ -3228,7 +3239,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-191',
-    question: "What's the output?\n\n```javascript\nconst user = {\n  name: 'John',\n  address: {\n    street: 'Main St'\n  }\n};\n\nconsole.log(user.address?.street);\nconsole.log(user.phone?.number);\nconsole.log(user.getInfo?.());\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst user = {\n  name: 'John',\n  address: {\n    street: 'Main St'\n  }\n};\n\nconsole.log(user.address?.street);\nconsole.log(user.phone?.number);\nconsole.log(user.getInfo?.());\n```",
     category: 'javascript',
     subcategory: 'basics',
     difficulty: 'medium',
@@ -3245,7 +3256,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-192',
-    question: "What's the output?\n\n```javascript\nconst person = {\n  greet() {\n    return 'Hello';\n  }\n};\n\nconst john = Object.create(person);\njohn.name = 'John';\n\nconsole.log(john.name);\nconsole.log(john.greet());\nconsole.log(john.hasOwnProperty('greet'));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst person = {\n  greet() {\n    return 'Hello';\n  }\n};\n\nconst john = Object.create(person);\njohn.name = 'John';\n\nconsole.log(john.name);\nconsole.log(john.greet());\nconsole.log(john.hasOwnProperty('greet'));\n```",
     category: 'javascript',
     subcategory: 'prototypes',
     difficulty: 'medium',
@@ -3263,7 +3274,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
   // Additional iterators questions
   {
     id: 'js-193',
-    question: "What's the output?\n\n```javascript\nconst obj = {\n  [Symbol.iterator]() {\n    let count = 0;\n    return {\n      next() {\n        count++;\n        if (count <= 3) {\n          return { value: count, done: false };\n        }\n        return { done: true };\n      }\n    };\n  }\n};\n\nconsole.log([...obj]);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst obj = {\n  [Symbol.iterator]() {\n    let count = 0;\n    return {\n      next() {\n        count++;\n        if (count <= 3) {\n          return { value: count, done: false };\n        }\n        return { done: true };\n      }\n    };\n  }\n};\n\nconsole.log([...obj]);\n```",
     category: 'javascript',
     subcategory: 'iterators',
     difficulty: 'hard',
@@ -3280,7 +3291,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-194',
-    question: "What's the output?\n\n```javascript\nconst arr = [10, 20, 30];\nconst iterator = arr[Symbol.iterator]();\n\nconsole.log(iterator.next().value);\nconsole.log(iterator.next().value);\nconsole.log(iterator.next());\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [10, 20, 30];\nconst iterator = arr[Symbol.iterator]();\n\nconsole.log(iterator.next().value);\nconsole.log(iterator.next().value);\nconsole.log(iterator.next());\n```",
     category: 'javascript',
     subcategory: 'iterators',
     difficulty: 'medium',
@@ -3297,7 +3308,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-195',
-    question: "What makes an object iterable in JavaScript?",
+    question: "📦 What makes an object iterable in JavaScript?",
     category: 'javascript',
     subcategory: 'iterators',
     difficulty: 'medium',
@@ -3315,7 +3326,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
   // Additional event-loop questions
   {
     id: 'js-196',
-    question: "What's the output?\n\n```javascript\nconsole.log('1');\n\nsetTimeout(() => console.log('2'), 0);\n\nPromise.resolve().then(() => console.log('3'));\n\nconsole.log('4');\n```",
+    question: "📝 What's the output?\n\n```javascript\nconsole.log('1');\n\nsetTimeout(() => console.log('2'), 0);\n\nPromise.resolve().then(() => console.log('3'));\n\nconsole.log('4');\n```",
     category: 'javascript',
     subcategory: 'event-loop',
     difficulty: 'hard',
@@ -3332,7 +3343,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-197',
-    question: "What's the order of execution?\n\n```javascript\nsetTimeout(() => console.log('A'), 0);\n\nPromise.resolve()\n  .then(() => console.log('B'))\n  .then(() => console.log('C'));\n\nsetTimeout(() => console.log('D'), 0);\n\nconsole.log('E');\n```",
+    question: "📝 What's the order of execution?\n\n```javascript\nsetTimeout(() => console.log('A'), 0);\n\nPromise.resolve()\n  .then(() => console.log('B'))\n  .then(() => console.log('C'));\n\nsetTimeout(() => console.log('D'), 0);\n\nconsole.log('E');\n```",
     category: 'javascript',
     subcategory: 'event-loop',
     difficulty: 'hard',
@@ -3349,7 +3360,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-198',
-    question: "What happens when you have nested setTimeout calls?\n\n```javascript\nsetTimeout(() => {\n  console.log('1');\n  setTimeout(() => console.log('2'), 0);\n}, 0);\n\nsetTimeout(() => console.log('3'), 0);\n```",
+    question: "📝 What happens when you have nested setTimeout calls?\n\n```javascript\nsetTimeout(() => {\n  console.log('1');\n  setTimeout(() => console.log('2'), 0);\n}, 0);\n\nsetTimeout(() => console.log('3'), 0);\n```",
     category: 'javascript',
     subcategory: 'event-loop',
     difficulty: 'medium',
@@ -3367,7 +3378,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
   // Additional symbols questions
   {
     id: 'js-199',
-    question: "What's the output?\n\n```javascript\nconst sym1 = Symbol('foo');\nconst sym2 = Symbol('foo');\n\nconsole.log(sym1 === sym2);\nconsole.log(Symbol.for('bar') === Symbol.for('bar'));\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst sym1 = Symbol('foo');\nconst sym2 = Symbol('foo');\n\nconsole.log(sym1 === sym2);\nconsole.log(Symbol.for('bar') === Symbol.for('bar'));\n```",
     category: 'javascript',
     subcategory: 'symbols',
     difficulty: 'medium',
@@ -3384,7 +3395,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-200',
-    question: "What's the output?\n\n```javascript\nconst id = Symbol('id');\nconst obj = {\n  [id]: 123,\n  name: 'John'\n};\n\nconsole.log(Object.keys(obj));\nconsole.log(obj[id]);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst id = Symbol('id');\nconst obj = {\n  [id]: 123,\n  name: 'John'\n};\n\nconsole.log(Object.keys(obj));\nconsole.log(obj[id]);\n```",
     category: 'javascript',
     subcategory: 'symbols',
     difficulty: 'medium',
@@ -3402,7 +3413,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
   // Additional proxy-reflect questions
   {
     id: 'js-201',
-    question: "What's the output?\n\n```javascript\nconst target = { name: 'John' };\nconst handler = {\n  get(target, prop) {\n    return prop in target ? target[prop] : 'Not found';\n  }\n};\n\nconst proxy = new Proxy(target, handler);\nconsole.log(proxy.name);\nconsole.log(proxy.age);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst target = { name: 'John' };\nconst handler = {\n  get(target, prop) {\n    return prop in target ? target[prop] : 'Not found';\n  }\n};\n\nconst proxy = new Proxy(target, handler);\nconsole.log(proxy.name);\nconsole.log(proxy.age);\n```",
     category: 'javascript',
     subcategory: 'proxy-reflect',
     difficulty: 'medium',
@@ -3419,7 +3430,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-202',
-    question: "What happens here?\n\n```javascript\nconst obj = { count: 0 };\nconst handler = {\n  set(target, prop, value) {\n    if (prop === 'count' && typeof value !== 'number') {\n      throw new TypeError('Count must be a number');\n    }\n    target[prop] = value;\n    return true;\n  }\n};\n\nconst proxy = new Proxy(obj, handler);\nproxy.count = '5';\n```",
+    question: "❌ What happens here?\n\n```javascript\nconst obj = { count: 0 };\nconst handler = {\n  set(target, prop, value) {\n    if (prop === 'count' && typeof value !== 'number') {\n      throw new TypeError('Count must be a number');\n    }\n    target[prop] = value;\n    return true;\n  }\n};\n\nconst proxy = new Proxy(obj, handler);\nproxy.count = '5';\n```",
     category: 'javascript',
     subcategory: 'proxy-reflect',
     difficulty: 'medium',
@@ -3437,7 +3448,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
   // Additional modules questions
   {
     id: 'js-203',
-    question: "What's the difference between these exports?\n\n```javascript\n// File 1\nexport default function() { }\n\n// File 2\nexport function myFunc() { }\n```",
+    question: "🪞 What's the difference between these exports?\n\n```javascript\n// File 1\nexport default function() { }\n\n// File 2\nexport function myFunc() { }\n```",
     category: 'javascript',
     subcategory: 'modules',
     difficulty: 'easy',
@@ -3454,7 +3465,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-204',
-    question: "What's the output?\n\n```javascript\n// math.js\nexport const PI = 3.14;\nexport function double(x) { return x * 2; }\n\n// main.js\nimport * as math from './math.js';\nconsole.log(math.PI);\nconsole.log(math.double(5));\n```",
+    question: "📝 What's the output?\n\n```javascript\n// math.js\nexport const PI = 3.14;\nexport function double(x) { return x * 2; }\n\n// main.js\nimport * as math from './math.js';\nconsole.log(math.PI);\nconsole.log(math.double(5));\n```",
     category: 'javascript',
     subcategory: 'modules',
     difficulty: 'easy',
@@ -3472,7 +3483,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
   // Additional this questions
   {
     id: 'js-205',
-    question: "What's the output?\n\n```javascript\nconst obj = {\n  name: 'Object',\n  getName: function() { return this.name; },\n  getNameArrow: () => this.name\n};\n\nconsole.log(obj.getName());\nconsole.log(obj.getNameArrow());\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst obj = {\n  name: 'Object',\n  getName: function() { return this.name; },\n  getNameArrow: () => this.name\n};\n\nconsole.log(obj.getName());\nconsole.log(obj.getNameArrow());\n```",
     category: 'javascript',
     subcategory: 'functions',
     difficulty: 'medium',
@@ -3489,7 +3500,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-206',
-    question: "What's the output?\n\n```javascript\nfunction Person(name) {\n  this.name = name;\n  this.sayHi = function() {\n    setTimeout(function() {\n      console.log(this.name);\n    }, 100);\n  };\n}\n\nconst person = new Person('John');\nperson.sayHi();\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction Person(name) {\n  this.name = name;\n  this.sayHi = function() {\n    setTimeout(function() {\n      console.log(this.name);\n    }, 100);\n  };\n}\n\nconst person = new Person('John');\nperson.sayHi();\n```",
     category: 'javascript',
     subcategory: 'this',
     difficulty: 'hard',
@@ -3507,7 +3518,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
   // Additional prototypes questions
   {
     id: 'js-207',
-    question: "What's the output?\n\n```javascript\nfunction Animal(name) {\n  this.name = name;\n}\n\nAnimal.prototype.speak = function() {\n  return `${this.name} makes a sound`;\n};\n\nconst dog = new Animal('Dog');\nconsole.log(dog.speak());\nconsole.log(dog.hasOwnProperty('speak'));\nconsole.log(dog.hasOwnProperty('name'));\n```",
+    question: "📝 What's the output?\n\n```javascript\nfunction Animal(name) {\n  this.name = name;\n}\n\nAnimal.prototype.speak = function() {\n  return `${this.name} makes a sound`;\n};\n\nconst dog = new Animal('Dog');\nconsole.log(dog.speak());\nconsole.log(dog.hasOwnProperty('speak'));\nconsole.log(dog.hasOwnProperty('name'));\n```",
     category: 'javascript',
     subcategory: 'prototypes',
     difficulty: 'medium',
@@ -3524,7 +3535,7 @@ export const javascriptQuizzes: QuizQuestion[] = [
 
   {
     id: 'js-208',
-    question: "What's the output?\n\n```javascript\nconst arr = [1, 2, 3];\nconsole.log(arr.__proto__ === Array.prototype);\nconsole.log(Array.prototype.__proto__ === Object.prototype);\n```",
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, 2, 3];\nconsole.log(arr.__proto__ === Array.prototype);\nconsole.log(Array.prototype.__proto__ === Object.prototype);\n```",
     category: 'javascript',
     subcategory: 'prototypes',
     difficulty: 'medium',

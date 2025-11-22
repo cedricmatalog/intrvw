@@ -30,8 +30,8 @@ export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
 
       // JavaScript Keywords regex
       const keywords = /\b(function|const|let|var|return|if|else|for|while|class|new|this|typeof|async|await|import|export|from|default|case|switch|break|continue|try|catch|finally|throw)\b/g;
-      // Strings regex
-      const strings = /(["'`])((?:\\.|(?!\1)[^\\])*)\1/g;
+      // Strings regex - simpler pattern that handles escaped quotes better
+      const strings = /"([^"\\]|\\.)*"|'([^'\\]|\\.)*'|`([^`\\]|\\.)*`/g;
       // Numbers regex
       const numbers = /\b(\d+\.?\d*)\b/g;
       // Comments regex
@@ -69,8 +69,18 @@ export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
       // Sort tokens by position
       tokens.sort((a, b) => a.start - b.start);
 
+      // Remove overlapping tokens (keep first occurrence)
+      const filteredTokens: typeof tokens = [];
+      let lastEnd = 0;
+      for (const token of tokens) {
+        if (token.start >= lastEnd) {
+          filteredTokens.push(token);
+          lastEnd = token.end;
+        }
+      }
+
       // Build parts array
-      tokens.forEach((token, i) => {
+      filteredTokens.forEach((token, i) => {
         // Add text before token
         if (token.start > lastIndex) {
           parts.push({ text: line.substring(lastIndex, token.start), style: styles.codeDefault });
@@ -130,11 +140,11 @@ export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: RetroColors.border,
+    borderColor: RetroColors.surfaceBorder,
     borderRadius: 4,
     overflow: 'hidden',
     marginVertical: 8,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: '#0D1117', // Darker background for code blocks
   },
   scrollContent: {
     padding: 12,
@@ -149,7 +159,7 @@ const styles = StyleSheet.create({
   lineNumber: {
     fontFamily: 'monospace',
     fontSize: 12,
-    color: '#555555',
+    color: RetroColors.textDim,
     marginRight: 12,
     userSelect: 'none',
   },
@@ -162,20 +172,20 @@ const styles = StyleSheet.create({
     color: RetroColors.text,
   },
   codeKeyword: {
-    color: RetroColors.purple,
+    color: RetroColors.blue, // VSCode keyword blue
     fontWeight: 'bold',
   },
   codeString: {
-    color: RetroColors.green,
+    color: RetroColors.orange, // VSCode string orange
   },
   codeNumber: {
-    color: RetroColors.cyan,
+    color: '#B5CEA8', // VSCode number color (light green)
   },
   codeComment: {
-    color: '#666666',
+    color: RetroColors.green, // VSCode comment green
     fontStyle: 'italic',
   },
   codeHtmlTag: {
-    color: RetroColors.cyan,
+    color: RetroColors.blue,
   },
 });
