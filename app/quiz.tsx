@@ -2,20 +2,34 @@ import { StyleSheet, View } from 'react-native';
 import { useLocalSearchParams, Stack } from 'expo-router';
 import { QuizFeed } from '@/components/quizzes/QuizFeed';
 import { quizQuestions } from '@/data/quizzes';
-import { QuizCategory } from '@/types/quiz';
-import { CATEGORY_LABELS } from '@/constants/AppConstants';
+import { QuizCategory, JavaScriptSubCategory } from '@/types/quiz';
+import { CATEGORY_LABELS, JS_SUBCATEGORY_LABELS } from '@/constants/AppConstants';
 
 export default function QuizScreen() {
-  const { category } = useLocalSearchParams<{ category?: QuizCategory | 'all' }>();
+  const { category, subcategory } = useLocalSearchParams<{
+    category?: QuizCategory | 'all';
+    subcategory?: JavaScriptSubCategory | 'all';
+  }>();
 
-  const filteredQuestions = category && category !== 'all'
+  // Filter by category first
+  let filteredQuestions = category && category !== 'all'
     ? quizQuestions.filter((q) => q.category === category)
     : quizQuestions;
 
-  // Get dynamic title based on category
-  const title = category && category !== 'all'
-    ? CATEGORY_LABELS[category as QuizCategory]
-    : 'ALL QUESTIONS';
+  // Filter by subcategory if provided (for JavaScript)
+  if (category === 'javascript' && subcategory && subcategory !== 'all') {
+    filteredQuestions = filteredQuestions.filter((q) => q.subcategory === subcategory);
+  }
+
+  // Get dynamic title based on category and subcategory
+  let title = 'ALL QUESTIONS';
+  if (category && category !== 'all') {
+    if (category === 'javascript' && subcategory && subcategory !== 'all') {
+      title = JS_SUBCATEGORY_LABELS[subcategory as JavaScriptSubCategory];
+    } else {
+      title = CATEGORY_LABELS[category as QuizCategory];
+    }
+  }
 
   return (
     <>

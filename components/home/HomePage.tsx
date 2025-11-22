@@ -118,10 +118,15 @@ export const HomePage: React.FC = () => {
     .filter((card) => card.count > 0); // Only show technologies with questions
 
   const handleTechnologyPress = (category: QuizCategory) => {
-    router.push({
-      pathname: '/quiz',
-      params: { category },
-    });
+    // For JavaScript, navigate to subcategory selection
+    if (category === 'javascript') {
+      router.push('/quiz/javascript');
+    } else {
+      router.push({
+        pathname: '/quiz',
+        params: { category },
+      });
+    }
   };
 
   return (

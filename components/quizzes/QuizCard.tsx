@@ -17,6 +17,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 interface QuizCardProps {
   question: QuizQuestion;
+  onAnswerSelect?: (questionId: string, selectedAnswer: number, isCorrect: boolean) => void;
 }
 
 // Types for parsed question content
@@ -71,7 +72,7 @@ function parseQuestionContent(questionText: string): QuestionPart[] {
   return parts.length > 0 ? parts : [{ type: 'text', content: questionText }];
 }
 
-export const QuizCard: React.FC<QuizCardProps> = ({ question }) => {
+export const QuizCard: React.FC<QuizCardProps> = ({ question, onAnswerSelect }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
 
@@ -82,6 +83,12 @@ export const QuizCard: React.FC<QuizCardProps> = ({ question }) => {
     if (selectedAnswer === null) {
       setSelectedAnswer(index);
       setShowExplanation(true);
+
+      // Notify parent component about the answer selection
+      if (onAnswerSelect) {
+        const isCorrect = index === question.correctAnswer;
+        onAnswerSelect(question.id, index, isCorrect);
+      }
     }
   };
 

@@ -2,7 +2,7 @@ import { questions } from '../data/questions';
 import { quizQuestions } from '../data/quizzes';
 import { lessons } from '../data/lessons';
 import { QuestionType } from '../types/question';
-import { QuizCategory } from '../types/quiz';
+import { QuizCategory, JavaScriptSubCategory } from '../types/quiz';
 import { LearningCategory, LessonLevel } from '../types/learning';
 
 /**
@@ -152,4 +152,42 @@ export function getQuizById(id: string) {
  */
 export function getQuestionById(id: string) {
   return questions.find((q) => q.id === id);
+}
+
+/**
+ * Filter JavaScript quizzes by subcategory
+ */
+export function filterJavaScriptQuizzesBySubcategory(subcategory: JavaScriptSubCategory | 'all') {
+  const jsQuizzes = quizQuestions.filter((q) => q.category === 'javascript');
+
+  if (subcategory === 'all') {
+    return jsQuizzes;
+  }
+
+  return jsQuizzes.filter((q) => q.subcategory === subcategory);
+}
+
+/**
+ * Get count of JavaScript quizzes by subcategory
+ */
+export function getJavaScriptQuizCountBySubcategory(subcategory: JavaScriptSubCategory | 'all'): number {
+  return filterJavaScriptQuizzesBySubcategory(subcategory).length;
+}
+
+/**
+ * Get counts of all JavaScript subcategories
+ */
+export function getAllJavaScriptSubcategoryCounts(): Record<string, number> {
+  const jsQuizzes = quizQuestions.filter((q) => q.category === 'javascript');
+  const counts: Record<string, number> = {
+    all: jsQuizzes.length,
+  };
+
+  jsQuizzes.forEach((q) => {
+    if (q.subcategory) {
+      counts[q.subcategory] = (counts[q.subcategory] || 0) + 1;
+    }
+  });
+
+  return counts;
 }

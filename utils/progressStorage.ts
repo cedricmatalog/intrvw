@@ -1,10 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { QuizCategory } from '@/types/quiz';
+import { QuizCategory, JavaScriptSubCategory } from '@/types/quiz';
 
 const PROGRESS_KEY = '@quiz_progress';
 
 export interface QuizProgress {
   category: QuizCategory | 'all';
+  subcategory?: JavaScriptSubCategory | 'all'; // Optional subcategory for JavaScript
   currentIndex: number;
   answeredQuestions: {
     [questionId: string]: {
@@ -17,19 +18,33 @@ export interface QuizProgress {
 }
 
 export interface ProgressData {
-  [key: string]: QuizProgress; // key format: "category" or "all"
+  [key: string]: QuizProgress; // key format: "category" or "category:subcategory"
 }
 
 /**
- * Get progress for a specific category
+ * Generate storage key for progress
  */
-export async function getProgress(category: QuizCategory | 'all'): Promise<QuizProgress | null> {
+function getProgressKey(category: QuizCategory | 'all', subcategory?: JavaScriptSubCategory | 'all'): string {
+  if (subcategory && subcategory !== 'all') {
+    return `${category}:${subcategory}`;
+  }
+  return category;
+}
+
+/**
+ * Get progress for a specific category (and optional subcategory)
+ */
+export async function getProgress(
+  category: QuizCategory | 'all',
+  subcategory?: JavaScriptSubCategory | 'all'
+): Promise<QuizProgress | null> {
   try {
     const data = await AsyncStorage.getItem(PROGRESS_KEY);
     if (!data) return null;
 
     const allProgress: ProgressData = JSON.parse(data);
-    return allProgress[category] || null;
+    const key = getProgressKey(category, subcategory);
+    return allProgress[key] || null;
   } catch (error) {
     console.error('Error getting progress:', error);
     return null;
@@ -37,14 +52,15 @@ export async function getProgress(category: QuizCategory | 'all'): Promise<QuizP
 }
 
 /**
- * Save progress for a specific category
+ * Save progress for a specific category (and optional subcategory)
  */
 export async function saveProgress(progress: QuizProgress): Promise<void> {
   try {
     const data = await AsyncStorage.getItem(PROGRESS_KEY);
     const allProgress: ProgressData = data ? JSON.parse(data) : {};
 
-    allProgress[progress.category] = {
+    const key = getProgressKey(progress.category, progress.subcategory);
+    allProgress[key] = {
       ...progress,
       lastUpdated: Date.now(),
     };
@@ -56,15 +72,19 @@ export async function saveProgress(progress: QuizProgress): Promise<void> {
 }
 
 /**
- * Reset progress for a specific category
+ * Reset progress for a specific category (and optional subcategory)
  */
-export async function resetProgress(category: QuizCategory | 'all'): Promise<void> {
+export async function resetProgress(
+  category: QuizCategory | 'all',
+  subcategory?: JavaScriptSubCategory | 'all'
+): Promise<void> {
   try {
     const data = await AsyncStorage.getItem(PROGRESS_KEY);
     if (!data) return;
 
     const allProgress: ProgressData = JSON.parse(data);
-    delete allProgress[category];
+    const key = getProgressKey(category, subcategory);
+    delete allProgress[key];
 
     await AsyncStorage.setItem(PROGRESS_KEY, JSON.stringify(allProgress));
   } catch (error) {

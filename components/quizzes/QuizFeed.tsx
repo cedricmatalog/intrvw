@@ -12,7 +12,7 @@ import { QuizCard } from './QuizCard';
 import { QuizQuestion } from '../../types/quiz';
 import { RetroColors } from '../../constants/RetroTheme';
 import { useLocalSearchParams } from 'expo-router';
-import { QuizCategory } from '../../types/quiz';
+import { QuizCategory, JavaScriptSubCategory } from '../../types/quiz';
 import { getProgress, saveProgress, resetProgress, QuizProgress } from '../../utils/progressStorage';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -22,12 +22,23 @@ interface QuizFeedProps {
 }
 
 export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
-  const { category } = useLocalSearchParams<{ category?: QuizCategory | 'all' }>();
+  const { category, subcategory } = useLocalSearchParams<{
+    category?: QuizCategory | 'all';
+    subcategory?: JavaScriptSubCategory | 'all';
+  }>();
   const currentCategory = category || 'all';
+  const currentSubcategory = subcategory;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showResumeDialog, setShowResumeDialog] = useState(false);
   const [savedProgress, setSavedProgress] = useState<QuizProgress | null>(null);
+  const [answeredQuestions, setAnsweredQuestions] = useState<{
+    [questionId: string]: {
+      selectedAnswer: number;
+      isCorrect: boolean;
+      timestamp: number;
+    };
+  }>({});
   const flatListRef = useRef<FlatList>(null);
   const [isInitialized, setIsInitialized] = useState(false);
   const hasScrolledToSaved = useRef(false);
@@ -35,14 +46,14 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
   // Load saved progress on mount
   useEffect(() => {
     loadProgress();
-  }, [currentCategory]);
+  }, [currentCategory, currentSubcategory]);
 
-  // Save progress when index changes
+  // Save progress when index or answeredQuestions changes
   useEffect(() => {
     if (isInitialized && questions.length > 0) {
       saveCurrentProgress();
     }
-  }, [currentIndex, isInitialized]);
+  }, [currentIndex, answeredQuestions, isInitialized]);
 
   // Scroll to saved position after initialization
   useEffect(() => {
@@ -69,23 +80,38 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
   }, [isInitialized, currentIndex]);
 
   const loadProgress = async () => {
-    const progress = await getProgress(currentCategory);
-    if (progress && progress.currentIndex > 0 && progress.currentIndex < questions.length) {
-      setSavedProgress(progress);
-      setShowResumeDialog(true);
-    } else {
-      setIsInitialized(true);
+    const progress = await getProgress(currentCategory, currentSubcategory);
+    if (progress) {
+      setAnsweredQuestions(progress.answeredQuestions || {});
+      if (progress.currentIndex > 0 && progress.currentIndex < questions.length) {
+        setSavedProgress(progress);
+        setShowResumeDialog(true);
+        return;
+      }
     }
+    setIsInitialized(true);
   };
 
   const saveCurrentProgress = async () => {
     const progress: QuizProgress = {
       category: currentCategory,
+      subcategory: currentSubcategory,
       currentIndex,
-      answeredQuestions: {},
+      answeredQuestions,
       lastUpdated: Date.now(),
     };
     await saveProgress(progress);
+  };
+
+  const handleAnswerSelect = (questionId: string, selectedAnswer: number, isCorrect: boolean) => {
+    setAnsweredQuestions(prev => ({
+      ...prev,
+      [questionId]: {
+        selectedAnswer,
+        isCorrect,
+        timestamp: Date.now(),
+      },
+    }));
   };
 
   const handleContinue = () => {
@@ -97,8 +123,9 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
   };
 
   const handleStartOver = async () => {
-    await resetProgress(currentCategory);
+    await resetProgress(currentCategory, currentSubcategory);
     setCurrentIndex(0);
+    setAnsweredQuestions({});
     setShowResumeDialog(false);
     setIsInitialized(true);
   };
@@ -144,7 +171,12 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
       <FlatList
         ref={flatListRef}
         data={questions}
-        renderItem={({ item }) => <QuizCard question={item} />}
+        renderItem={({ item }) => (
+          <QuizCard
+            question={item}
+            onAnswerSelect={handleAnswerSelect}
+          />
+        )}
         keyExtractor={(item) => item.id}
         pagingEnabled
         showsVerticalScrollIndicator={false}

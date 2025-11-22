@@ -16,13 +16,19 @@ export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
     return null;
   }
 
-  // Simple syntax highlighting for common JavaScript tokens
+  // Simple syntax highlighting for common JavaScript and HTML tokens
   const highlightCode = (code: string) => {
     const lines = code.split('\n');
+    const isHTML = language === 'html';
+
     return lines.map((line, lineIndex) => {
       const parts: Array<{ text: string; style: any }> = [];
 
-      // Keywords regex
+      // HTML specific patterns
+      const htmlTags = /<\/?[\w\s="/.':;#-\/]+>/g;
+      const htmlAttributes = /\s([\w-]+)=/g;
+
+      // JavaScript Keywords regex
       const keywords = /\b(function|const|let|var|return|if|else|for|while|class|new|this|typeof|async|await|import|export|from|default|case|switch|break|continue|try|catch|finally|throw)\b/g;
       // Strings regex
       const strings = /(["'`])((?:\\.|(?!\1)[^\\])*)\1/g;
@@ -36,17 +42,28 @@ export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
 
       // Find all tokens
       let match;
-      while ((match = keywords.exec(line)) !== null) {
-        tokens.push({ start: match.index, end: match.index + match[0].length, type: 'keyword', text: match[0] });
+
+      if (isHTML) {
+        // HTML highlighting
+        while ((match = htmlTags.exec(line)) !== null) {
+          tokens.push({ start: match.index, end: match.index + match[0].length, type: 'htmlTag', text: match[0] });
+        }
+      } else {
+        // JavaScript highlighting
+        while ((match = keywords.exec(line)) !== null) {
+          tokens.push({ start: match.index, end: match.index + match[0].length, type: 'keyword', text: match[0] });
+        }
+        while ((match = comments.exec(line)) !== null) {
+          tokens.push({ start: match.index, end: match.index + match[0].length, type: 'comment', text: match[0] });
+        }
       }
+
+      // Strings and numbers work for both
       while ((match = strings.exec(line)) !== null) {
         tokens.push({ start: match.index, end: match.index + match[0].length, type: 'string', text: match[0] });
       }
       while ((match = numbers.exec(line)) !== null) {
         tokens.push({ start: match.index, end: match.index + match[0].length, type: 'number', text: match[0] });
-      }
-      while ((match = comments.exec(line)) !== null) {
-        tokens.push({ start: match.index, end: match.index + match[0].length, type: 'comment', text: match[0] });
       }
 
       // Sort tokens by position
@@ -64,6 +81,7 @@ export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
                           token.type === 'string' ? styles.codeString :
                           token.type === 'number' ? styles.codeNumber :
                           token.type === 'comment' ? styles.codeComment :
+                          token.type === 'htmlTag' ? styles.codeHtmlTag :
                           styles.codeDefault;
         parts.push({ text: token.text, style: tokenStyle });
         lastIndex = token.end;
@@ -156,5 +174,8 @@ const styles = StyleSheet.create({
   codeComment: {
     color: '#666666',
     fontStyle: 'italic',
+  },
+  codeHtmlTag: {
+    color: RetroColors.cyan,
   },
 });

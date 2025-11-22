@@ -1,6 +1,6 @@
 import { RetroColors } from './RetroTheme';
 import { QuestionType } from '../types/question';
-import { QuizCategory } from '../types/quiz';
+import { QuizCategory, JavaScriptSubCategory } from '../types/quiz';
 import { LearningCategory, LessonLevel } from '../types/learning';
 
 /**
@@ -102,6 +102,55 @@ export const QUIZ_CATEGORY_DESCRIPTIONS: Record<QuizCategory, string> = {
   databases: 'SQL, NoSQL, ACID, transactions',
   'web-fundamentals': 'HTTP, APIs, CORS, security',
   git: 'Version control, branching, workflows',
+};
+
+/**
+ * JavaScript subcategory labels and descriptions
+ */
+export const JS_SUBCATEGORY_LABELS: Record<JavaScriptSubCategory, string> = {
+  'basics': 'BASICS',
+  'operators': 'OPERATORS',
+  'functions': 'FUNCTIONS',
+  'objects': 'OBJECTS',
+  'arrays': 'ARRAYS',
+  'classes': 'CLASSES',
+  'async': 'ASYNC/AWAIT',
+  'promises': 'PROMISES',
+  'closures': 'CLOSURES',
+  'scope': 'SCOPE',
+  'this': 'THIS KEYWORD',
+  'prototypes': 'PROTOTYPES',
+  'modules': 'MODULES',
+  'generators': 'GENERATORS',
+  'proxy-reflect': 'PROXY & REFLECT',
+  'symbols': 'SYMBOLS',
+  'regex': 'REGEX',
+  'iterators': 'ITERATORS',
+  'type-coercion': 'TYPE COERCION',
+  'event-loop': 'EVENT LOOP',
+};
+
+export const JS_SUBCATEGORY_DESCRIPTIONS: Record<JavaScriptSubCategory, string> = {
+  'basics': 'Variables, types, typeof, and fundamentals',
+  'operators': 'Arithmetic, logical, comparison, and more',
+  'functions': 'Function declarations, expressions, and arrow functions',
+  'objects': 'Object creation, properties, and methods',
+  'arrays': 'Array methods, iteration, and manipulation',
+  'classes': 'ES6 classes, constructors, and inheritance',
+  'async': 'Async/await syntax and patterns',
+  'promises': 'Promise creation, chaining, and error handling',
+  'closures': 'Lexical scope and function closures',
+  'scope': 'Variable scope, hoisting, and the scope chain',
+  'this': 'Context binding and this keyword behavior',
+  'prototypes': 'Prototype chain and inheritance',
+  'modules': 'ES6 modules, import/export',
+  'generators': 'Generator functions and yield',
+  'proxy-reflect': 'Proxy objects and Reflect API',
+  'symbols': 'Symbol primitive and use cases',
+  'regex': 'Regular expressions and pattern matching',
+  'iterators': 'Iterators and iterable protocol',
+  'type-coercion': 'Implicit and explicit type conversion',
+  'event-loop': 'Event loop, microtasks, and macrotasks',
 };
 
 /**
