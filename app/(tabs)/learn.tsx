@@ -1,10 +1,10 @@
 import { StyleSheet, View } from 'react-native';
-import { HomePage } from '@/components/home/HomePage';
+import { LearnPage } from '@/components/learning/LearnPage';
 
-export default function HomeScreen() {
+export default function LearnScreen() {
   return (
     <View style={styles.container}>
-      <HomePage />
+      <LearnPage />
     </View>
   );
 }
