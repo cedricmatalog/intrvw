@@ -1,67 +1,9 @@
 import { QuizQuestion } from '../types/quiz';
+import { javascriptQuizzes } from './javascript-quizzes';
 
 export const quizQuestions: QuizQuestion[] = [
-  // JavaScript Questions
-  {
-    id: 'js-1',
-    question: 'What is the output of: console.log(typeof null)?',
-    category: 'javascript',
-    difficulty: 'easy',
-    options: [
-      'null',
-      'object',
-      'undefined',
-      'number',
-    ],
-    correctAnswer: 1,
-    explanation: 'In JavaScript, typeof null returns "object". This is actually a bug in JavaScript that has been kept for backwards compatibility. null is a primitive value, but typeof incorrectly reports it as an object.',
-    tags: ['typeof', 'primitives', 'quirks'],
-  },
-  {
-    id: 'js-2',
-    question: 'Which of the following is NOT a JavaScript data type?',
-    category: 'javascript',
-    difficulty: 'easy',
-    options: [
-      'String',
-      'Boolean',
-      'Float',
-      'Symbol',
-    ],
-    correctAnswer: 2,
-    explanation: 'Float is not a JavaScript data type. JavaScript has only one number type (Number) which can represent both integers and floating-point numbers. The primitive types are: String, Number, BigInt, Boolean, undefined, Symbol, and null.',
-    tags: ['data-types', 'primitives'],
-  },
-  {
-    id: 'js-3',
-    question: 'What does the "use strict" directive do?',
-    category: 'javascript',
-    difficulty: 'medium',
-    options: [
-      'Makes code run faster',
-      'Enables strict mode with better error checking',
-      'Compiles code to TypeScript',
-      'Enables all ES6 features',
-    ],
-    correctAnswer: 1,
-    explanation: '"use strict" enables strict mode in JavaScript, which catches common coding mistakes and "unsafe" actions (like accessing the global object). It makes debugging easier by converting silent errors into throw errors.',
-    tags: ['strict-mode', 'best-practices'],
-  },
-  {
-    id: 'js-4',
-    question: 'What is a closure in JavaScript?',
-    category: 'javascript',
-    difficulty: 'medium',
-    options: [
-      'A way to close browser windows',
-      'A function that has access to variables in its outer scope',
-      'A method to prevent memory leaks',
-      'A type of loop',
-    ],
-    correctAnswer: 1,
-    explanation: 'A closure is a function that has access to variables in its outer (enclosing) lexical scope, even after the outer function has returned. Closures are created every time a function is created.',
-    tags: ['closures', 'scope', 'functions'],
-  },
+  // JavaScript Questions from javascript-questions.md (Lydia Hallie)
+  ...javascriptQuizzes,
 
   // TypeScript Questions
   {

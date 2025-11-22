@@ -11,11 +11,64 @@ import {
 import { RetroColors } from '../../constants/RetroTheme';
 import { QuizQuestion } from '../../types/quiz';
 import { getCategoryColor, getLevelColor } from '../../utils/uiUtils';
+import { CodeBlock } from '../common/CodeBlock';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 interface QuizCardProps {
   question: QuizQuestion;
+}
+
+// Types for parsed question content
+type QuestionTextPart = {
+  type: 'text';
+  content: string;
+};
+
+type QuestionCodePart = {
+  type: 'code';
+  content: string;
+  language: string;
+};
+
+type QuestionPart = QuestionTextPart | QuestionCodePart;
+
+// Helper function to parse question text and extract code blocks
+function parseQuestionContent(questionText: string): QuestionPart[] {
+  const codeBlockRegex = /```(\w+)?\n([\s\S]+?)```/g;
+  const parts: QuestionPart[] = [];
+
+  let lastIndex = 0;
+  let match;
+
+  while ((match = codeBlockRegex.exec(questionText)) !== null) {
+    // Add text before code block
+    if (match.index > lastIndex) {
+      const textContent = questionText.substring(lastIndex, match.index).trim();
+      if (textContent) {
+        parts.push({ type: 'text', content: textContent });
+      }
+    }
+
+    // Add code block
+    parts.push({
+      type: 'code',
+      content: match[2].trim(),
+      language: match[1] || 'javascript',
+    });
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Add remaining text
+  if (lastIndex < questionText.length) {
+    const textContent = questionText.substring(lastIndex).trim();
+    if (textContent) {
+      parts.push({ type: 'text', content: textContent });
+    }
+  }
+
+  return parts.length > 0 ? parts : [{ type: 'text', content: questionText }];
 }
 
 export const QuizCard: React.FC<QuizCardProps> = ({ question }) => {
@@ -34,6 +87,9 @@ export const QuizCard: React.FC<QuizCardProps> = ({ question }) => {
 
   const isCorrectAnswer = selectedAnswer === question.correctAnswer;
   const hasAnswered = selectedAnswer !== null;
+
+  // Parse question content to separate text and code blocks
+  const questionParts = parseQuestionContent(question.question);
 
   return (
     <View style={[styles.container, { height: SCREEN_HEIGHT }]}>
@@ -61,13 +117,26 @@ export const QuizCard: React.FC<QuizCardProps> = ({ question }) => {
 
         {/* Question */}
         <View style={styles.questionContainer}>
-          <Text style={styles.questionLabel}>{'> QUIZ_QUESTION'}</Text>
-          <Text style={styles.questionText}>{question.question}</Text>
+          {questionParts.map((part, index) => {
+            if (part.type === 'code') {
+              return (
+                <CodeBlock
+                  key={index}
+                  code={part.content}
+                  language={part.language}
+                />
+              );
+            }
+            return (
+              <Text key={index} style={styles.questionText}>
+                {part.content}
+              </Text>
+            );
+          })}
         </View>
 
         {/* Options */}
         <View style={styles.optionsContainer}>
-          <Text style={styles.sectionLabel}>{'> SELECT_ANSWER'}</Text>
           {question.options.map((option, index) => {
             const isSelected = selectedAnswer === index;
             const isCorrect = index === question.correctAnswer;
@@ -152,15 +221,6 @@ export const QuizCard: React.FC<QuizCardProps> = ({ question }) => {
             </View>
           </View>
         )}
-
-        {/* Instructions */}
-        {!hasAnswered && (
-          <View style={styles.instructionsContainer}>
-            <Text style={styles.instructionsText}>
-              Tap an option to submit your answer
-            </Text>
-          </View>
-        )}
       </ScrollView>
     </View>
   );
@@ -179,7 +239,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 24,
-
+    paddingTop: 30,
   },
   badges: {
     flexDirection: 'row',
@@ -197,12 +257,6 @@ const styles = StyleSheet.create({
   },
   questionContainer: {
     marginBottom: 32,
-  },
-  questionLabel: {
-    fontFamily: 'monospace',
-    fontSize: 12,
-    color: RetroColors.textDim,
-    marginBottom: 12,
   },
   questionText: {
     fontFamily: 'monospace',
@@ -319,17 +373,5 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
     fontSize: 11,
     color: RetroColors.textDim,
-  },
-  instructionsContainer: {
-    marginTop: 20,
-    padding: 12,
-    borderTopWidth: 1,
-    borderTopColor: RetroColors.surface,
-  },
-  instructionsText: {
-    fontFamily: 'monospace',
-    fontSize: 12,
-    color: RetroColors.textDim,
-    textAlign: 'center',
   },
 });

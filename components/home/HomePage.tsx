@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -15,6 +15,7 @@ import {
 import { getAllQuizCategoryCounts } from '../../utils/dataUtils';
 import { getCategoryColor } from '../../utils/uiUtils';
 import { QuizCategory } from '../../types/quiz';
+import { getAllProgress, QuizProgress } from '../../utils/progressStorage';
 
 interface CategoryCardProps {
   title: string;
@@ -22,6 +23,7 @@ interface CategoryCardProps {
   count: number;
   color: string;
   onPress: () => void;
+  progress?: QuizProgress;
 }
 
 const CategoryCard: React.FC<CategoryCardProps> = ({
@@ -30,7 +32,13 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   count,
   color,
   onPress,
+  progress,
 }) => {
+  const hasProgress = progress && progress.currentIndex > 0;
+  const progressPercent = hasProgress
+    ? Math.round(((progress.currentIndex + 1) / count) * 100)
+    : 0;
+
   return (
     <Pressable
       style={[styles.card, { borderColor: color }]}
@@ -42,9 +50,26 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           {count} {count === 1 ? 'QUESTION' : 'QUESTIONS'}
         </Text>
       </View>
+
+      {hasProgress && (
+        <View style={styles.progressContainer}>
+          <View style={styles.progressBar}>
+            <View
+              style={[
+                styles.progressFill,
+                { width: `${progressPercent}%`, backgroundColor: color }
+              ]}
+            />
+          </View>
+          <Text style={[styles.progressText, { color }]}>
+            {progress.currentIndex + 1} / {count} ({progressPercent}%)
+          </Text>
+        </View>
+      )}
+
       <Text style={styles.cardDescription}>{description}</Text>
       <Text style={[styles.cardAction, { color }]}>
-        {'> START PRACTICING'}
+        {hasProgress ? '> CONTINUE LEARNING' : '> START PRACTICING'}
       </Text>
     </Pressable>
   );
@@ -52,9 +77,20 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 
 export const HomePage: React.FC = () => {
   const router = useRouter();
+  const [progressData, setProgressData] = useState<{ [key: string]: QuizProgress }>({});
 
   // Get quiz counts using utility function
   const quizCounts = getAllQuizCategoryCounts();
+
+  // Load progress on mount
+  useEffect(() => {
+    loadAllProgress();
+  }, []);
+
+  const loadAllProgress = async () => {
+    const allProgress = await getAllProgress();
+    setProgressData(allProgress);
+  };
 
   // Define technology categories to show
   const technologies: QuizCategory[] = [
@@ -126,6 +162,7 @@ export const HomePage: React.FC = () => {
               count={tech.count}
               color={tech.color}
               onPress={() => handleTechnologyPress(tech.category)}
+              progress={progressData[tech.category]}
             />
           ))}
         </View>
@@ -244,6 +281,25 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     letterSpacing: 1,
+  },
+  progressContainer: {
+    marginBottom: 12,
+  },
+  progressBar: {
+    height: 4,
+    backgroundColor: RetroColors.surface,
+    borderWidth: 1,
+    borderColor: RetroColors.border,
+    overflow: 'hidden',
+    marginBottom: 6,
+  },
+  progressFill: {
+    height: '100%',
+  },
+  progressText: {
+    fontFamily: 'monospace',
+    fontSize: 11,
+    fontWeight: 'bold',
   },
   footer: {
     marginTop: 40,
