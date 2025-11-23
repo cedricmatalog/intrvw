@@ -37,28 +37,47 @@ export default function JavaScriptQuizSelection() {
     }, [])
   );
 
+  // Ordered from beginner to advanced for progressive learning
   const subcategories: (JavaScriptSubCategory | 'all')[] = [
     'all',
-    'basics',
-    'type-coercion',
+
+    // BEGINNER - Fundamentals (Start here)
+    'type-system',
     'operators',
+    'string-methods',
+    'array-operations',
+    'arrays',
     'functions',
+    'object-fundamentals',
+    'objects',
+    'object-methods',
+    'type-coercion',
+    'references',
+    'error-handling',
+    'destructuring',
+
+    // INTERMEDIATE - Core Concepts
     'scope',
     'closures',
     'this',
-    'objects',
-    'arrays',
-    'classes',
     'prototypes',
-    'promises',
-    'async',
-    'event-loop',
+    'classes',
     'modules',
+    'promises',
+    'async-await',
+    'map-set',
+    'regex',
+    'miscellaneous',
+
+    // ADVANCED - Complex Topics
+    'advanced-operators',
+    'event-loop',
     'generators',
     'iterators',
-    'proxy-reflect',
     'symbols',
-    'regex',
+    'weak-collections',
+    'proxy-reflect',
+    'internationalization',
   ];
 
   const handleSelectSubcategory = (subcategory: JavaScriptSubCategory | 'all') => {
@@ -128,6 +147,31 @@ export default function JavaScriptQuizSelection() {
             // Skip categories with no questions
             if (count === 0 && subcategory !== 'all') return null;
 
+            // Section headers
+            let sectionHeader = null;
+            if (subcategory === 'type-system') {
+              sectionHeader = (
+                <View key="beginner-header" style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>{'> BEGINNER - FUNDAMENTALS'}</Text>
+                  <Text style={styles.sectionSubtitle}>Start here if you&apos;re new to JavaScript</Text>
+                </View>
+              );
+            } else if (subcategory === 'scope') {
+              sectionHeader = (
+                <View key="intermediate-header" style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>{'> INTERMEDIATE - CORE CONCEPTS'}</Text>
+                  <Text style={styles.sectionSubtitle}>Build deeper understanding</Text>
+                </View>
+              );
+            } else if (subcategory === 'advanced-operators') {
+              sectionHeader = (
+                <View key="advanced-header" style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>{'> ADVANCED - COMPLEX TOPICS'}</Text>
+                  <Text style={styles.sectionSubtitle}>Master JavaScript&apos;s advanced features</Text>
+                </View>
+              );
+            }
+
             // Get progress for this subcategory
             const progressKey = subcategory === 'all' ? 'javascript' : `javascript:${subcategory}`;
             const progress = progressData[progressKey];
@@ -137,14 +181,15 @@ export default function JavaScriptQuizSelection() {
             const progressPercent = count > 0 ? Math.round((answeredCount / count) * 100) : 0;
 
             return (
-              <Pressable
-                key={subcategory}
-                style={({ pressed }) => [
-                  styles.categoryCard,
-                  pressed && styles.categoryCardPressed,
-                ]}
-                onPress={() => handleSelectSubcategory(subcategory)}
-              >
+              <React.Fragment key={subcategory}>
+                {sectionHeader}
+                <Pressable
+                  style={({ pressed }) => [
+                    styles.categoryCard,
+                    pressed && styles.categoryCardPressed,
+                  ]}
+                  onPress={() => handleSelectSubcategory(subcategory)}
+                >
                 <View style={styles.categoryHeader}>
                   <Text style={styles.categoryLabel}>{label}</Text>
                   <View style={styles.countBadge}>
@@ -200,6 +245,7 @@ export default function JavaScriptQuizSelection() {
                   {isCompleted ? '> RETAKE QUIZ' : hasProgress ? '> CONTINUE PRACTICING' : '> START PRACTICING'}
                 </Text>
               </Pressable>
+              </React.Fragment>
             );
           })}
         </View>
@@ -240,6 +286,25 @@ const styles = StyleSheet.create({
   },
   categoriesContainer: {
     gap: 16,
+  },
+  sectionHeader: {
+    marginTop: 24,
+    marginBottom: 12,
+    paddingBottom: 12,
+    borderBottomWidth: 2,
+    borderBottomColor: RetroColors.surfaceBorder,
+  },
+  sectionTitle: {
+    fontFamily: 'monospace',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: RetroColors.terminal,
+    marginBottom: 4,
+  },
+  sectionSubtitle: {
+    fontFamily: 'monospace',
+    fontSize: 12,
+    color: RetroColors.textDim,
   },
   categoryCard: {
     padding: 20,

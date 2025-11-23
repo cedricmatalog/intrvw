@@ -84,6 +84,20 @@ export const JS_SUBCATEGORY_LABELS: Record<JavaScriptSubCategory, string> = {
   'iterators': 'ITERATORS',
   'type-coercion': 'TYPE COERCION',
   'event-loop': 'EVENT LOOP',
+  'type-system': 'TYPE SYSTEM',
+  'string-methods': 'STRING METHODS',
+  'error-handling': 'ERROR HANDLING',
+  'references': 'REFERENCES',
+  'weak-collections': 'WEAK COLLECTIONS',
+  'internationalization': 'INTERNATIONALIZATION',
+  'advanced-operators': 'ADVANCED OPERATORS',
+  'array-operations': 'ARRAY OPERATIONS',
+  'object-fundamentals': 'OBJECT FUNDAMENTALS',
+  'miscellaneous': 'MISCELLANEOUS',
+  'async-await': 'ASYNC/AWAIT',
+  'map-set': 'MAP & SET',
+  'destructuring': 'DESTRUCTURING',
+  'object-methods': 'OBJECT METHODS',
 };
 
 export const JS_SUBCATEGORY_DESCRIPTIONS: Record<JavaScriptSubCategory, string> = {
@@ -107,6 +121,20 @@ export const JS_SUBCATEGORY_DESCRIPTIONS: Record<JavaScriptSubCategory, string> 
   'iterators': 'Iterators and iterable protocol',
   'type-coercion': 'Implicit and explicit type conversion',
   'event-loop': 'Event loop, microtasks, and macrotasks',
+  'type-system': 'typeof, primitives vs objects, truthy/falsy values',
+  'string-methods': 'String manipulation, template literals, and methods',
+  'error-handling': 'try/catch, throw, and error types',
+  'references': 'Pass by reference vs value, object references',
+  'weak-collections': 'WeakMap and WeakSet collections',
+  'internationalization': 'Intl API for formatting numbers, dates, and strings',
+  'advanced-operators': 'Optional chaining, nullish coalescing, and more',
+  'array-operations': 'Destructuring, spread, flat, includes, and array helpers',
+  'object-fundamentals': 'Object literals, properties, default parameters',
+  'miscellaneous': 'Set, Map, parseInt, eval, JSON, and other topics',
+  'async-await': 'Async functions, await keyword, and async patterns',
+  'map-set': 'Map and Set collections, methods, and use cases',
+  'destructuring': 'Array and object destructuring with defaults',
+  'object-methods': 'Object.keys, assign, freeze, seal, and more',
 };
 
 /**

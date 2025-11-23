@@ -18,6 +18,7 @@ export type JavaScriptSubCategory =
   | 'arrays'
   | 'classes'
   | 'async'
+  | 'async-await'
   | 'promises'
   | 'closures'
   | 'scope'
@@ -30,7 +31,21 @@ export type JavaScriptSubCategory =
   | 'regex'
   | 'iterators'
   | 'type-coercion'
-  | 'event-loop';
+  | 'event-loop'
+  | 'type-system'
+  | 'string-methods'
+  | 'error-handling'
+  | 'references'
+  | 'weak-collections'
+  | 'internationalization'
+  | 'advanced-operators'
+  | 'array-operations'
+  | 'object-fundamentals'
+  | 'miscellaneous'
+  | 'regex'
+  | 'map-set'
+  | 'destructuring'
+  | 'object-methods';
 
 export interface QuizQuestion {
   id: string;

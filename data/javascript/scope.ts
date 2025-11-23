@@ -186,5 +186,56 @@ export const scopeQuizzes: QuizQuestion[] = [
     correctAnswer: 2,
     explanation: "Because of the event queue in JavaScript, the `setTimeout` callback function is called _after_ the loop has been executed. Since the variable `i` in the first loop was declared using the `var` keyword, this value was global. During the loop, we incremented the value of `i` by `1` each time, using the unary operator `++`. By the time the `setTimeout` callback function was invoked, `i` was equal to `3` in the first example.\n\nIn the second loop, the variable `i` was declared using the `let` keyword: variables declared with the `let` (and `const`) keyword are block-scoped (a block is anything between `{ }`). During each iteration, `i` will have a new value, and each value is scoped inside the loop.",
     tags: ["javascript","quiz"],
+  },
+
+{
+    id: 'js-042',
+    question: "📝 What's the output?\n\n```javascript\nfunction sayHi() {\n  console.log(name);\n  console.log(age);\n  var name = \"Lydia\";\n  let age = 21;\n}\n\nsayHi();\n```",
+    category: 'javascript',
+    subcategory: 'scope',
+    difficulty: 'medium',
+    options: [
+          "Lydia and undefined",
+          "Lydia and ReferenceError",
+          "ReferenceError and 21",
+          "undefined and ReferenceError"
+    ],
+    correctAnswer: 3,
+    explanation: "Within the function, we first declare the `name` variable with the `var` keyword. This means that the variable gets hoisted (memory space is set up during the creation phase) with the default value of `undefined`, until we actually get to the line where we define the variable. We haven't defined the variable yet on the line where we try to log the `name` variable, so it still holds the value of `undefined`.\n\nVariables with the `let` keyword (and `const`) are hoisted, but unlike `var`, don't get initialized. They are not accessible before the line we declare (initialize) them. This is called the \"temporal dead zone\". When we try to access the variables before they are declared, JavaScript throws a `ReferenceError`.",
+    tags: ["javascript","quiz"],
+  },
+
+{
+    id: 'js-046',
+    question: "📝 What's the output?\n\n```javascript\nconst randomValue = 21;\n\nfunction getInfo() {\n  console.log(typeof randomValue);\n  const randomValue = \"Lydia Hallie\";\n}\n\ngetInfo();\n```",
+    category: 'javascript',
+    subcategory: 'scope',
+    difficulty: 'medium',
+    options: [
+          "\"number\"",
+          "\"string\"",
+          "undefined",
+          "ReferenceError"
+    ],
+    correctAnswer: 3,
+    explanation: "Variables declared with the `const` keyword are not referenceable before their initialization: this is called the _temporal dead zone_. In the `getInfo` function, the variable `randomValue` is scoped in the functional scope of `getInfo`. On the line where we want to log the value of `typeof randomValue`, the variable `randomValue` isn't initialized yet: a `ReferenceError` gets thrown! The engine didn't go down the scope chain since we declared the variable `randomValue` in the `getInfo` function.",
+    tags: ["javascript","quiz"],
+  },
+
+{
+    id: 'js-190',
+    question: "📝 What will be logged?\n\n```javascript\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}\n\nfor (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log(j), 0);\n}\n```",
+    category: 'javascript',
+    subcategory: 'scope',
+    difficulty: 'hard',
+    options: [
+      '0 1 2 then 0 1 2',
+      '3 3 3 then 0 1 2',
+      '0 1 2 then 3 3 3',
+      '3 3 3 then 3 3 3',
+    ],
+    correctAnswer: 1,
+    explanation: "With `var`, there's only one `i` variable shared across all iterations. By the time the timeouts execute, the loop has finished and `i` is 3, so it logs '3 3 3'. With `let`, each iteration creates a new block-scoped `j`, so each timeout has its own closure over that iteration's value, logging '0 1 2'.",
+    tags: ['javascript', 'quiz'],
   }
 ];

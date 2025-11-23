@@ -101,5 +101,22 @@ export const closuresQuizzes: QuizQuestion[] = [
     correctAnswer: 3,
     explanation: "In JavaScript, we have two ways to access properties on an object: bracket notation, or dot notation. In this example, we use dot notation (`colorConfig.colors`) instead of bracket notation (`colorConfig[\"colors\"]`).\n\nWith dot notation, JavaScript tries to find the property on the object with that exact name. In this example, JavaScript tries to find a property called `colors` on the `colorConfig` object. There is no property called `colors`, so this returns `undefined`. Then, we try to access the value of the first element by using `[1]`. We cannot do this on a value that's `undefined`, so it throws a `TypeError`: `Cannot read property '1' of undefined`.\n\nJavaScript interprets (or unboxes) statements. When we use bracket notation, it sees the first opening bracket `[` and keeps going until it finds the closing bracket `]`. Only then, it will evaluate the statement. If we would've used `colorConfig[colors[1]]`, it would have returned the value of the `red` property on the `colorConfig` object.",
     tags: ["javascript","quiz"],
+  },
+
+{
+    id: 'js-189',
+    question: "📝 What's the output?\n\n```javascript\nfunction createCounter() {\n  let count = 0;\n  return function() {\n    count++;\n    return count;\n  };\n}\n\nconst counter1 = createCounter();\nconst counter2 = createCounter();\n\nconsole.log(counter1());\nconsole.log(counter1());\nconsole.log(counter2());\n```",
+    category: 'javascript',
+    subcategory: 'closures',
+    difficulty: 'medium',
+    options: [
+      '1 2 3',
+      '1 2 1',
+      '1 1 1',
+      '0 1 0',
+    ],
+    correctAnswer: 1,
+    explanation: "Each call to `createCounter()` creates a new closure with its own `count` variable. `counter1` has its own `count` that increments: 1, then 2. `counter2` has a separate `count` that starts at 0, so it returns 1. Closures maintain independent state.",
+    tags: ['javascript', 'quiz'],
   }
 ];
