@@ -4,6 +4,7 @@ import { QuizFeed } from '@/components/quizzes/QuizFeed';
 import { quizQuestions } from '@/data/quizzes';
 import { QuizCategory, JavaScriptSubCategory } from '@/types/quiz';
 import { CATEGORY_LABELS, JS_SUBCATEGORY_LABELS } from '@/constants/AppConstants';
+import { RetroColors } from '@/constants/RetroTheme';
 
 export default function QuizScreen() {
   const { category, subcategory } = useLocalSearchParams<{
@@ -38,13 +39,17 @@ export default function QuizScreen() {
           title,
           headerShown: true,
           headerStyle: {
-            backgroundColor: '#000000',
+            backgroundColor: RetroColors.background,
           },
-          headerTintColor: '#00FF41',
+          headerTintColor: RetroColors.terminal,
           headerTitleStyle: {
             fontFamily: 'monospace',
             fontWeight: 'bold',
             fontSize: 16,
+          },
+          headerBackTitle: 'Back',
+          headerBackTitleStyle: {
+            fontFamily: 'monospace',
           },
         }}
       />
@@ -58,6 +63,6 @@ export default function QuizScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: RetroColors.background,
   },
 });

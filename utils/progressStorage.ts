@@ -15,6 +15,13 @@ export interface QuizProgress {
     };
   };
   lastUpdated: number;
+  completed?: boolean; // Quiz was completed
+  completedAt?: number; // Timestamp when completed
+  finalScore?: {
+    correct: number;
+    total: number;
+    percentage: number;
+  };
 }
 
 export interface ProgressData {

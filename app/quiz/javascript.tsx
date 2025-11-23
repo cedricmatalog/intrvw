@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { router, useFocusEffect } from 'expo-router';
+import { router, useFocusEffect, Stack } from 'expo-router';
 import { RetroColors } from '@/constants/RetroTheme';
 import { JavaScriptSubCategory } from '@/types/quiz';
 import {
@@ -80,19 +80,39 @@ export default function JavaScriptQuizSelection() {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={styles.title}>{'> JAVASCRIPT QUIZZES'}</Text>
-          <Text style={styles.subtitle}>
-            Choose a topic to practice specific concepts
-          </Text>
-        </View>
+    <>
+      <Stack.Screen
+        options={{
+          title: 'JAVASCRIPT QUIZZES',
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: RetroColors.background,
+          },
+          headerTintColor: RetroColors.terminal,
+          headerTitleStyle: {
+            fontFamily: 'monospace',
+            fontWeight: 'bold',
+            fontSize: 16,
+          },
+          headerBackTitle: 'Back',
+          headerBackTitleStyle: {
+            fontFamily: 'monospace',
+          },
+        }}
+      />
+      <View style={styles.container}>
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {/* Header */}
+          <View style={styles.header}>
+            <Text style={styles.title}>{'> JAVASCRIPT QUIZZES'}</Text>
+            <Text style={styles.subtitle}>
+              Choose a topic to practice specific concepts
+            </Text>
+          </View>
 
         {/* Subcategories */}
         <View style={styles.categoriesContainer}>
@@ -111,7 +131,8 @@ export default function JavaScriptQuizSelection() {
             // Get progress for this subcategory
             const progressKey = subcategory === 'all' ? 'javascript' : `javascript:${subcategory}`;
             const progress = progressData[progressKey];
-            const hasProgress = progress && Object.keys(progress.answeredQuestions).length > 0;
+            const isCompleted = progress?.completed;
+            const hasProgress = progress && Object.keys(progress.answeredQuestions).length > 0 && !isCompleted;
             const answeredCount = hasProgress ? Object.keys(progress.answeredQuestions).length : 0;
             const progressPercent = count > 0 ? Math.round((answeredCount / count) * 100) : 0;
 
@@ -130,6 +151,25 @@ export default function JavaScriptQuizSelection() {
                     <Text style={styles.countText}>{count}</Text>
                   </View>
                 </View>
+
+                {isCompleted && progress.finalScore && (
+                  <View style={styles.completionContainer}>
+                    <View style={styles.completionBadge}>
+                      <Text style={styles.completionBadgeText}>✓ COMPLETED</Text>
+                    </View>
+                    <View style={styles.scoreRow}>
+                      <Text style={[styles.scoreText, { color: RetroColors.amber }]}>
+                        Score: {progress.finalScore.correct}/{progress.finalScore.total} ({progress.finalScore.percentage}%)
+                      </Text>
+                      <Pressable
+                        style={styles.resetButton}
+                        onPress={(e) => handleResetProgress(subcategory, e)}
+                      >
+                        <Text style={styles.resetButtonText}>RESET</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                )}
 
                 {hasProgress && (
                   <View style={styles.progressContainer}>
@@ -157,7 +197,7 @@ export default function JavaScriptQuizSelection() {
 
                 <Text style={styles.categoryDescription}>{description}</Text>
                 <Text style={[styles.categoryAction, { color: RetroColors.amber }]}>
-                  {hasProgress ? '> CONTINUE PRACTICING' : '> START PRACTICING'}
+                  {isCompleted ? '> RETAKE QUIZ' : hasProgress ? '> CONTINUE PRACTICING' : '> START PRACTICING'}
                 </Text>
               </Pressable>
             );
@@ -165,6 +205,7 @@ export default function JavaScriptQuizSelection() {
         </View>
       </ScrollView>
     </View>
+    </>
   );
 }
 
@@ -282,5 +323,32 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: RetroColors.red,
     fontWeight: 'bold',
+  },
+  completionContainer: {
+    marginVertical: 12,
+  },
+  completionBadge: {
+    backgroundColor: RetroColors.terminal,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    alignSelf: 'flex-start',
+    marginBottom: 8,
+  },
+  completionBadgeText: {
+    fontFamily: 'monospace',
+    fontSize: 10,
+    color: RetroColors.background,
+    fontWeight: 'bold',
+  },
+  scoreRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  scoreText: {
+    fontFamily: 'monospace',
+    fontSize: 11,
+    fontWeight: 'bold',
+    flex: 1,
   },
 });

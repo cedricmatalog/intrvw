@@ -1,19 +1,11 @@
 import { RetroColors } from './RetroTheme';
-import { QuestionType } from '../types/question';
 import { QuizCategory, JavaScriptSubCategory } from '../types/quiz';
-import { LearningCategory, LessonLevel } from '../types/learning';
 
 /**
  * Category color mappings used throughout the app
  */
 export const CATEGORY_COLORS: Record<string, string> = {
-  // Question types
-  behavioral: RetroColors.terminal,
-  technical: RetroColors.blue,
-  situational: RetroColors.amber,
-  'culture-fit': RetroColors.purple,
-
-  // Quiz/Learning categories
+  // Quiz categories
   javascript: RetroColors.amber,
   typescript: RetroColors.blue,
   react: RetroColors.cyan,
@@ -24,7 +16,6 @@ export const CATEGORY_COLORS: Record<string, string> = {
   'data-structures': RetroColors.magenta,
   databases: RetroColors.red,
   git: RetroColors.pink,
-  career: RetroColors.terminal,
 };
 
 /**
@@ -34,32 +25,13 @@ export const LEVEL_COLORS: Record<string, string> = {
   easy: RetroColors.terminal,
   medium: RetroColors.amber,
   hard: RetroColors.red,
-  beginner: RetroColors.terminal,
-  intermediate: RetroColors.amber,
-  advanced: RetroColors.red,
-};
-
-/**
- * Content type labels for display
- */
-export const CONTENT_TYPE_LABELS: Record<string, string> = {
-  guide: 'GUIDE',
-  cheatsheet: 'CHEATSHEET',
-  cheat: 'CHEAT',
-  article: 'ARTICLE',
 };
 
 /**
  * Category display names
  */
 export const CATEGORY_LABELS: Record<string, string> = {
-  // Question types
-  behavioral: 'BEHAVIORAL',
-  technical: 'TECHNICAL',
-  situational: 'SITUATIONAL',
-  'culture-fit': 'CULTURE FIT',
-
-  // Quiz/Learning categories
+  // Quiz categories
   javascript: 'JAVASCRIPT',
   typescript: 'TYPESCRIPT',
   react: 'REACT',
@@ -70,22 +42,6 @@ export const CATEGORY_LABELS: Record<string, string> = {
   'data-structures': 'DATA STRUCTURES',
   databases: 'DATABASES',
   git: 'GIT',
-  career: 'CAREER',
-};
-
-/**
- * Category descriptions for learning paths
- */
-export const LEARNING_PATH_DESCRIPTIONS: Record<LearningCategory, string> = {
-  javascript: 'Learn JavaScript from basics to advanced concepts - variables, functions, async, and more',
-  typescript: 'Master TypeScript types, interfaces, generics, and type safety',
-  react: 'Build modern UIs with React hooks, components, and state management',
-  node: 'Backend development with Node.js, APIs, and server-side JavaScript',
-  'web-fundamentals': 'HTTP, APIs, browsers, and core web technologies',
-  'system-design': 'Scalability, architecture, and system design patterns',
-  algorithms: 'Common algorithm patterns, sorting, searching, and problem-solving',
-  'data-structures': 'Arrays, trees, graphs, hash tables, and when to use each',
-  career: 'Resume tips, interview strategies, and career advice',
 };
 
 /**
@@ -151,17 +107,6 @@ export const JS_SUBCATEGORY_DESCRIPTIONS: Record<JavaScriptSubCategory, string> 
   'iterators': 'Iterators and iterable protocol',
   'type-coercion': 'Implicit and explicit type conversion',
   'event-loop': 'Event loop, microtasks, and macrotasks',
-};
-
-/**
- * Question type descriptions
- */
-export const QUESTION_TYPE_DESCRIPTIONS: Record<QuestionType | 'all', string> = {
-  all: 'Practice all interview questions in one feed',
-  behavioral: 'Tell me about yourself, strengths, weaknesses',
-  technical: 'Project discussions, problem-solving approaches',
-  situational: 'Conflict resolution, real-world scenarios',
-  'culture-fit': 'Company-specific, why you want to work here',
 };
 
 /**

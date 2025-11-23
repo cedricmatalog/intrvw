@@ -24,6 +24,7 @@ interface CategoryCardProps {
   color: string;
   onPress: () => void;
   progress?: QuizProgress;
+  completed?: boolean;
 }
 
 const CategoryCard: React.FC<CategoryCardProps> = ({
@@ -34,7 +35,8 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   onPress,
   progress,
 }) => {
-  const hasProgress = progress && progress.currentIndex > 0;
+  const isCompleted = progress?.completed;
+  const hasProgress = progress && progress.currentIndex > 0 && !isCompleted;
   const progressPercent = hasProgress
     ? Math.round(((progress.currentIndex + 1) / count) * 100)
     : 0;
@@ -50,6 +52,17 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           {count} {count === 1 ? 'QUESTION' : 'QUESTIONS'}
         </Text>
       </View>
+
+      {isCompleted && progress.finalScore && (
+        <View style={styles.completionContainer}>
+          <View style={styles.completionBadge}>
+            <Text style={styles.completionBadgeText}>✓ COMPLETED</Text>
+          </View>
+          <Text style={[styles.scoreText, { color }]}>
+            Score: {progress.finalScore.correct}/{progress.finalScore.total} ({progress.finalScore.percentage}%)
+          </Text>
+        </View>
+      )}
 
       {hasProgress && (
         <View style={styles.progressContainer}>
@@ -69,7 +82,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 
       <Text style={styles.cardDescription}>{description}</Text>
       <Text style={[styles.cardAction, { color }]}>
-        {hasProgress ? '> CONTINUE LEARNING' : '> START PRACTICING'}
+        {isCompleted ? '> RETAKE QUIZ' : hasProgress ? '> CONTINUE LEARNING' : '> START PRACTICING'}
       </Text>
     </Pressable>
   );
@@ -304,6 +317,27 @@ const styles = StyleSheet.create({
   progressText: {
     fontFamily: 'monospace',
     fontSize: 11,
+    fontWeight: 'bold',
+  },
+  completionContainer: {
+    marginBottom: 12,
+  },
+  completionBadge: {
+    backgroundColor: RetroColors.terminal,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    alignSelf: 'flex-start',
+    marginBottom: 8,
+  },
+  completionBadgeText: {
+    fontFamily: 'monospace',
+    fontSize: 10,
+    color: RetroColors.background,
+    fontWeight: 'bold',
+  },
+  scoreText: {
+    fontFamily: 'monospace',
+    fontSize: 12,
     fontWeight: 'bold',
   },
   footer: {

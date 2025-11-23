@@ -9,10 +9,9 @@ import {
   Pressable,
 } from 'react-native';
 import { QuizCard } from './QuizCard';
-import { QuizQuestion } from '../../types/quiz';
+import { QuizQuestion, QuizCategory, JavaScriptSubCategory } from '../../types/quiz';
 import { RetroColors } from '../../constants/RetroTheme';
-import { useLocalSearchParams } from 'expo-router';
-import { QuizCategory, JavaScriptSubCategory } from '../../types/quiz';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { getProgress, saveProgress, resetProgress, QuizProgress } from '../../utils/progressStorage';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -22,6 +21,7 @@ interface QuizFeedProps {
 }
 
 export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
+  const router = useRouter();
   const { category, subcategory } = useLocalSearchParams<{
     category?: QuizCategory | 'all';
     subcategory?: JavaScriptSubCategory | 'all';
@@ -31,6 +31,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showResumeDialog, setShowResumeDialog] = useState(false);
+  const [showCompletionDialog, setShowCompletionDialog] = useState(false);
   const [savedProgress, setSavedProgress] = useState<QuizProgress | null>(null);
   const [answeredQuestions, setAnsweredQuestions] = useState<{
     [questionId: string]: {
@@ -42,10 +43,12 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
   const flatListRef = useRef<FlatList>(null);
   const [isInitialized, setIsInitialized] = useState(false);
   const hasScrolledToSaved = useRef(false);
+  const isCompletedRef = useRef(false); // Track if quiz is completed
 
   // Load saved progress on mount
   useEffect(() => {
     loadProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, currentSubcategory]);
 
   // Save progress when index or answeredQuestions changes
@@ -53,6 +56,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
     if (isInitialized && questions.length > 0) {
       saveCurrentProgress();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, answeredQuestions, isInitialized]);
 
   // Scroll to saved position after initialization
@@ -66,7 +70,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
             index: currentIndex,
             animated: false,
           });
-        } catch (error) {
+        } catch {
           // Fallback to scrollToOffset if scrollToIndex fails
           console.log('Scroll to index failed, using offset');
           flatListRef.current?.scrollToOffset({
@@ -82,17 +86,28 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
   const loadProgress = async () => {
     const progress = await getProgress(currentCategory, currentSubcategory);
     if (progress) {
-      setAnsweredQuestions(progress.answeredQuestions || {});
-      if (progress.currentIndex > 0 && progress.currentIndex < questions.length) {
+      // Only show resume dialog if quiz is in progress (not completed)
+      if (!progress.completed && progress.currentIndex > 0 && progress.currentIndex < questions.length) {
+        setAnsweredQuestions(progress.answeredQuestions || {});
         setSavedProgress(progress);
         setShowResumeDialog(true);
         return;
+      }
+      // If completed, start fresh (but keep completion data for display on category page)
+      if (progress.completed) {
+        setAnsweredQuestions({});
+        setCurrentIndex(0);
       }
     }
     setIsInitialized(true);
   };
 
   const saveCurrentProgress = async () => {
+    // Don't overwrite completion data
+    if (isCompletedRef.current) {
+      return; // Don't save if quiz is completed
+    }
+
     const progress: QuizProgress = {
       category: currentCategory,
       subcategory: currentSubcategory,
@@ -103,15 +118,49 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
     await saveProgress(progress);
   };
 
-  const handleAnswerSelect = (questionId: string, selectedAnswer: number, isCorrect: boolean) => {
-    setAnsweredQuestions(prev => ({
-      ...prev,
+  const handleAnswerSelect = async (questionId: string, selectedAnswer: number, isCorrect: boolean) => {
+    const updated = {
+      ...answeredQuestions,
       [questionId]: {
         selectedAnswer,
         isCorrect,
         timestamp: Date.now(),
       },
-    }));
+    };
+
+    setAnsweredQuestions(updated);
+
+    // Check if all questions have been answered
+    if (Object.keys(updated).length === questions.length) {
+      // Mark as completed to prevent saveCurrentProgress from overwriting
+      isCompletedRef.current = true;
+
+      // Calculate final score
+      const correctCount = Object.values(updated).filter(a => a.isCorrect).length;
+      const percentage = Math.round((correctCount / questions.length) * 100);
+
+      // Save completion data immediately (before the useEffect runs)
+      const completionProgress: QuizProgress = {
+        category: currentCategory,
+        subcategory: currentSubcategory,
+        currentIndex,
+        answeredQuestions: updated,
+        lastUpdated: Date.now(),
+        completed: true,
+        completedAt: Date.now(),
+        finalScore: {
+          correct: correctCount,
+          total: questions.length,
+          percentage,
+        },
+      };
+      await saveProgress(completionProgress);
+
+      // Show completion dialog after a short delay
+      setTimeout(() => {
+        setShowCompletionDialog(true);
+      }, 500);
+    }
   };
 
   const handleContinue = () => {
@@ -126,6 +175,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
     await resetProgress(currentCategory, currentSubcategory);
     setCurrentIndex(0);
     setAnsweredQuestions({});
+    isCompletedRef.current = false; // Reset completion flag
     setShowResumeDialog(false);
     setIsInitialized(true);
   };
@@ -175,6 +225,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
           <QuizCard
             question={item}
             onAnswerSelect={handleAnswerSelect}
+            previousAnswer={answeredQuestions[item.id]}
           />
         )}
         keyExtractor={(item) => item.id}
@@ -223,6 +274,64 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
                 onPress={handleStartOver}
               >
                 <Text style={styles.modalButtonTextSecondary}>START OVER</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Completion Dialog */}
+      <Modal
+        visible={showCompletionDialog}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setShowCompletionDialog(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>{'> QUIZ_COMPLETED!'}</Text>
+            <Text style={styles.modalMessage}>
+              Congratulations! You've completed all {questions.length} questions.
+            </Text>
+
+            {(() => {
+              const correctCount = Object.values(answeredQuestions).filter(a => a.isCorrect).length;
+              const percentage = Math.round((correctCount / questions.length) * 100);
+              return (
+                <>
+                  <Text style={[styles.modalScore, { color: percentage >= 70 ? RetroColors.terminal : percentage >= 50 ? RetroColors.amber : RetroColors.red }]}>
+                    SCORE: {correctCount} / {questions.length} ({percentage}%)
+                  </Text>
+                  <Text style={styles.modalSubtext}>
+                    {percentage >= 90 ? 'Outstanding work!' : percentage >= 70 ? 'Great job!' : percentage >= 50 ? 'Good effort!' : 'Keep practicing!'}
+                  </Text>
+                </>
+              );
+            })()}
+
+            <View style={styles.modalButtons}>
+              <Pressable
+                style={[styles.modalButton, styles.modalButtonPrimary]}
+                onPress={() => {
+                  setShowCompletionDialog(false);
+                  router.back();
+                }}
+              >
+                <Text style={styles.modalButtonTextPrimary}>BACK TO CATEGORIES</Text>
+              </Pressable>
+
+              <Pressable
+                style={[styles.modalButton, styles.modalButtonSecondary]}
+                onPress={async () => {
+                  await resetProgress(currentCategory, currentSubcategory);
+                  setShowCompletionDialog(false);
+                  setCurrentIndex(0);
+                  setAnsweredQuestions({});
+                  isCompletedRef.current = false; // Reset completion flag
+                  flatListRef.current?.scrollToIndex({ index: 0, animated: false });
+                }}
+              >
+                <Text style={styles.modalButtonTextSecondary}>TRY AGAIN</Text>
               </Pressable>
             </View>
           </View>
@@ -356,5 +465,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: RetroColors.textDim,
     fontWeight: 'bold',
+  },
+  modalScore: {
+    fontFamily: 'monospace',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginVertical: 16,
+    textAlign: 'center',
   },
 });

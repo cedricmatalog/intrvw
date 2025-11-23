@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dimensions,
   Pressable,
@@ -18,6 +18,11 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 interface QuizCardProps {
   question: QuizQuestion;
   onAnswerSelect?: (questionId: string, selectedAnswer: number, isCorrect: boolean) => void;
+  previousAnswer?: {
+    selectedAnswer: number;
+    isCorrect: boolean;
+    timestamp: number;
+  };
 }
 
 // Types for parsed question content
@@ -72,9 +77,19 @@ function parseQuestionContent(questionText: string): QuestionPart[] {
   return parts.length > 0 ? parts : [{ type: 'text', content: questionText }];
 }
 
-export const QuizCard: React.FC<QuizCardProps> = ({ question, onAnswerSelect }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [showExplanation, setShowExplanation] = useState(false);
+export const QuizCard: React.FC<QuizCardProps> = ({ question, onAnswerSelect, previousAnswer }) => {
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(
+    previousAnswer !== undefined ? previousAnswer.selectedAnswer : null
+  );
+  const [showExplanation, setShowExplanation] = useState(previousAnswer !== undefined);
+
+  // Update state when previousAnswer changes (when continuing from saved progress)
+  useEffect(() => {
+    if (previousAnswer !== undefined) {
+      setSelectedAnswer(previousAnswer.selectedAnswer);
+      setShowExplanation(true);
+    }
+  }, [previousAnswer]);
 
   const categoryColor = getCategoryColor(question.category);
   const difficultyColor = getLevelColor(question.difficulty);
