@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   View,
   FlatList,
@@ -12,7 +12,7 @@ import { QuizCard } from './QuizCard';
 import { QuizQuestion, QuizCategory, JavaScriptSubCategory } from '../../types/quiz';
 import { RetroColors } from '../../constants/RetroTheme';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { getProgress, saveProgress, resetProgress, QuizProgress } from '../../utils/progressStorage';
+import { useQuizStore } from '../../store/quizStore';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -29,32 +29,43 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
   const currentCategory = category || 'all';
   const currentSubcategory = subcategory;
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showResumeDialog, setShowResumeDialog] = useState(false);
-  const [showCompletionDialog, setShowCompletionDialog] = useState(false);
-  const [savedProgress, setSavedProgress] = useState<QuizProgress | null>(null);
-  const [answeredQuestions, setAnsweredQuestions] = useState<{
-    [questionId: string]: {
-      selectedAnswer: number;
-      isCorrect: boolean;
-      timestamp: number;
-    };
-  }>({});
+  // Zustand store
+  const {
+    currentIndex,
+    answeredQuestions,
+    isInitialized,
+    showResumeDialog,
+    showCompletionDialog,
+    savedProgress,
+    setCurrentIndex,
+    addAnswer,
+    loadProgress,
+    saveCurrentProgress,
+    completeQuiz,
+    startOver,
+    continueQuiz,
+    setShowResumeDialog,
+    setShowCompletionDialog,
+    resetQuiz,
+  } = useQuizStore();
+
   const flatListRef = useRef<FlatList>(null);
-  const [isInitialized, setIsInitialized] = useState(false);
   const hasScrolledToSaved = useRef(false);
-  const isCompletedRef = useRef(false); // Track if quiz is completed
 
   // Load saved progress on mount
   useEffect(() => {
-    loadProgress();
+    loadProgress(currentCategory, currentSubcategory, questions.length);
+    return () => {
+      // Cleanup on unmount
+      resetQuiz();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, currentSubcategory]);
 
   // Save progress when index or answeredQuestions changes
   useEffect(() => {
     if (isInitialized && questions.length > 0) {
-      saveCurrentProgress();
+      saveCurrentProgress(currentCategory, currentSubcategory);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, answeredQuestions, isInitialized]);
@@ -83,101 +94,19 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
     }
   }, [isInitialized, currentIndex]);
 
-  const loadProgress = async () => {
-    const progress = await getProgress(currentCategory, currentSubcategory);
-    if (progress) {
-      // Only show resume dialog if quiz is in progress (not completed)
-      if (!progress.completed && progress.currentIndex > 0 && progress.currentIndex < questions.length) {
-        setAnsweredQuestions(progress.answeredQuestions || {});
-        setSavedProgress(progress);
-        setShowResumeDialog(true);
-        return;
-      }
-      // If completed, start fresh (but keep completion data for display on category page)
-      if (progress.completed) {
-        setAnsweredQuestions({});
-        setCurrentIndex(0);
-      }
-    }
-    setIsInitialized(true);
-  };
-
-  const saveCurrentProgress = async () => {
-    // Don't overwrite completion data
-    if (isCompletedRef.current) {
-      return; // Don't save if quiz is completed
-    }
-
-    const progress: QuizProgress = {
-      category: currentCategory,
-      subcategory: currentSubcategory,
-      currentIndex,
-      answeredQuestions,
-      lastUpdated: Date.now(),
-    };
-    await saveProgress(progress);
-  };
-
   const handleAnswerSelect = async (questionId: string, selectedAnswer: number, isCorrect: boolean) => {
-    const updated = {
-      ...answeredQuestions,
-      [questionId]: {
-        selectedAnswer,
-        isCorrect,
-        timestamp: Date.now(),
-      },
-    };
-
-    setAnsweredQuestions(updated);
+    // Add answer to store
+    addAnswer(questionId, {
+      selectedAnswer,
+      isCorrect,
+      timestamp: Date.now(),
+    });
 
     // Check if all questions have been answered
-    if (Object.keys(updated).length === questions.length) {
-      // Mark as completed to prevent saveCurrentProgress from overwriting
-      isCompletedRef.current = true;
-
-      // Calculate final score
-      const correctCount = Object.values(updated).filter(a => a.isCorrect).length;
-      const percentage = Math.round((correctCount / questions.length) * 100);
-
-      // Save completion data immediately (before the useEffect runs)
-      const completionProgress: QuizProgress = {
-        category: currentCategory,
-        subcategory: currentSubcategory,
-        currentIndex,
-        answeredQuestions: updated,
-        lastUpdated: Date.now(),
-        completed: true,
-        completedAt: Date.now(),
-        finalScore: {
-          correct: correctCount,
-          total: questions.length,
-          percentage,
-        },
-      };
-      await saveProgress(completionProgress);
-
-      // Show completion dialog after a short delay
-      setTimeout(() => {
-        setShowCompletionDialog(true);
-      }, 500);
+    const updatedCount = Object.keys(answeredQuestions).length + 1;
+    if (updatedCount === questions.length) {
+      await completeQuiz(currentCategory, currentSubcategory, questions.length);
     }
-  };
-
-  const handleContinue = () => {
-    if (savedProgress) {
-      setCurrentIndex(savedProgress.currentIndex);
-    }
-    setShowResumeDialog(false);
-    setIsInitialized(true);
-  };
-
-  const handleStartOver = async () => {
-    await resetProgress(currentCategory, currentSubcategory);
-    setCurrentIndex(0);
-    setAnsweredQuestions({});
-    isCompletedRef.current = false; // Reset completion flag
-    setShowResumeDialog(false);
-    setIsInitialized(true);
   };
 
   const handleScroll = (event: any) => {
@@ -264,14 +193,14 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
             <View style={styles.modalButtons}>
               <Pressable
                 style={[styles.modalButton, styles.modalButtonPrimary]}
-                onPress={handleContinue}
+                onPress={continueQuiz}
               >
                 <Text style={styles.modalButtonTextPrimary}>CONTINUE</Text>
               </Pressable>
 
               <Pressable
                 style={[styles.modalButton, styles.modalButtonSecondary]}
-                onPress={handleStartOver}
+                onPress={() => startOver(currentCategory, currentSubcategory)}
               >
                 <Text style={styles.modalButtonTextSecondary}>START OVER</Text>
               </Pressable>
@@ -291,7 +220,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
           <View style={styles.modalContainer}>
             <Text style={styles.modalTitle}>{'> QUIZ_COMPLETED!'}</Text>
             <Text style={styles.modalMessage}>
-              Congratulations! You've completed all {questions.length} questions.
+              Congratulations! You&apos;ve completed all {questions.length} questions.
             </Text>
 
             {(() => {
@@ -323,11 +252,8 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
               <Pressable
                 style={[styles.modalButton, styles.modalButtonSecondary]}
                 onPress={async () => {
-                  await resetProgress(currentCategory, currentSubcategory);
+                  await startOver(currentCategory, currentSubcategory);
                   setShowCompletionDialog(false);
-                  setCurrentIndex(0);
-                  setAnsweredQuestions({});
-                  isCompletedRef.current = false; // Reset completion flag
                   flatListRef.current?.scrollToIndex({ index: 0, animated: false });
                 }}
               >
