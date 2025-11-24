@@ -15,6 +15,7 @@ import {
 } from '@/constants/AppConstants';
 import { getAllJavaScriptSubcategoryCounts } from '@/utils/dataUtils';
 import { getAllProgress, QuizProgress, resetProgress } from '@/utils/progressStorage';
+import { isEnhancedSubcategory } from '@/constants/enhancedCategories';
 
 export default function JavaScriptQuizSelection() {
   const subcategoryCounts = getAllJavaScriptSubcategoryCounts();
@@ -179,6 +180,7 @@ export default function JavaScriptQuizSelection() {
             const hasProgress = progress && Object.keys(progress.answeredQuestions).length > 0 && !isCompleted;
             const answeredCount = hasProgress ? Object.keys(progress.answeredQuestions).length : 0;
             const progressPercent = count > 0 ? Math.round((answeredCount / count) * 100) : 0;
+            const isEnhanced = subcategory !== 'all' && isEnhancedSubcategory(subcategory as JavaScriptSubCategory);
 
             return (
               <React.Fragment key={subcategory}>
@@ -191,7 +193,14 @@ export default function JavaScriptQuizSelection() {
                   onPress={() => handleSelectSubcategory(subcategory)}
                 >
                 <View style={styles.categoryHeader}>
-                  <Text style={styles.categoryLabel}>{label}</Text>
+                  <View style={styles.categoryTitleRow}>
+                    <Text style={styles.categoryLabel}>{label}</Text>
+                    {isEnhanced && (
+                      <View style={styles.enhancedBadge}>
+                        <Text style={styles.enhancedBadgeText}>✨ ENHANCED</Text>
+                      </View>
+                    )}
+                  </View>
                   <View style={styles.countBadge}>
                     <Text style={styles.countText}>{count}</Text>
                   </View>
@@ -322,11 +331,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 8,
   },
+  categoryTitleRow: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flexWrap: 'wrap',
+  },
   categoryLabel: {
     fontFamily: 'monospace',
     fontSize: 16,
     fontWeight: 'bold',
     color: RetroColors.text,
+  },
+  enhancedBadge: {
+    backgroundColor: 'rgba(0, 255, 65, 0.15)',
+    borderWidth: 1,
+    borderColor: RetroColors.terminal,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+  },
+  enhancedBadgeText: {
+    fontFamily: 'monospace',
+    fontSize: 9,
+    fontWeight: 'bold',
+    color: RetroColors.terminal,
+    letterSpacing: 0.5,
   },
   countBadge: {
     backgroundColor: RetroColors.amber,
@@ -356,7 +386,7 @@ const styles = StyleSheet.create({
   progressContainer: {
     marginVertical: 12,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: 12,
   },
   progressBarContainer: {
@@ -382,6 +412,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: RetroColors.red,
     backgroundColor: 'transparent',
+    alignSelf: 'flex-start',
+    marginTop: 2,
   },
   resetButtonText: {
     fontFamily: 'monospace',

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   View,
   FlatList,
@@ -7,6 +7,7 @@ import {
   Text,
   Modal,
   Pressable,
+  Animated,
 } from 'react-native';
 import { QuizCard } from './QuizCard';
 import { QuizQuestion, QuizCategory, JavaScriptSubCategory } from '../../types/quiz';
@@ -51,6 +52,8 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
 
   const flatListRef = useRef<FlatList>(null);
   const hasScrolledToSaved = useRef(false);
+  const [showAnswerPrompt, setShowAnswerPrompt] = useState(false);
+  const promptOpacity = useRef(new Animated.Value(0)).current;
 
   // Load saved progress on mount
   useEffect(() => {
@@ -94,6 +97,23 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
     }
   }, [isInitialized, currentIndex]);
 
+  const showPrompt = () => {
+    setShowAnswerPrompt(true);
+    Animated.sequence([
+      Animated.timing(promptOpacity, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.delay(2000),
+      Animated.timing(promptOpacity, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+    ]).start(() => setShowAnswerPrompt(false));
+  };
+
   const handleAnswerSelect = async (questionId: string, selectedAnswer: number, isCorrect: boolean) => {
     // Add answer to store
     addAnswer(questionId, {
@@ -102,7 +122,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
       timestamp: Date.now(),
     });
 
-    // Check if all questions have been answered
+    // Mark quiz as completed but don't show dialog yet
     const updatedCount = Object.keys(answeredQuestions).length + 1;
     if (updatedCount === questions.length) {
       await completeQuiz(currentCategory, currentSubcategory, questions.length);
@@ -112,6 +132,24 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
   const handleScroll = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y;
     const index = Math.round(offsetY / SCREEN_HEIGHT);
+
+    // If user tries to scroll past the last question and quiz is completed, show completion dialog
+    if (index >= questions.length && Object.keys(answeredQuestions).length === questions.length) {
+      setShowCompletionDialog(true);
+      return;
+    }
+
+    // Prevent scrolling forward if current question hasn't been answered
+    if (index > currentIndex) {
+      const currentQuestion = questions[currentIndex];
+      if (currentQuestion && !answeredQuestions[currentQuestion.id]) {
+        // Scroll back to current question and show prompt
+        flatListRef.current?.scrollToIndex({ index: currentIndex, animated: true });
+        showPrompt();
+        return;
+      }
+    }
+
     if (index !== currentIndex && index >= 0 && index < questions.length) {
       setCurrentIndex(index);
     }
@@ -147,6 +185,18 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
         </View>
       )}
 
+      {/* Answer Prompt */}
+      {showAnswerPrompt && (
+        <Animated.View style={[styles.answerPrompt, { opacity: promptOpacity }]}>
+          <Text style={styles.answerPromptText}>
+            {'> ANSWER_REQUIRED'}
+          </Text>
+          <Text style={styles.answerPromptSubtext}>
+            Please answer this question before moving to the next one
+          </Text>
+        </Animated.View>
+      )}
+
       <FlatList
         ref={flatListRef}
         data={questions}
@@ -165,7 +215,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
         decelerationRate="fast"
         onScroll={handleScroll}
         scrollEventThrottle={16}
-        getItemLayout={(data, index) => ({
+        getItemLayout={(_data, index) => ({
           length: SCREEN_HEIGHT,
           offset: SCREEN_HEIGHT * index,
           index,
@@ -398,5 +448,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 16,
     textAlign: 'center',
+  },
+  answerPrompt: {
+    position: 'absolute',
+    bottom: 100,
+    left: 20,
+    right: 20,
+    zIndex: 2000,
+    backgroundColor: RetroColors.surface,
+    borderWidth: 2,
+    borderColor: RetroColors.amber,
+    padding: 20,
+  },
+  answerPromptText: {
+    fontFamily: 'monospace',
+    fontSize: 16,
+    color: RetroColors.amber,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  answerPromptSubtext: {
+    fontFamily: 'monospace',
+    fontSize: 13,
+    color: RetroColors.text,
+    lineHeight: 20,
   },
 });

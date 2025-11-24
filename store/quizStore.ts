@@ -140,10 +140,7 @@ export const useQuizStore = create<QuizState>((set, get) => ({
 
     await saveProgress(completionProgress);
 
-    // Show completion dialog after a short delay
-    setTimeout(() => {
-      set({ showCompletionDialog: true });
-    }, 500);
+    // Don't show completion dialog automatically - let user trigger it by scrolling
   },
 
   // Start over (reset progress)

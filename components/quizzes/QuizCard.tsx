@@ -12,6 +12,7 @@ import { RetroColors } from '../../constants/RetroTheme';
 import { QuizQuestion } from '../../types/quiz';
 import { getCategoryColor, getLevelColor } from '../../utils/uiUtils';
 import { CodeBlock } from '../common/CodeBlock';
+import { EnhancedExplanation } from './EnhancedExplanation';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -224,10 +225,10 @@ export const QuizCard: React.FC<QuizCardProps> = ({ question, onAnswerSelect, pr
 
         {/* Explanation */}
         {showExplanation && (
-          <View style={styles.explanationContainer}>
-            <Text style={styles.sectionLabel}>{'> EXPLANATION'}</Text>
-            <Text style={styles.explanationText}>{question.explanation}</Text>
-          </View>
+          <EnhancedExplanation
+            explanation={question.explanation}
+            accentColor={categoryColor}
+          />
         )}
 
         {/* Tags */}
@@ -363,19 +364,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: RetroColors.text,
     lineHeight: 20,
-  },
-  explanationContainer: {
-    marginBottom: 24,
-  },
-  explanationText: {
-    fontFamily: 'monospace',
-    fontSize: 14,
-    color: RetroColors.text,
-    lineHeight: 22,
-    padding: 16,
-    backgroundColor: RetroColors.surface,
-    borderLeftWidth: 3,
-    borderLeftColor: RetroColors.terminal,
   },
   tagsContainer: {
     marginBottom: 24,
