@@ -14,41 +14,7 @@ export const closuresQuizzes: QuizQuestion[] = [
           "1"
     ],
     correctAnswer: 1,
-    explanation: "We passed the condition `groceries.indexOf(\"banana\")` to the if-statement. `groceries.indexOf(\"banana\")` returns `0`, which is a falsy value. Since the condition in the if-statement is falsy, the code in the `else` block runs, and `We don't have to buy bananas!` gets logged.",
-    tags: ["javascript","quiz"],
-  },
-
-{
-    id: 'js-062',
-    question: "🔤 How long is cool_secret accessible?\n\n```javascript\nsessionStorage.setItem(\"cool_secret\", 123);\n```",
-    category: 'javascript',
-    subcategory: 'closures',
-    difficulty: 'medium',
-    options: [
-          "Forever, the data doesn't get lost.",
-          "When the user closes the tab.",
-          "When the user closes the entire browser, not only the tab.",
-          "When the user shuts off their computer."
-    ],
-    correctAnswer: 1,
-    explanation: "The data stored in `sessionStorage` is removed after closing the _tab_.\n\nIf you used `localStorage`, the data would've been there forever, unless for example `localStorage.clear()` is invoked.",
-    tags: ["javascript","quiz"],
-  },
-
-{
-    id: 'js-063',
-    question: "🔒 What is the event.target when clicking the button?",
-    category: 'javascript',
-    subcategory: 'closures',
-    difficulty: 'medium',
-    options: [
-          "Outer div",
-          "Inner div",
-          "button",
-          "An array of all nested elements."
-    ],
-    correctAnswer: 2,
-    explanation: "The deepest nested element that caused the event is the target of the event. You can stop bubbling by `event.stopPropagation`",
+    explanation: "**`indexOf` returns 0 for first item, and 0 is falsy!** - A classic gotcha!\n\n**What happens:**\n```javascript\ngroceries.indexOf(\"banana\")  // Returns 0 (found at index 0)\n↓\nif (0)  // 0 is FALSY!\n↓\nelse block runs → \"We don't have to buy bananas!\"\n```\n\n**The trap:**\n```javascript\nconst groceries = [\"banana\", \"apple\", \"peanuts\"];\n//                  ↑ index 0\n\ngroceries.indexOf(\"banana\")  // 0 (not falsy in meaning, but falsy in boolean context)\n↓\nif (0) → false → else block\n```\n\n**The fix:**\n```javascript\n// ❌ Wrong: Treats 0 as falsy\nif (groceries.indexOf(\"banana\")) { }\n\n// ✅ Correct: Check for \"not found\" (-1)\nif (groceries.indexOf(\"banana\") !== -1) { }\n\n// ✅ Correct: Modern approach\nif (groceries.includes(\"banana\")) { }\n\n// ✅ Correct: Check if greater than -1\nif (groceries.indexOf(\"banana\") > -1) { }\n```\n\n**Why it matters:**\n```javascript\nconst items = ['first', 'second', 'third'];\n\n// Position 0 (found!)\nitems.indexOf('first')     // 0 → if(0) → false ❌\nitems.includes('first')    // true → if(true) → true ✅\n\n// Position 1 (found!)\nitems.indexOf('second')    // 1 → if(1) → true ✅\n\n// Not found\nitems.indexOf('fourth')    // -1 → if(-1) → true ⚠️ Wrong!\n```\n\n**Memory trick:** `indexOf` returns **position**, not boolean. Position `0` = found but falsy! Use `includes()` or check `!== -1`.",
     tags: ["javascript","quiz"],
   },
 
@@ -65,7 +31,7 @@ export const closuresQuizzes: QuizQuestion[] = [
           "TypeError"
     ],
     correctAnswer: 2,
-    explanation: "With `\"use strict\"`, you can make sure that you don't accidentally declare global variables. We never declared the variable `age`, and since we use `\"use strict\"`, it will throw a reference error. If we didn't use `\"use strict\"`, it would have worked, since the property `age` would have gotten added to the global object.",
+    explanation: "**`\"use strict\"` catches accidental globals** - like having a spell-checker that stops you from making typos!\n\n**What happens:**\n```javascript\nfunction getAge() {\n  \"use strict\";\n  age = 21;  // ❌ Forgot var/let/const!\n  ↓\n  ReferenceError: age is not defined\n}\n```\n\n**Without strict mode:**\n```javascript\n// ❌ Without strict mode (sloppy mode)\nfunction getAge() {\n  age = 21;  // Creates global variable accidentally!\n  console.log(age);\n}\n\ngetAge();  // 21\nconsole.log(window.age);  // 21 (leaked to global!)\n```\n\n**With strict mode:**\n```javascript\n// ✅ With strict mode (safe mode)\nfunction getAge() {\n  \"use strict\";\n  age = 21;  // ReferenceError: Must declare first!\n}\n\ngetAge();  // Error caught early!\n```\n\n**The fix:**\n```javascript\nfunction getAge() {\n  \"use strict\";\n  const age = 21;  // ✓ Properly declared\n  console.log(age);\n}\n\ngetAge();  // 21 (no global pollution!)\n```\n\n**Why strict mode is helpful:**\n```javascript\n// Catches common mistakes:\n\"use strict\";\n\n// 1. Accidental globals\nfunciton typo() { }  // SyntaxError (would be silent otherwise)\n\n// 2. Assignment to read-only\nconst obj = {};\nObject.defineProperty(obj, 'x', { value: 1, writable: false });\nobj.x = 2;  // TypeError (would be silent otherwise)\n\n// 3. Deleting undeletable\ndelete Object.prototype;  // TypeError (would be silent otherwise)\n```\n\n**Memory trick:** `\"use strict\"` = Training wheels for safer JavaScript. It catches mistakes that would otherwise silently create bugs!",
     tags: ["javascript","quiz"],
   },
 

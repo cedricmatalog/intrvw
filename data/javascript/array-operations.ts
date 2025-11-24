@@ -119,4 +119,21 @@ export const array_operationsQuizzes: QuizQuestion[] = [
     explanation: "Think of `includes()` as asking \"Is this item in my shopping cart?\" with an optional \"Start looking from item #X\".\n\n**The syntax:**\n```javascript\narray.includes(searchValue, fromIndex)\n//              ↑            ↑\n//          What to find   Where to start (optional)\n```\n\n**Let's trace each line:**\n\n**Line 1: `arr.includes(3)`** → **true**\n```javascript\nArray: [1, 2, 3, 4, 5]\nIndex:  0  1  2  3  4\n\nSearching for: 3\nStarting from: index 0 (default)\n\n0: 1 === 3? No\n1: 2 === 3? No\n2: 3 === 3? YES! ✓ Return true\n```\n\n**Line 2: `arr.includes(6)`** → **false**\n```javascript\nArray: [1, 2, 3, 4, 5]\n\nSearching for: 6\nStarting from: index 0 (default)\n\n0: 1 === 6? No\n1: 2 === 6? No\n2: 3 === 6? No\n3: 4 === 6? No\n4: 5 === 6? No\n\nNot found! ✗ Return false\n```\n\n**Line 3: `arr.includes(3, 3)`** → **false**\n```javascript\nArray: [1, 2, 3, 4, 5]\nIndex:  0  1  2  3  4\n              ↑  Start here!\n\nSearching for: 3\nStarting from: index 3 (skip 0, 1, 2)\n\n// Already skipped: 1, 2, 3\n3: 4 === 3? No\n4: 5 === 3? No\n\nNot found! ✗ Return false\n// Note: 3 exists at index 2, but we started looking at index 3!\n```\n\n**The gotcha:**\nThe value `3` IS in the array at index 2, but we told JavaScript \"start looking from index 3\", so it missed it!\n\n**More examples with fromIndex:**\n```javascript\nconst arr = [1, 2, 3, 4, 5];\n\narr.includes(4);      // true  (found at index 3)\narr.includes(4, 4);   // false (start at 4, but 4 is at index 3)\narr.includes(5, 4);   // true  (start at 4, found at index 4)\n\n// Negative index = count from end!\narr.includes(5, -1);  // true  (start at last element)\narr.includes(4, -1);  // false (only checks last element)\narr.includes(3, -3);  // true  (start 3 from end = index 2)\n```\n\n**Real-world uses:**\n\n**1. Simple membership check:**\n```javascript\nconst validRoles = ['admin', 'editor', 'viewer'];\n\nif (validRoles.includes(userRole)) {\n  // User has a valid role\n}\n```\n\n**2. Filtering out duplicates:**\n```javascript\nconst unique = [];\nfor (const item of items) {\n  if (!unique.includes(item)) {\n    unique.push(item);\n  }\n}\n```\n\n**3. Checking for forbidden values:**\n```javascript\nconst forbiddenChars = ['<', '>', '&', '\"'];\nconst userInput = '<script>';\n\nconst hasForbidden = forbiddenChars.some(char => \n  userInput.includes(char)\n);\n```\n\n**includes() vs indexOf():**\n```javascript\nconst arr = [1, 2, NaN, 4];\n\n// includes() can find NaN! ✓\narr.includes(NaN);  // true\n\n// indexOf() cannot! ✗\narr.indexOf(NaN);   // -1 (not found)\n\n// includes() returns boolean\narr.includes(2);    // true/false\n\n// indexOf() returns index (or -1)\narr.indexOf(2);     // 1 (the index)\n```\n\n**Memory trick:**\n- `includes(value)` = \"Is it there?\" (boolean)\n- `includes(value, start)` = \"Is it there, starting from position X?\"\n- Negative `start` = count from the end",
     tags: ['javascript', 'quiz'],
   },
+
+{
+    id: 'js-134',
+    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, [2, [3, [4]]]];\nconst flat = arr.flat(2);\n\nconsole.log(flat);\n```",
+    category: 'javascript',
+    subcategory: 'array-operations',
+    difficulty: 'medium',
+    options: [
+          "[1, 2, 3, [4]]",
+          "[1, 2, 3, 4]",
+          "[1, [2, [3, [4]]]]",
+          "[1, 2, [3, [4]]]"
+    ],
+    correctAnswer: 0,
+    explanation: "flat(depth) flattens nested arrays up to the specified depth. flat(2) flattens 2 levels: [1, [2, [3, [4]]]] becomes [1, 2, [3, [4]]], then [1, 2, 3, [4]]. Use flat(Infinity) to flatten all levels.",
+    tags: ["arrays","flat","nested-arrays"],
+  },
 ];

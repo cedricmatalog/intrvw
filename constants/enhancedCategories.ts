@@ -47,6 +47,26 @@ export const ENHANCED_JS_SUBCATEGORIES: EnhancedCategoryMetadata[] = [
     updatedDate: '2025',
     label: '✨ Enhanced',
   },
+  {
+    subcategory: 'functions',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'scope',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'async-await',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'arrays',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
 ];
 
 /**

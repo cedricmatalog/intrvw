@@ -2,23 +2,6 @@ import { QuizQuestion } from '../../types/quiz';
 
 export const promisesQuizzes: QuizQuestion[] = [
 {
-    id: 'js-060',
-    question: "👈 What are the three phases of event propagation?",
-    category: 'javascript',
-    subcategory: 'promises',
-    difficulty: 'medium',
-    options: [
-          "Target > Capturing > Bubbling",
-          "Bubbling > Target > Capturing",
-          "Target > Bubbling > Capturing",
-          "Capturing > Target > Bubbling"
-    ],
-    correctAnswer: 3,
-    explanation: "During the **capturing** phase, the event goes through the ancestor elements down to the target element. It then reaches the **target** element, and **bubbling** begins.",
-    tags: ["javascript","quiz"],
-  },
-
-{
     id: 'js-070',
     question: "⚡ What kind of information would get logged?\n\n```javascript\nfetch(\"https://www.website.com/api/user/1\")\n  .then((res) => res.json())\n  .then((res) => console.log(res));\n```",
     category: 'javascript',
@@ -33,40 +16,6 @@ export const promisesQuizzes: QuizQuestion[] = [
     correctAnswer: 2,
     explanation: "Promise chaining is like an **assembly line** - each `.then()` receives the output from the previous step and can transform it before passing it along!\n\n**Think of it like a restaurant order:**\n1. Waiter takes your order (fetch)\n2. Kitchen prepares it (first .then)\n3. Waiter brings it to you (second .then)\n4. You eat it (console.log)\n\n**What's happening step-by-step:**\n\n```javascript\nfetch(\"https://www.website.com/api/user/1\")\n  .then((res) => res.json())        // Step 1: Parse Response\n  .then((res) => console.log(res)); // Step 2: Use parsed data\n```\n\n**Line 1: `fetch()`** → Returns **Promise<Response>**\n```javascript\nfetch(\"https://www.website.com/api/user/1\")\n↓\nMakes HTTP request\n↓\nReturns: Promise that resolves to Response object\n```\n\n**Line 2: First `.then()`** → Transforms Response to JSON\n```javascript\n.then((res) => res.json())\n↓\nReceives: Response object (headers, status, body, etc.)\n↓\nCalls: res.json() which returns Promise<ParsedData>\n↓\nReturns: The parsed JSON data (user object)\n```\n\n**Line 3: Second `.then()`** → Uses the parsed data\n```javascript\n.then((res) => console.log(res))\n↓\nReceives: The RETURN VALUE from previous .then()\n         Which is the parsed JSON: { id: 1, name: \"John\", ... }\n↓\nLogs: The actual user data object\n```\n\n**The key rule: Each `.then()` receives what the previous `.then()` RETURNED**\n\n```javascript\nPromise.resolve(5)\n  .then(x => x * 2)        // receives 5, returns 10\n  .then(x => x + 3)        // receives 10, returns 13\n  .then(x => console.log(x)); // receives 13, logs 13\n```\n\n**Visualizing the chain:**\n```javascript\nfetch(url)\n  ↓ returns Promise<Response>\n.then((res) => res.json())\n  ↓ returns Promise<UserData>\n.then((res) => console.log(res))\n  ↓ logs UserData: { id: 1, name: \"John\", email: \"john@example.com\" }\n```\n\n**What `res.json()` returns:**\n- `res.json()` is also async and returns a Promise\n- When you return a Promise from `.then()`, the next `.then()` waits for it\n- The next `.then()` receives the RESOLVED value, not the Promise itself\n\n**Real-world example with different transformations:**\n```javascript\nfetch(\"https://api.example.com/user/1\")\n  .then(res => {\n    console.log(\"Got response!\", res.status); // 200\n    return res.json(); // Return parsed data\n  })\n  .then(userData => {\n    console.log(\"Got user!\", userData.name); // \"John\"\n    return userData.id; // Return just the ID\n  })\n  .then(userId => {\n    console.log(\"User ID:\", userId); // 1\n    return fetch(`https://api.example.com/user/${userId}/posts`);\n  })\n  .then(res => res.json())\n  .then(posts => {\n    console.log(\"User's posts:\", posts); // Array of posts\n  });\n```\n\n**Common mistake - forgetting to return:**\n```javascript\n// ❌ Wrong:\nfetch(url)\n  .then(res => {\n    res.json(); // Forgot to return!\n  })\n  .then(data => {\n    console.log(data); // undefined!\n  });\n\n// ✅ Correct:\nfetch(url)\n  .then(res => res.json()) // Returns the Promise\n  .then(data => {\n    console.log(data); // The parsed data ✓\n  });\n```\n\n**What if you don't return anything?**\n```javascript\nPromise.resolve(5)\n  .then(x => {\n    x * 2; // No return statement!\n  })\n  .then(x => {\n    console.log(x); // undefined (nothing was returned)\n  });\n```\n\n**Returning different types:**\n```javascript\nPromise.resolve(5)\n  .then(x => x * 2)              // Return a value → next .then gets 10\n  .then(x => Promise.resolve(x)) // Return a Promise → next .then waits and gets resolved value\n  .then(x => {\n    console.log(x);               // Return nothing → next .then gets undefined\n  })\n  .then(x => console.log(x));    // undefined\n```\n\n**Memory tricks:**\n- `.then()` is like a conveyor belt - passes value forward\n- Each `.then()` receives what the previous one RETURNED\n- If you return a Promise, the next `.then()` waits and gets the resolved value\n- No return = next `.then()` gets undefined\n- `res.json()` returns a Promise with the parsed data\n\n**Why this matters:**\nThis pattern allows you to break complex async operations into clear, sequential steps, making code more readable and maintainable.",
     tags: ["javascript","quiz"],
-  },
-
-{
-    id: 'js-096',
-    question: "⚡ What is the purpose of the 'use strict' directive?",
-    category: 'javascript',
-    subcategory: 'promises',
-    difficulty: 'medium',
-    options: [
-          "Enables strict mode, catching common coding errors",
-          "Makes code run faster",
-          "Enables ES6 features",
-          "Disables all warnings"
-    ],
-    correctAnswer: 0,
-    explanation: "'use strict' enables strict mode which catches common mistakes (like using undeclared variables), prevents certain actions, and throws more exceptions. It helps write more secure and optimized code.",
-    tags: ["functions","strict-mode","best-practices"],
-  },
-
-{
-    id: 'js-134',
-    question: "📝 What's the output?\n\n```javascript\nconst arr = [1, [2, [3, [4]]]];\nconst flat = arr.flat(2);\n\nconsole.log(flat);\n```",
-    category: 'javascript',
-    subcategory: 'promises',
-    difficulty: 'medium',
-    options: [
-          "[1, 2, 3, [4]]",
-          "[1, 2, 3, 4]",
-          "[1, [2, [3, [4]]]]",
-          "[1, 2, [3, [4]]]"
-    ],
-    correctAnswer: 0,
-    explanation: "flat(depth) flattens nested arrays up to the specified depth. flat(2) flattens 2 levels: [1, [2, [3, [4]]]] becomes [1, 2, [3, [4]]], then [1, 2, 3, [4]]. Use flat(Infinity) to flatten all levels.",
-    tags: ["arrays","flat","nested-arrays"],
   },
 
 {

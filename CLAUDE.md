@@ -53,12 +53,25 @@ Three main content types, each with parallel structure:
 2. **Quizzes** (`data/quizzes.ts`, `types/quiz.ts`)
    - Multiple-choice with instant feedback
    - Categories: javascript, typescript, react, node, algorithms, etc.
+   - JavaScript quizzes include subcategories for focused practice
+   - **Enhanced Categories**: Select subcategories feature Feynman-style explanations (tracked in `constants/enhancedCategories.ts`)
    - Components: `QuizCard`, `QuizFeed`
 
 3. **Learning Lessons** (`data/lessons.ts`, `types/learning.ts`)
    - Progressive learning paths (ordered by level)
    - Includes: concept, explanation, example, keyPoints, tryIt challenge
    - Components: `LessonCard`, `LessonFeed`, `LearnPage`
+
+### State Management
+
+**Quiz State** (`store/quizStore.ts`):
+- Uses Zustand for lightweight state management
+- Manages quiz progress: current index, answered questions, completion status
+- Dialog states: resume dialog, completion dialog
+- Integrates with AsyncStorage for persistence via `progressStorage.ts`
+- Key actions: `loadProgress()`, `saveCurrentProgress()`, `completeQuiz()`, `startOver()`, `continueQuiz()`
+- Auto-saves progress as user answers questions
+- Supports resume-from-where-you-left-off functionality
 
 ### Centralized Constants Pattern
 **Critical**: All categories, colors, labels, and descriptions are centralized in `constants/AppConstants.ts`. This is the single source of truth:
@@ -67,6 +80,16 @@ Three main content types, each with parallel structure:
 - `LEVEL_COLORS` - Difficulty/level colors
 - `*_DESCRIPTIONS` - Category descriptions by feature
 - `UI_CONSTANTS` - Spacing, padding, border widths
+
+**Enhanced Categories** (`constants/enhancedCategories.ts`):
+- Tracks JavaScript quiz subcategories that have Feynman-style explanations
+- Enhanced quizzes use a **tiered approach** (see `FEYNMAN_STYLE_PATTERN.md`):
+  - Tier 1 (Full): Complex concepts get full treatment with analogies, step-by-step, examples, memory tricks
+  - Tier 2 (Brief): Medium concepts get quick analogy + code + memory trick
+  - Tier 3 (Minimal): Simple concepts get concise explanations
+- Use `isEnhancedSubcategory()` to check if a subcategory is enhanced
+- Use `getEnhancedMetadata()` to retrieve enhancement metadata
+- Currently enhanced: advanced-operators, array-operations, type-coercion, closures, promises, this, functions, scope
 
 ### Utility Functions
 Before writing data manipulation code, check `utils/`:
@@ -81,6 +104,12 @@ Before writing data manipulation code, check `utils/`:
 - Colors: `getCategoryColor()`, `getLevelColor()`
 - Labels: `getCategoryLabel()`
 - Formatting: `formatQuestionCount()`, `formatProgress()`, `formatReadTime()`
+
+**`utils/progressStorage.ts`** - Quiz progress persistence:
+- Uses `@react-native-async-storage/async-storage` for persistent storage
+- Progress tracking: `getProgress()`, `saveProgress()`, `resetProgress()`
+- Supports category and subcategory-level progress tracking
+- Tracks: current index, answered questions, completion status, final scores
 
 ### Component Patterns
 
@@ -117,6 +146,12 @@ Add to `data/questions.ts` - counts update automatically via utilities
 **Quiz Question**:
 Add to `data/quizzes.ts` - ensure category exists in `AppConstants.ts`
 
+**Enhanced Quiz (JavaScript with Feynman-style explanations)**:
+1. Add quiz to `data/quizzes.ts` with detailed `explanation` field
+2. Ensure `subcategory` field is set for JavaScript quizzes
+3. Add subcategory to `ENHANCED_JS_SUBCATEGORIES` in `constants/enhancedCategories.ts`
+4. Include: analogies, step-by-step breakdown, memory tricks, and "Quick Answer" section in explanation
+
 **Lesson**:
 Add to `data/lessons.ts` - set `order` field for learning path progression
 
@@ -151,6 +186,13 @@ The codebase is transitioning to feature-based component organization:
 - `components/ui/` - Base UI components
 
 See `COMPONENT_STRUCTURE.md` for migration details.
+
+## Key Dependencies
+
+- **State Management**: Zustand - lightweight state management library
+- **Storage**: `@react-native-async-storage/async-storage` - persistent local storage
+- **Navigation**: Expo Router - file-based routing with typed routes
+- **UI**: React Native with Expo SDK
 
 ## TypeScript Configuration
 

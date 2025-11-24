@@ -31,7 +31,7 @@ export const type_coercionQuizzes: QuizQuestion[] = [
           "1 3 4"
     ],
     correctAnswer: 2,
-    explanation: "The `continue` statement skips an iteration if a certain condition returns `true`.",
+    explanation: "**`continue` = skip to next lap** - like a skip button that jumps to the next iteration!\n\n**What happens:**\n```javascript\nfor (let i = 1; i < 5; i++) {\n  if (i === 3) continue;  // Skip when i is 3\n  console.log(i);\n}\n```\n\n**Step-by-step:**\n```\ni = 1: Check if 1 === 3? No → console.log(1)\ni = 2: Check if 2 === 3? No → console.log(2)\ni = 3: Check if 3 === 3? YES → continue (skip console.log!)\ni = 4: Check if 4 === 3? No → console.log(4)\n```\n\n**Output:** `1 2 4`\n\n**Comparison:**\n```javascript\n// break: Exit the entire loop\nfor (let i = 1; i < 5; i++) {\n  if (i === 3) break;\n  console.log(i);\n}\n// Output: 1 2 (stops at 3)\n\n// continue: Skip THIS iteration only\nfor (let i = 1; i < 5; i++) {\n  if (i === 3) continue;\n  console.log(i);\n}\n// Output: 1 2 4 (skips 3, continues to 4)\n```\n\n**Memory trick:** `continue` = \"Skip this one, **continue** with the rest\". `break` = \"**Break** out completely\".",
     tags: ["javascript","quiz"],
   },
 
@@ -48,7 +48,7 @@ export const type_coercionQuizzes: QuizQuestion[] = [
           "Impossible! You shouldn't see a therapist after so much JavaScript lol"
     ],
     correctAnswer: 1,
-    explanation: "`[]` is a truthy value. With the `&&` operator, the right-hand value will be returned if the left-hand value is a truthy value. In this case, the left-hand value `[]` is a truthy value, so `\"Im'` gets returned.\n\n`\"\"` is a falsy value. If the left-hand value is falsy, nothing gets returned. `n't` doesn't get returned.",
+    explanation: "**`&&` returns the first falsy value, or the last value if all truthy!**\n\n**What happens:**\n```javascript\n[] && \"Im\"       // [] is truthy → returns \"Im\"\n\"\" && `n't`      // \"\" is falsy → returns \"\"\n```\n\n**Line 1: `[] && \"Im\"`**\n```javascript\n[] && \"Im\"\n↓\nIs [] truthy? YES (empty array is truthy!)\n↓\nReturn the second value → \"Im\"\n↓\nResult: \"Impossible!\"\n```\n\n**Line 2: `\"\" && `n't```**\n```javascript\n\"\" && `n't`\n↓\nIs \"\" truthy? NO (empty string is falsy!)\n↓\nReturn the first (falsy) value → \"\"\n↓\nResult: \"You should see a therapist...\" (n't is skipped!)\n```\n\n**How `&&` works:**\n```javascript\n// Returns first falsy, or last value if all truthy:\ntrue && \"hello\"     // \"hello\"\n\"a\" && \"b\" && \"c\"   // \"c\" (all truthy, returns last)\n\"a\" && false && \"c\" // false (first falsy)\n0 && \"anything\"     // 0 (first falsy)\n```\n\n**Memory trick:** `&&` = \"Are ALL truthy? Give me the last one. Found a falsy? Stop there!\"",
     tags: ["javascript","quiz"],
   },
 
