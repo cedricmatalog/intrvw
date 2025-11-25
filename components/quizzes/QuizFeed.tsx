@@ -245,14 +245,14 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
                 style={[styles.modalButton, styles.modalButtonPrimary]}
                 onPress={continueQuiz}
               >
-                <Text style={styles.modalButtonTextPrimary}>CONTINUE</Text>
+                <Text style={styles.modalButtonTextPrimary}>▶ CONTINUE</Text>
               </Pressable>
 
               <Pressable
                 style={[styles.modalButton, styles.modalButtonSecondary]}
                 onPress={() => startOver(currentCategory, currentSubcategory)}
               >
-                <Text style={styles.modalButtonTextSecondary}>START OVER</Text>
+                <Text style={styles.modalButtonTextSecondary}>↻ START OVER</Text>
               </Pressable>
             </View>
           </View>
@@ -296,7 +296,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
                   router.back();
                 }}
               >
-                <Text style={styles.modalButtonTextPrimary}>BACK TO CATEGORIES</Text>
+                <Text style={styles.modalButtonTextPrimary}>◀ BACK TO CATEGORIES</Text>
               </Pressable>
 
               <Pressable
@@ -307,7 +307,7 @@ export const QuizFeed: React.FC<QuizFeedProps> = ({ questions }) => {
                   flatListRef.current?.scrollToIndex({ index: 0, animated: false });
                 }}
               >
-                <Text style={styles.modalButtonTextSecondary}>TRY AGAIN</Text>
+                <Text style={styles.modalButtonTextSecondary}>↻ TRY AGAIN</Text>
               </Pressable>
             </View>
           </View>
@@ -339,23 +339,28 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     flex: 1,
-    height: 6,
+    height: 8,
     backgroundColor: RetroColors.surface,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: RetroColors.border,
     overflow: 'hidden',
   },
   progressFill: {
     height: '100%',
     backgroundColor: RetroColors.terminal,
+    shadowColor: RetroColors.terminal,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 4,
   },
   progressText: {
     fontFamily: 'monospace',
-    fontSize: 12,
+    fontSize: 13,
     color: RetroColors.terminal,
     fontWeight: 'bold',
-    minWidth: 60,
+    minWidth: 70,
     textAlign: 'right',
+    letterSpacing: 1,
   },
   emptyContainer: {
     flex: 1,
@@ -387,11 +392,16 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     backgroundColor: RetroColors.surface,
-    borderWidth: 2,
+    borderWidth: 4,
     borderColor: RetroColors.terminal,
-    padding: 24,
+    padding: 28,
     width: '100%',
     maxWidth: 400,
+    shadowColor: RetroColors.terminal,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.4,
+    shadowRadius: 0,
+    elevation: 8,
   },
   modalTitle: {
     fontFamily: 'monospace',
@@ -415,32 +425,42 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   modalButtons: {
-    gap: 12,
+    gap: 16,
   },
   modalButton: {
-    padding: 16,
-    borderWidth: 2,
+    padding: 18,
+    borderWidth: 3,
     alignItems: 'center',
+    position: 'relative',
+    overflow: 'hidden',
   },
   modalButtonPrimary: {
     backgroundColor: RetroColors.terminal,
     borderColor: RetroColors.terminal,
+    shadowColor: RetroColors.terminal,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 0,
+    elevation: 4,
   },
   modalButtonSecondary: {
-    backgroundColor: 'transparent',
-    borderColor: RetroColors.textDim,
+    backgroundColor: RetroColors.background,
+    borderColor: RetroColors.border,
+    borderStyle: 'dashed',
   },
   modalButtonTextPrimary: {
     fontFamily: 'monospace',
-    fontSize: 14,
+    fontSize: 15,
     color: RetroColors.background,
     fontWeight: 'bold',
+    letterSpacing: 2,
   },
   modalButtonTextSecondary: {
     fontFamily: 'monospace',
-    fontSize: 14,
+    fontSize: 15,
     color: RetroColors.textDim,
     fontWeight: 'bold',
+    letterSpacing: 1,
   },
   modalScore: {
     fontFamily: 'monospace',

@@ -152,6 +152,31 @@ export const ENHANCED_JS_SUBCATEGORIES: EnhancedCategoryMetadata[] = [
     updatedDate: '2025',
     label: '✨ Enhanced',
   },
+  {
+    subcategory: 'type-system',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'string-methods',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'miscellaneous',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'object-methods',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'regex',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
 ];
 
 /**

@@ -14,8 +14,8 @@ export const string_methodsQuizzes: QuizQuestion[] = [
           "Error"
     ],
     correctAnswer: 0,
-    explanation: "With the `+` operator, you can concatenate strings. In this case, we are concatenating the string `\"🥑\"` with the string `\"💻\"`, resulting in `\"🥑💻\"`.",
-    tags: ["javascript","quiz"],
+    explanation: "**String concatenation with + works seamlessly with emojis** - they're just Unicode characters!\n\n**Think of + like a glue stick** - it sticks strings together end-to-end, no matter what characters they contain (letters, numbers, emojis, symbols)!\n\n**What happens:**\n```javascript\n\"🥑\" + \"💻\"\n// → \"🥑💻\" ✅\n\n// Emojis are just strings:\ntypeof \"🥑\";  // \"string\"\n\"🥑\".length;  // 2 (some emojis use 2 code units)\n\n// Concatenation works like any other string:\n\"Hello\" + \" \" + \"World\"  // \"Hello World\"\n\"🥑\" + \"💻\"               // \"🥑💻\"\n```\n\n**Emojis are Unicode characters:**\n```javascript\n// Each emoji has a Unicode code point:\n\"🥑\".codePointAt(0);  // 129361 (U+1F951)\n\"💻\".codePointAt(0);  // 128187 (U+1F4BB)\n\n// But they're still strings:\n\"🥑\" + \"💻\" === \"🥑💻\";  // true ✅\n```\n\n**Concatenation with different types:**\n```javascript\n// String + String = String:\n\"🥑\" + \"💻\";        // \"🥑💻\"\n\n// String + Number = String:\n\"��\" + 123;         // \"🥑123\"\n\n// Number + Number = Number:\n1 + 2;              // 3\n\n// Multiple emojis:\n\"🥑\" + \"💻\" + \"🚀\";  // \"🥑💻🚀\"\n```\n\n**Memory trick:** + with strings = glue them together, emojis are just strings!",
+    tags: ["javascript","quiz", "string-concatenation", "emojis"],
   },
 
 {
