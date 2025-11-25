@@ -22,11 +22,10 @@ export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
     const isHTML = language === 'html';
 
     return lines.map((line, lineIndex) => {
-      const parts: Array<{ text: string; style: any }> = [];
+      const parts: { text: string; style: any }[] = [];
 
       // HTML specific patterns
       const htmlTags = /<\/?[\w\s="/.':;#-\/]+>/g;
-      const htmlAttributes = /\s([\w-]+)=/g;
 
       // JavaScript Keywords regex
       const keywords = /\b(function|const|let|var|return|if|else|for|while|class|new|this|typeof|async|await|import|export|from|default|case|switch|break|continue|try|catch|finally|throw)\b/g;
@@ -38,7 +37,7 @@ export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
       const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/g;
 
       let lastIndex = 0;
-      const tokens: Array<{ start: number; end: number; type: string; text: string }> = [];
+      const tokens: { start: number; end: number; type: string; text: string }[] = [];
 
       // Find all tokens
       let match;

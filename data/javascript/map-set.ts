@@ -2,6 +2,23 @@ import { QuizQuestion } from '../../types/quiz';
 
 export const map_setQuizzes: QuizQuestion[] = [
 {
+    id: 'js-081',
+    question: "📝 What's the output?\n\n```javascript\nconst set = new Set([1, 1, 2, 3, 4]);\n\nconsole.log(set);\n```",
+    category: 'javascript',
+    subcategory: 'map-set',
+    difficulty: 'medium',
+    options: [
+          "[1, 1, 2, 3, 4]",
+          "[1, 2, 3, 4]",
+          "{1, 1, 2, 3, 4}",
+          "{1, 2, 3, 4}"
+    ],
+    correctAnswer: 3,
+    explanation: "**Set automatically removes duplicates** - it's a collection of UNIQUE values only!\n\n**Think of Set like a VIP list** - you can't get on the list twice, even if you try!\n\n**What happens:**\n```javascript\nconst set = new Set([1, 1, 2, 3, 4]);\n//                   ^  ^\n//                   Second 1 is ignored!\n\nconsole.log(set);  // Set(4) { 1, 2, 3, 4 } ✅\n```\n\n**Step-by-step:**\n```javascript\n// Array: [1, 1, 2, 3, 4]\n// Set constructor iterates and adds each value:\n\nset.add(1);  // Set { 1 }\nset.add(1);  // Set { 1 } ← Duplicate ignored!\nset.add(2);  // Set { 1, 2 }\nset.add(3);  // Set { 1, 2, 3 }\nset.add(4);  // Set { 1, 2, 3, 4 }\n```\n\n**Set notation:**\n```javascript\n// Arrays use square brackets:\n[1, 2, 3]  // Array\n\n// Sets use curly braces (like objects, but no keys):\n{1, 2, 3}  // Set notation\nSet(3) {1, 2, 3}  // Full Set output\n```\n\n**Common use case - remove duplicates:**\n```javascript\nconst arr = [1, 1, 2, 2, 3, 3];\nconst unique = [...new Set(arr)];  // [1, 2, 3] ✅\n```\n\n**Memory trick:** Set = automatically unique, displayed with {} not []!",
+    tags: ["javascript","quiz", "set", "collections"],
+  },
+
+{
     id: 'js-239',
     question: "📝 What's the output?\n\n```javascript\nconst map = new Map();\nmap.set('key', 'value');\nmap.set('key', 'new value');\n\nconsole.log(map.size);\n```",
     category: 'javascript',
@@ -14,7 +31,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'undefined',
     ],
     correctAnswer: 1,
-    explanation: "Map keys are unique. Setting the same key twice overwrites the previous value. The Map has only one key 'key' with value 'new value', so size is 1.",
+    explanation: "**Map keys are unique** - setting the same key twice overwrites the previous value!\n\n**Think of Map like a parking spot** - if you park again in the same spot, your old car is replaced, not duplicated!\n\n**What happens:**\n```javascript\nconst map = new Map();\n\nmap.set('key', 'value');      // Map { 'key' => 'value' }\nmap.set('key', 'new value');  // Map { 'key' => 'new value' }\n//       ^^^^                    ^^^^\n//       Same key!               Overwrites!\n\nconsole.log(map.size);  // 1 ✅\n// Only ONE key 'key', with latest value 'new value'\n```\n\n**Step-by-step:**\n```javascript\n// After first set:\nmap.size;        // 1\nmap.get('key');  // 'value'\n\n// After second set:\nmap.size;        // Still 1 (same key!)\nmap.get('key');  // 'new value' (overwritten)\n```\n\n**Compare with adding different keys:**\n```javascript\nconst map = new Map();\nmap.set('key1', 'value1');  // Map { 'key1' => 'value1' }\nmap.set('key2', 'value2');  // Map { 'key1' => 'value1', 'key2' => 'value2' }\n\nmap.size;  // 2 ✅ Different keys!\n```\n\n**Memory trick:** Same key = update, different key = add!",
     tags: ['map', 'collections'],
   },
 
@@ -31,7 +48,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       '3 and [1, 2, 2, 3, 3, 3]',
     ],
     correctAnswer: 1,
-    explanation: "Set stores only unique values. Duplicates are automatically removed. The array [1, 2, 2, 3, 3, 3] becomes Set {1, 2, 3} with size 3. Spreading gives [1, 2, 3].",
+    explanation: "**Set stores only unique values** - duplicates vanish automatically!\n\n**Think of Set like a stamp collection** - you don't keep duplicate stamps, just one of each!\n\n**What happens:**\n```javascript\nconst set = new Set([1, 2, 2, 3, 3, 3]);\n//                   ^  ^  ^  ^  ^  ^\n//                   Kept, ignored duplicates\n\n// Set keeps: {1, 2, 3}\nset.size;  // 3 ✅\n\n[...set];  // [1, 2, 3] ✅\n// Spread converts Set back to array\n```\n\n**Deduplication process:**\n```javascript\nconst arr = [1, 2, 2, 3, 3, 3];\n\n// Set constructor:\nset.add(1);  // Set {1}\nset.add(2);  // Set {1, 2}\nset.add(2);  // Set {1, 2} ← Ignored!\nset.add(3);  // Set {1, 2, 3}\nset.add(3);  // Set {1, 2, 3} ← Ignored!\nset.add(3);  // Set {1, 2, 3} ← Ignored!\n\n// Final: Set {1, 2, 3} with size 3\n```\n\n**Common pattern:**\n```javascript\n// Remove duplicates from array:\nconst arr = [1, 1, 2, 2, 3, 3];\nconst unique = [...new Set(arr)];  // [1, 2, 3] ✅\n```\n\n**Memory trick:** Set = automatic duplicate removal, size = unique count!",
     tags: ['set', 'collections', 'uniqueness'],
   },
 
@@ -48,7 +65,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'Error',
     ],
     correctAnswer: 1,
-    explanation: "Map uses reference equality for object keys. Even though both objects have {name: 'John'}, they are different object references. Map treats them as two separate keys, so size is 2.",
+    explanation: "**Map uses reference equality for object keys** - same content doesn't mean same object!\n\n**Think of Map keys like house addresses** - two identical houses at different addresses are different properties!\n\n**What happens:**\n```javascript\nconst obj = { name: 'John' };  // Object at memory address A\n\nmap.set(obj, 'value1');\n// Key: reference to address A\n\nmap.set({ name: 'John' }, 'value2');\n//       ^^^^^^^^^^^^^^^^\n//       NEW object at address B!\n// Key: reference to address B\n\nmap.size;  // 2 ✅ Two different references!\n```\n\n**Visual representation:**\n```javascript\nMemory:\n  Address 0x001: { name: 'John' }  ← obj points here\n  Address 0x002: { name: 'John' }  ← literal points here\n\nMap:\n  0x001 => 'value1'  ← First key\n  0x002 => 'value2'  ← Second key (different!)\n```\n\n**Compare with same reference:**\n```javascript\nconst map = new Map();\nconst obj = { name: 'John' };\n\nmap.set(obj, 'value1');\nmap.set(obj, 'value2');  // SAME reference!\n//      ^^^\n\nmap.size;  // 1 ✅ Same key, overwrites!\nmap.get(obj);  // 'value2'\n```\n\n**Why this matters:**\n```javascript\n// Can use objects as keys:\nconst userPrefs = new Map();\nconst user1 = { id: 1 };\nconst user2 = { id: 1 };  // Same content, different object\n\nuserPrefs.set(user1, { theme: 'dark' });\nuserPrefs.set(user2, { theme: 'light' });\n\nuserPrefs.size;  // 2 (different objects)\n```\n\n**Memory trick:** Map compares object references, not content!",
     tags: ['map', 'references', 'collections'],
   },
 
@@ -65,7 +82,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'number and string',
     ],
     correctAnswer: 1,
-    explanation: "Object keys are always converted to strings. obj[1] becomes obj['1']. Map preserves key types - map.set(1, 'one') keeps the number key. First is 'string', second is 'number'.",
+    explanation: "**Object keys are ALWAYS strings** (or Symbols), but Map preserves key types!\n\n**Think of Objects like filing cabinets** - all folder labels are strings. Maps are like databases - they preserve the exact type of your key!\n\n**What happens:**\n```javascript\nconst obj = {};\nobj[1] = 'one';\n//  ^\n//  Converted to string '1'!\n\nObject.keys(obj)[0];  // '1' (string) ✅\ntypeof Object.keys(obj)[0];  // 'string'\n\n// Proof:\nobj[1] === obj['1'];  // true (same key!)\n```\n\n**Map preserves types:**\n```javascript\nconst map = new Map();\nmap.set(1, 'one');\n//      ^\n//      Stays as number!\n\n[...map.keys()][0];  // 1 (number) ✅\ntypeof [...map.keys()][0];  // 'number'\n\n// Proof:\nmap.get(1) !== map.get('1');  // Different keys!\n```\n\n**Object key coercion:**\n```javascript\nconst obj = {};\nobj[1] = 'a';\nobj['1'] = 'b';\nobj[true] = 'c';\nobj['true'] = 'd';\n\nObject.keys(obj);  // ['1', 'true'] ✅\n// All converted to strings!\n\nobj[1];      // 'd' (overwrote!)\nobj[true];   // 'd' (same as obj['true'])\n```\n\n**Map type preservation:**\n```javascript\nconst map = new Map();\nmap.set(1, 'a');\nmap.set('1', 'b');\nmap.set(true, 'c');\nmap.set('true', 'd');\n\nmap.size;  // 4 ✅ All different keys!\n\nmap.get(1);      // 'a'\nmap.get('1');    // 'b'\nmap.get(true);   // 'c'\nmap.get('true'); // 'd'\n```\n\n**Memory trick:** Objects stringify keys, Maps keep original types!",
     tags: ['map', 'objects', 'types'],
   },
 
@@ -82,7 +99,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       '2',
     ],
     correctAnswer: 0,
-    explanation: "Start with {1, 2, 3}. add(4) → {1, 2, 3, 4}. delete(2) → {1, 3, 4}. add(1) does nothing (already exists). Final set: {1, 3, 4} with size 3.",
+    explanation: "**Set operations: add inserts unique values, delete removes them, duplicate adds are ignored!**\n\n**Think of Set like a guest list** - you can add new guests, remove guests, but adding someone already on the list does nothing!\n\n**Step-by-step:**\n```javascript\nconst set = new Set([1, 2, 3]);\n// Initial: Set {1, 2, 3}, size = 3\n\nset.add(4);\n// Set {1, 2, 3, 4}, size = 4\n\nset.delete(2);\n// Set {1, 3, 4}, size = 3\n\nset.add(1);\n// Set {1, 3, 4}, size = 3\n// 1 already exists, ignored!\n\nset.size;  // 3 ✅\n```\n\n**Visual timeline:**\n```javascript\nStart:       {1, 2, 3}       size: 3\nadd(4):      {1, 2, 3, 4}    size: 4\ndelete(2):   {1, 3, 4}       size: 3\nadd(1):      {1, 3, 4}       size: 3 (no change)\n```\n\n**Set.add() behavior:**\n```javascript\nconst set = new Set();\n\nset.add(1);  // Set {1}, returns Set {1}\nset.add(1);  // Set {1}, returns Set {1} (no change)\nset.add(2);  // Set {1, 2}, returns Set {1, 2}\n```\n\n**Set.delete() behavior:**\n```javascript\nconst set = new Set([1, 2, 3]);\n\nset.delete(2);  // true (was present, now removed)\nset.delete(2);  // false (wasn't present)\nset.delete(99); // false (wasn't present)\n```\n\n**Memory trick:** add(existing) = no-op, delete(missing) = false!",
     tags: ['set', 'methods'],
   },
 
@@ -99,7 +116,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       '1 and 0',
     ],
     correctAnswer: 1,
-    explanation: "map.get(key) returns the value for that key, or undefined if the key doesn't exist. 'a' exists and has value 1. 'c' doesn't exist, so get returns undefined.",
+    explanation: "**Map.get() returns the value for existing keys, undefined for missing keys!**\n\n**Think of Map like a dictionary** - you can look up words (keys), but if the word isn't there, you get nothing (undefined), not an error!\n\n**What happens:**\n```javascript\nconst map = new Map([\n  ['a', 1],\n  ['b', 2]\n]);\n\nmap.get('a');  // 1 ✅ Key exists\nmap.get('c');  // undefined ✅ Key doesn't exist\n```\n\n**Map constructor syntax:**\n```javascript\n// Takes array of [key, value] pairs:\nnew Map([\n  ['key1', 'value1'],\n  ['key2', 'value2']\n]);\n\n// Equivalent to:\nconst map = new Map();\nmap.set('key1', 'value1');\nmap.set('key2', 'value2');\n```\n\n**Why undefined, not null:**\n```javascript\nconst map = new Map();\n\nmap.get('missing');  // undefined (not in map)\n\n// But you CAN store null as a value:\nmap.set('key', null);\nmap.get('key');  // null (explicit value)\n\n// Check if key exists:\nmap.has('key');     // true\nmap.has('missing'); // false\n```\n\n**Memory trick:** get(missing) = undefined, has(missing) = false!",
     tags: ['map', 'methods'],
   },
 
@@ -116,7 +133,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'Depends on the values',
     ],
     correctAnswer: 1,
-    explanation: "set.has() is O(1) average case (constant time lookup using hash table). array.includes() is O(n) (linear search through all elements). For large collections, Set is significantly faster for lookups.",
+    explanation: "**Set.has() is O(1) constant time, array.includes() is O(n) linear time** - massive difference for large collections!\n\n**Think of it like finding a house** - Set is GPS (instant), array is driving street-by-street until you find it!\n\n**Performance comparison:**\n```javascript\n// Array.includes() - O(n) Linear Search\nconst array = [1, 2, 3, ..., 10000];\narray.includes(9999);\n// Must check: 1? No. 2? No. 3? No... 9999? Yes!\n// Worst case: checks all 10,000 items\n\n// Set.has() - O(1) Hash Lookup\nconst set = new Set([1, 2, 3, ..., 10000]);\nset.has(9999);\n// Hash 9999 → Check that bucket → Found!\n// Always ~1 operation, regardless of size\n```\n\n**Speed difference:**\n```javascript\n// Small collection (10 items): Similar speed\narray.includes(x);  // ~10 operations\nset.has(x);         // ~1 operation\n\n// Large collection (10,000 items): HUGE difference\narray.includes(x);  // ~10,000 operations (worst case)\nset.has(x);         // ~1 operation\n\n// 10,000× faster! ✅\n```\n\n**When to use each:**\n```javascript\n// Use Set for:\n✅ Frequent existence checks\n✅ Large collections\n✅ Unique values\n✅ Fast add/delete\n\n// Use Array for:\n✅ Ordered data\n✅ Indexed access (arr[0])\n✅ Duplicates allowed\n✅ Array methods (map, filter, reduce)\n```\n\n**Real-world example:**\n```javascript\n// ❌ Slow - O(n²)\nconst arr = [/* 1000 items */];\nfor (const item of items) {\n  if (arr.includes(item)) {  // Checks all 1000 each time!\n    // ...\n  }\n}\n\n// ✅ Fast - O(n)\nconst set = new Set([/* 1000 items */]);\nfor (const item of items) {\n  if (set.has(item)) {  // Instant lookup!\n    // ...\n  }\n}\n```\n\n**Memory trick:** Set = hash table (instant), Array = sequential scan (slow)!",
     tags: ['set', 'performance', 'arrays'],
   },
 
@@ -133,7 +150,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'value and true',
     ],
     correctAnswer: 1,
-    explanation: "Map treats NaN as equal to itself, even though NaN === NaN is false. This is a special case. map.get(NaN) returns 'value' because Map considers all NaN values as the same key.",
+    explanation: "**Map treats NaN as equal to itself** - special case that fixes JavaScript's broken NaN === NaN!\n\n**Think of Map like a smart assistant** - it knows NaN is special and treats all NaN values as the same key, unlike regular === comparison!\n\n**What happens:**\n```javascript\nconst map = new Map();\nmap.set(NaN, 'value');\n\n// Map treats NaN specially:\nmap.get(NaN);  // 'value' ✅\n// Even though...\nNaN === NaN;   // false ✅ (JavaScript quirk)\n```\n\n**Why this is special:**\n```javascript\n// Regular JavaScript - NaN is never equal to itself:\nNaN === NaN;  // false ❌\nNaN == NaN;   // false ❌\n\n// But Map uses SameValueZero algorithm:\nconst map = new Map();\nmap.set(NaN, 'first');\nmap.set(NaN, 'second');  // Overwrites!\n\nmap.size;  // 1 (treated as same key)\nmap.get(NaN);  // 'second'\n```\n\n**Visual representation:**\n```javascript\n// What you'd expect (but doesn't happen with ===):\nconst obj = {};\nobj[NaN] = 'value';\nobj[NaN];  // 'value' (but uses string 'NaN' as key!)\n\n// What actually happens:\ntypeof Object.keys(obj)[0];  // 'string'\nObject.keys(obj)[0];         // 'NaN' (stringified!)\n\n// Map preserves NaN properly:\nconst map = new Map([[NaN, 'value']]);\n[...map.keys()][0] === NaN;  // false (because NaN !== NaN)\nNumber.isNaN([...map.keys()][0]);  // true ✅\n```\n\n**Same with Set:**\n```javascript\nconst set = new Set();\nset.add(NaN);\nset.add(NaN);\nset.add(NaN);\n\nset.size;  // 1 ✅ All NaN treated as duplicate!\nset.has(NaN);  // true ✅\n```\n\n**Memory trick:** Map/Set use SameValueZero, not ===, so NaN works correctly!",
     tags: ['map', 'NaN', 'edge-cases'],
   },
 
@@ -150,7 +167,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'Logs: undefined undefined',
     ],
     correctAnswer: 0,
-    explanation: "Map is iterable. for...of iterates over Map entries as [key, value] pairs. Destructuring [key, value] extracts them. This logs 'a 1' then 'b 2'.",
+    explanation: "**Map is iterable** - for...of loops through [key, value] pairs that you can destructure!\n\n**Think of Map iteration like opening envelopes** - each envelope contains a key-value pair, and destructuring opens it!\n\n**What happens:**\n```javascript\nconst map = new Map([['a', 1], ['b', 2]]);\n\nfor (const [key, value] of map) {\n  //       ^^^^^^^^^^^^^\n  //       Destructuring the [key, value] pair\n  console.log(key, value);\n}\n\n// Output:\n// a 1\n// b 2\n```\n\n**How Map iteration works:**\n```javascript\n// Map implements Symbol.iterator:\nconst map = new Map([['a', 1], ['b', 2]]);\nconst iter = map[Symbol.iterator]();\n\niter.next();  // { value: ['a', 1], done: false }\niter.next();  // { value: ['b', 2], done: false }\niter.next();  // { done: true }\n```\n\n**Different iteration methods:**\n```javascript\nconst map = new Map([['a', 1], ['b', 2]]);\n\n// 1. Iterate entries (default):\nfor (const [key, value] of map) {\n  console.log(key, value);  // a 1, b 2\n}\n\n// 2. Iterate entries explicitly:\nfor (const [key, value] of map.entries()) {\n  console.log(key, value);  // a 1, b 2\n}\n\n// 3. Iterate keys only:\nfor (const key of map.keys()) {\n  console.log(key);  // a, b\n}\n\n// 4. Iterate values only:\nfor (const value of map.values()) {\n  console.log(value);  // 1, 2\n}\n\n// 5. forEach method:\nmap.forEach((value, key) => {\n  console.log(key, value);  // a 1, b 2\n});\n```\n\n**Without destructuring:**\n```javascript\nfor (const entry of map) {\n  console.log(entry);  // ['a', 1], then ['b', 2]\n}\n```\n\n**Memory trick:** Map iterates as [key, value] pairs, perfect for destructuring!",
     tags: ['map', 'iteration', 'destructuring'],
   },
 
@@ -167,7 +184,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'false and false',
     ],
     correctAnswer: 1,
-    explanation: "set1 and set2 are different object instances, so === is false (reference comparison). Converting both to arrays and then strings gives '1,2,3' for both, so the string comparison is true.",
+    explanation: "**Sets are objects** - === compares references, not contents!\n\n**Think of Sets like twin houses** - identical inside, but different addresses, so !== by reference!\n\n**What happens:**\n```javascript\nconst set1 = new Set([1, 2, 3]);  // Object at address A\nconst set2 = new Set([1, 2, 3]);  // Object at address B\n\n// Compare references:\nset1 === set2;  // false ✅ (different objects)\n\n// Compare contents:\n[...set1].toString();  // '1,2,3'\n[...set2].toString();  // '1,2,3'\n'1,2,3' === '1,2,3';   // true ✅ (same string)\n```\n\n**Visual representation:**\n```javascript\nMemory:\n  Address 0x001: Set {1, 2, 3}  ← set1\n  Address 0x002: Set {1, 2, 3}  ← set2\n\nset1 === set2  →  0x001 === 0x002  →  false ✅\n```\n\n**Same reference comparison:**\n```javascript\nconst set1 = new Set([1, 2, 3]);\nconst set2 = set1;  // Same reference!\n\nset1 === set2;  // true ✅\nset2.add(4);\nset1.has(4);    // true (same Set object)\n```\n\n**Comparing Set contents:**\n```javascript\n// Method 1: Convert to arrays and compare strings\nconst equal = [...set1].toString() === [...set2].toString();\n\n// Method 2: Check size and every element\nfunction setsEqual(a, b) {\n  if (a.size !== b.size) return false;\n  for (const item of a) {\n    if (!b.has(item)) return false;\n  }\n  return true;\n}\n\nsetsEqual(set1, set2);  // true ✅\n```\n\n**Memory trick:** === compares addresses, not contents!",
     tags: ['set', 'references', 'comparison'],
   },
 
@@ -184,7 +201,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'false and true',
     ],
     correctAnswer: 1,
-    explanation: "map.has(key) checks if a key exists. Initially 'key' exists (true). map.clear() removes all entries from the Map. After clearing, 'key' no longer exists (false).",
+    explanation: "**Map.clear() removes ALL entries** - map becomes empty!\n\n**Think of clear() like erasing a whiteboard** - everything gone in one swipe!\n\n**What happens:**\n```javascript\nconst map = new Map();\nmap.set('key', 'value');\n\n// Before clear:\nmap.has('key');  // true ✅ (key exists)\nmap.size;        // 1\n\n// After clear:\nmap.clear();     // Removes everything\nmap.has('key');  // false ✅ (key gone)\nmap.size;        // 0\n```\n\n**Clear vs Delete:**\n```javascript\nconst map = new Map([['a', 1], ['b', 2], ['c', 3]]);\n\n// delete() - removes one entry:\nmap.delete('a');\nmap.size;  // 2 (b and c remain)\n\n// clear() - removes ALL entries:\nmap.clear();\nmap.size;  // 0 (everything gone)\n```\n\n**Same with Set:**\n```javascript\nconst set = new Set([1, 2, 3, 4, 5]);\nset.has(1);  // true\n\nset.clear();\nset.has(1);  // false\nset.size;    // 0\n```\n\n**Memory trick:** clear() = reset to empty, delete(key) = remove one!",
     tags: ['map', 'methods'],
   },
 
@@ -201,7 +218,7 @@ export const map_setQuizzes: QuizQuestion[] = [
       'Error',
     ],
     correctAnswer: 0,
-    explanation: "This is a common pattern to remove duplicates from an array. new Set(arr) creates a Set with unique values {1, 2, 3, 4}. Spreading [...set] converts it back to array [1, 2, 3, 4].",
+    explanation: "**Classic deduplication pattern** - Set removes duplicates, spread converts back to array!\n\n**Think of this like a two-step filter** - Set filters out duplicates, spread pours it back into an array!\n\n**What happens:**\n```javascript\nconst arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];\n\n// Step 1: Create Set (auto-deduplicates)\nnew Set(arr);  // Set {1, 2, 3, 4}\n\n// Step 2: Spread Set back to array\n[...new Set(arr)];  // [1, 2, 3, 4] ✅\n```\n\n**Step-by-step breakdown:**\n```javascript\nconst arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];\n\n// Create Set:\nconst set = new Set(arr);\n// set.add(1)  → Set {1}\n// set.add(2)  → Set {1, 2}\n// set.add(2)  → Set {1, 2} (ignored)\n// set.add(3)  → Set {1, 2, 3}\n// set.add(3)  → Set {1, 2, 3} (ignored)\n// ... etc\n// Final: Set {1, 2, 3, 4}\n\n// Spread operator:\nconst unique = [...set];\n// Takes each value from Set and puts in array\n// Result: [1, 2, 3, 4] ✅\n```\n\n**This pattern everywhere:**\n```javascript\n// Remove duplicate strings:\nconst names = ['Alice', 'Bob', 'Alice', 'Charlie', 'Bob'];\nconst unique = [...new Set(names)];\n// ['Alice', 'Bob', 'Charlie']\n\n// Remove duplicate objects (by reference):\nconst obj1 = { id: 1 };\nconst obj2 = { id: 2 };\nconst arr = [obj1, obj2, obj1, obj2];\nconst unique = [...new Set(arr)];\n// [obj1, obj2] (2 unique references)\n```\n\n**Alternative: Array.from():**\n```javascript\nconst unique = Array.from(new Set(arr));\n// Same result: [1, 2, 3, 4]\n```\n\n**Memory trick:** [...new Set(arr)] = instant deduplication!",
     tags: ['set', 'arrays', 'patterns'],
   },
 ];

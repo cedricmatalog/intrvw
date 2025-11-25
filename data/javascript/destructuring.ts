@@ -65,7 +65,7 @@ export const destructuringQuizzes: QuizQuestion[] = [
       'Error',
     ],
     correctAnswer: 0,
-    explanation: "{ name: personName } renames the property during destructuring. The value of 'name' property is assigned to variable 'personName'. There is no variable called 'name', so accessing it throws ReferenceError.",
+    explanation: "**Destructuring with renaming** - extract a property and give it a new variable name!\n\n**What's happening:**\n```javascript\nconst { name: personName } = { name: 'Alice' };\n//      ^^^^  ^^^^^^^^^^^\n//       |         |\n//    property   new variable name\n```\n\n**Step-by-step:**\n```\n1. Look for 'name' property in object → Found: 'Alice'\n2. Create variable 'personName' with that value\n3. NO variable called 'name' is created!\n```\n\n**First console.log:**\n```javascript\nconsole.log(personName);  // 'Alice' ✅\n// personName exists and has the value\n```\n\n**Second console.log:**\n```javascript\nconsole.log(name);  // ReferenceError ❌\n// No variable 'name' was created!\n```\n\n**The pattern:**\n```javascript\nconst { oldName: newName } = object;\n//      ^^^^^^^  ^^^^^^^^\n//      property  variable created\n\nconsole.log(newName);  // ✅ Works\nconsole.log(oldName);  // ❌ ReferenceError\n```\n\n**Real-world use case - avoiding conflicts:**\n```javascript\nconst config = { name: 'MyApp', port: 3000 };\nconst user = { name: 'Alice', age: 25 };\n\n// Without renaming - conflict!\n// const { name } = config;\n// const { name } = user;  // Error: 'name' already declared\n\n// With renaming - no conflict!\nconst { name: appName } = config;\nconst { name: userName } = user;\n\nconsole.log(appName);   // 'MyApp'\nconsole.log(userName);  // 'Alice'\n```\n\n**Memory trick:** The name after the colon is what gets created. Think: \"oldName becomes newName\".",
     tags: ['destructuring', 'objects', 'renaming'],
   },
 
@@ -82,7 +82,7 @@ export const destructuringQuizzes: QuizQuestion[] = [
       'Error',
     ],
     correctAnswer: 0,
-    explanation: "You can skip elements in array destructuring by leaving empty slots. a gets first element (1), middle element is skipped, b gets third element (3).",
+    explanation: "**Skipping elements in array destructuring** - use empty slots!\n\n**What's happening:**\n```javascript\nconst [a, , b] = [1, 2, 3];\n//     ^  ^  ^\n//     |  |  |\n//     |  skip this\n//     |     |\n//   position 0  position 2\n```\n\n**Step-by-step:**\n```\nArray: [1, 2, 3]\n        ↓  ↓  ↓\n        a skip b\n        \na = 1  (first element)\n(skip 2nd element)\nb = 3  (third element)\n```\n\n**Output:**\n```javascript\nconsole.log(a, b);  // 1 3\n```\n\n**More examples:**\n```javascript\n// Skip first element\nconst [, second, third] = ['a', 'b', 'c'];\nconsole.log(second, third);  // 'b' 'c'\n\n// Skip multiple elements\nconst [first, , , fourth] = [1, 2, 3, 4];\nconsole.log(first, fourth);  // 1 4\n\n// Get first and last\nconst [start, , , , end] = [10, 20, 30, 40, 50];\nconsole.log(start, end);  // 10 50\n```\n\n**Memory trick:** Empty comma = skip that spot!",
     tags: ['destructuring', 'arrays'],
   },
 
@@ -99,7 +99,7 @@ export const destructuringQuizzes: QuizQuestion[] = [
       'Error',
     ],
     correctAnswer: 0,
-    explanation: "You can provide default values in destructuring. Since the object doesn't have a 'name' property, the default value 'Anonymous' is used.",
+    explanation: "**Default values in destructuring** - provide fallback when property doesn't exist!\n\n**What's happening:**\n```javascript\nconst { name = 'Anonymous' } = { age: 25 };\n//      ^^^^   ^^^^^^^^^^^^\n//       |           |\n//    property   default value\n```\n\n**Step-by-step:**\n```\n1. Look for 'name' property in { age: 25 }\n2. Property doesn't exist!\n3. Use default value 'Anonymous'\n4. name = 'Anonymous'\n```\n\n**When defaults are used:**\n```javascript\n// Property exists → use actual value\nconst { name = 'Anonymous' } = { name: 'Alice' };\nconsole.log(name);  // 'Alice' (actual value)\n\n// Property missing → use default\nconst { name = 'Anonymous' } = { age: 25 };\nconsole.log(name);  // 'Anonymous' (default)\n\n// Property is undefined → use default\nconst { name = 'Anonymous' } = { name: undefined };\nconsole.log(name);  // 'Anonymous' (default)\n\n// Property is null → use null (not default!)\nconst { name = 'Anonymous' } = { name: null };\nconsole.log(name);  // null (actual value)\n```\n\n**Real-world use case:**\n```javascript\nfunction createUser({ name = 'Guest', role = 'user', active = true } = {}) {\n  return { name, role, active };\n}\n\ncreateUser({ name: 'Alice' });  // { name: 'Alice', role: 'user', active: true }\ncreateUser({});                 // { name: 'Guest', role: 'user', active: true }\n```\n\n**Memory trick:** Default = safety net when property is missing or undefined!",
     tags: ['destructuring', 'objects', 'defaults'],
   },
 
@@ -116,7 +116,7 @@ export const destructuringQuizzes: QuizQuestion[] = [
       'Error',
     ],
     correctAnswer: 0,
-    explanation: "Rest syntax (...) in destructuring gathers remaining elements into an array. a gets first element (1), rest gets all remaining elements [2, 3, 4, 5].",
+    explanation: "**Rest syntax in destructuring** - gather remaining elements!\n\n**What's happening:**\n```javascript\nconst [a, ...rest] = [1, 2, 3, 4, 5];\n//     ^   ^^^^^^\n//     |      |\n//   first  everything else\n```\n\n**Step-by-step:**\n```\nArray: [1, 2, 3, 4, 5]\n        ↓  ↓  ↓  ↓  ↓\n        a  ....rest....\n        \na = 1 (single value)\nrest = [2, 3, 4, 5] (array of remaining)\n```\n\n**Output:**\n```javascript\nconsole.log(a);     // 1\nconsole.log(rest);  // [2, 3, 4, 5]\n```\n\n**More examples:**\n```javascript\n// Get first two, rest in array\nconst [x, y, ...others] = [10, 20, 30, 40];\nconsole.log(x, y, others);  // 10 20 [30, 40]\n\n// Rest with no remaining = empty array\nconst [first, ...empty] = [1];\nconsole.log(first, empty);  // 1 []\n\n// Can skip and use rest\nconst [, , ...lastTwo] = [1, 2, 3, 4];\nconsole.log(lastTwo);  // [3, 4]\n```\n\n**Important rule:**\n```javascript\n// ✅ Rest must be last\nconst [a, ...rest, b] = [1, 2, 3];  // ❌ SyntaxError!\nconst [a, b, ...rest] = [1, 2, 3];  // ✅ Works\n```\n\n**Memory trick:** ...rest = \"give me the rest as an array\"!",
     tags: ['destructuring', 'rest', 'arrays'],
   },
 
@@ -150,7 +150,7 @@ export const destructuringQuizzes: QuizQuestion[] = [
       'Error',
     ],
     correctAnswer: 0,
-    explanation: "Nested destructuring { a: { b } } extracts b from the nested object. Only variable b is created with value 'nested'. There's no variable a (it's only a path), so accessing it throws ReferenceError.",
+    explanation: "**Nested destructuring** - dig deep into objects, but watch what variables are created!\n\n**Think of it like a treasure map** - you follow the path but only mark the final spot!\n\n**What's happening:**\n```javascript\nconst { a: { b } } = { a: { b: 'nested' } };\n//      ^    ^\n//      |    |\n//    path  variable created\n```\n\n**Step-by-step:**\n```\n1. Follow path 'a' → Find object { b: 'nested' }\n2. Inside that object, destructure 'b'\n3. Create variable b = 'nested'\n4. NO variable 'a' is created! (it's just a path)\n```\n\n**Visualization:**\n```javascript\nObject structure:\n{\n  a: {           ← Path (not a variable)\n    b: 'nested'  ← Variable created!\n  }\n}\n\nVariables created:\nb = 'nested' ✅\na = ??? ❌ (doesn't exist)\n```\n\n**Output:**\n```javascript\nconsole.log(b);  // 'nested' ✅\nconsole.log(a);  // ReferenceError ❌\n```\n\n**How to get both:**\n```javascript\n// Want both? Destructure separately\nconst obj = { a: { b: 'nested' } };\nconst { a } = obj;        // a = { b: 'nested' }\nconst { a: { b } } = obj; // b = 'nested'\n\nconsole.log(a);  // { b: 'nested' } ✅\nconsole.log(b);  // 'nested' ✅\n\n// Or use multiple variables in one line\nconst { a, a: { b } } = obj;\nconsole.log(a);  // { b: 'nested' } ✅\nconsole.log(b);  // 'nested' ✅\n```\n\n**Real-world example:**\n```javascript\nconst response = {\n  data: {\n    user: {\n      profile: {\n        name: 'Alice',\n        avatar: 'pic.jpg'\n      }\n    }\n  }\n};\n\n// Extract deeply nested value\nconst { data: { user: { profile: { name } } } } = response;\nconsole.log(name);  // 'Alice' ✅\nconsole.log(data);  // ReferenceError (just a path!)\n```\n\n**Common gotcha:**\n```javascript\n// This does NOT create variable 'user'\nconst { user: { name } } = { user: { name: 'Alice' } };\nconsole.log(name);  // 'Alice' ✅\nconsole.log(user);  // ReferenceError ❌\n\n// If you want user too, extract it:\nconst { user, user: { name } } = { user: { name: 'Alice' } };\nconsole.log(name);  // 'Alice' ✅\nconsole.log(user);  // { name: 'Alice' } ✅\n```\n\n**Memory trick:** Path vs destination - only the destination (final property) becomes a variable!",
     tags: ['destructuring', 'objects', 'nesting'],
   },
 
@@ -167,7 +167,7 @@ export const destructuringQuizzes: QuizQuestion[] = [
       'John is null and Jane is 25',
     ],
     correctAnswer: 1,
-    explanation: "Parameter destructuring with defaults. First call: name is 'John', age uses default 18. Second call: name is 'Jane', age is provided as 25. Outputs: 'John is 18' and 'Jane is 25'.",
+    explanation: "**Destructuring in function parameters** - extract and use defaults in one step!\n\n**What's happening:**\n```javascript\nfunction getUser({ name, age = 18 }) {\n//              ^^^^^^^^  ^^^^^^^^\n//                 |         |\n//            required   optional with default\n  return `${name} is ${age}`;\n}\n```\n\n**Call 1: getUser({ name: 'John' })**\n```javascript\n// Destructure: { name: 'John' }\nname = 'John'  // Provided ✅\nage = 18       // Not provided, use default ✅\n\n// Result: \"John is 18\"\n```\n\n**Call 2: getUser({ name: 'Jane', age: 25 })**\n```javascript\n// Destructure: { name: 'Jane', age: 25 }\nname = 'Jane'  // Provided ✅\nage = 25       // Provided, use it ✅\n\n// Result: \"Jane is 25\"\n```\n\n**Output:**\n```javascript\nconsole.log(getUser({ name: 'John' }));        // \"John is 18\"\nconsole.log(getUser({ name: 'Jane', age: 25 })); // \"Jane is 25\"\n```\n\n**More examples:**\n```javascript\n// Multiple defaults\nfunction createUser({ name, role = 'guest', active = true }) {\n  return { name, role, active };\n}\n\ncreateUser({ name: 'Alice' });\n// { name: 'Alice', role: 'guest', active: true }\n\ncreateUser({ name: 'Bob', role: 'admin' });\n// { name: 'Bob', role: 'admin', active: true }\n```\n\n**Default for the entire parameter:**\n```javascript\nfunction getUser({ name, age = 18 } = {}) {\n//                                  ^^^^\n//                              empty object default\n  return `${name} is ${age}`;\n}\n\ngetUser();  // undefined is 18 (no error!)\ngetUser({ name: 'Alice' });  // Alice is 18\n```\n\n**Memory trick:** Function parameters can destructure just like variables!",
     tags: ['destructuring', 'functions', 'defaults'],
   },
 
@@ -184,7 +184,7 @@ export const destructuringQuizzes: QuizQuestion[] = [
       'undefined',
     ],
     correctAnswer: 0,
-    explanation: "Rest in object destructuring (...rest) collects all remaining properties into a new object. Since no other properties are destructured, rest gets all properties: {a: 1, b: 2, c: 3}.",
+    explanation: "**Object rest in destructuring** - collect remaining properties!\n\n**What's happening:**\n```javascript\nconst { ...rest } = { a: 1, b: 2, c: 3 };\n//      ^^^^^^^^\n//         |\n//    collect everything\n```\n\n**Step-by-step:**\n```\nObject: { a: 1, b: 2, c: 3 }\n          ↓    ↓    ↓\n       ...rest collects all...\n       \nrest = { a: 1, b: 2, c: 3 }\n```\n\n**Output:**\n```javascript\nconsole.log(rest);  // { a: 1, b: 2, c: 3 }\n```\n\n**More useful with extraction:**\n```javascript\n// Extract 'a', rest gets remaining\nconst { a, ...rest } = { a: 1, b: 2, c: 3 };\nconsole.log(a);     // 1\nconsole.log(rest);  // { b: 2, c: 3 }\n\n// Extract multiple, rest gets remaining\nconst { x, y, ...others } = { x: 10, y: 20, z: 30, w: 40 };\nconsole.log(x, y);     // 10 20\nconsole.log(others);   // { z: 30, w: 40 }\n\n// Rest with nothing remaining = empty object\nconst { a, b, c, ...empty } = { a: 1, b: 2, c: 3 };\nconsole.log(empty);  // {}\n```\n\n**Real-world use case:**\n```javascript\n// Exclude certain properties\nconst user = { id: 1, name: 'Alice', password: 'secret', role: 'admin' };\nconst { password, ...safeUser } = user;\n\nconsole.log(safeUser);  // { id: 1, name: 'Alice', role: 'admin' }\n// password excluded!\n```\n\n**Memory trick:** ...rest in objects = \"give me the rest as an object\"!",
     tags: ['destructuring', 'rest', 'objects'],
   },
 
@@ -201,7 +201,24 @@ export const destructuringQuizzes: QuizQuestion[] = [
       'undefined b undefined',
     ],
     correctAnswer: 0,
-    explanation: "First destructuring: x gets 'a', skip 'b', z gets 'c'. Second destructuring: skip 'a', y gets 'b'. Final values: x='a', y='b', z='c'.",
+    explanation: "**Multiple destructuring assignments** - you can destructure the same array multiple times!\n\n**What's happening:**\n```javascript\nconst arr = ['a', 'b', 'c'];\n\n// First destructuring\nconst [x, , z] = arr;\n//     ^  ^  ^\n//     |  skip |\n//   'a'     'c'\n\n// Second destructuring (same array!)\nconst [, y] = arr;\n//     ^ ^\n//    skip |\n//       'b'\n```\n\n**Step-by-step:**\n```\nFirst: [x, , z] = ['a', 'b', 'c']\n        ↓  skip  ↓\n       x='a'    z='c'\n\nSecond: [, y] = ['a', 'b', 'c']\n        skip ↓\n            y='b'\n\nFinal values:\nx = 'a'\ny = 'b'\nz = 'c'\n```\n\n**Output:**\n```javascript\nconsole.log(x, y, z);  // a b c\n```\n\n**Key insight - array isn't consumed:**\n```javascript\nconst nums = [1, 2, 3, 4, 5];\n\n// First destructuring\nconst [a, b] = nums;\nconsole.log(a, b);  // 1 2\n\n// Second destructuring (same array!)\nconst [, , c, d] = nums;\nconsole.log(c, d);  // 3 4\n\n// Array unchanged\nconsole.log(nums);  // [1, 2, 3, 4, 5]\n```\n\n**Real-world pattern:**\n```javascript\nconst data = ['Alice', 'alice@example.com', '555-1234', 'New York'];\n\n// Extract different parts as needed\nconst [name] = data;                    // name = 'Alice'\nconst [, email] = data;                 // email = 'alice@example.com'\nconst [, , phone, city] = data;         // phone = '555-1234', city = 'New York'\n```\n\n**Memory trick:** Each destructuring is independent - the source array stays the same!",
     tags: ['destructuring', 'arrays'],
+  },
+
+{
+    id: 'js-049',
+    question: "🖥️ What's the output?\n\n```javascript\nconst { firstName: myName } = { firstName: \"Lydia\" };\n\nconsole.log(firstName);\n```",
+    category: 'javascript',
+    subcategory: 'destructuring',
+    difficulty: 'medium',
+    options: [
+          "\"Lydia\"",
+          "\"myName\"",
+          "undefined",
+          "ReferenceError"
+    ],
+    correctAnswer: 3,
+    explanation: "**Destructuring with renaming** - the original property name doesn't become a variable!\n\n**What happens:**\n```javascript\nconst { firstName: myName } = { firstName: \"Lydia\" };\n```\n\n**Syntax breakdown:**\n```\n{ propertyName: newVariableName } = object\n       ↓              ↓\n    What to        What variable\n    extract        to create\n```\n\n**Step-by-step:**\n```javascript\n// 1. Extract firstName property from object\n// 2. Create variable myName with that value\n// 3. NO variable called firstName is created!\n\nconsole.log(myName);      // \"Lydia\" ✅\nconsole.log(firstName);   // ReferenceError ❌\n```\n\n**The rule: Renaming creates ONLY the new variable name**\n\n**Comparison:**\n```javascript\n// Without renaming - creates variable 'firstName'\nconst { firstName } = { firstName: \"Lydia\" };\nconsole.log(firstName);  // \"Lydia\" ✅\n\n// With renaming - creates variable 'myName' ONLY\nconst { firstName: myName } = { firstName: \"Lydia\" };\nconsole.log(myName);      // \"Lydia\" ✅\nconsole.log(firstName);   // ReferenceError ❌\n```\n\n**Real-world examples:**\n```javascript\n// Rename to avoid conflicts\nconst config = { name: 'app', version: '1.0' };\nconst user = { name: 'John', age: 25 };\n\nconst { name: appName } = config;\nconst { name: userName } = user;\n\nconsole.log(appName);   // 'app'\nconsole.log(userName);  // 'John'\n\n// Rename for clarity\nconst { data: users } = await fetchUsers();\nconst { data: posts } = await fetchPosts();\n\n// Rename deeply nested properties\nconst { user: { profile: { avatar: profilePic } } } = response;\n```\n\n**Common gotcha - global scope properties:**\n```javascript\nconst { name: myName } = { name: \"Lydia\" };\n\nconsole.log(myName);  // \"Lydia\"\nconsole.log(name);    // Depends on environment!\n                      // Browser: \"\" (window.name exists)\n                      // Node.js: ReferenceError (no global 'name')\n```\n\n**Why this behavior?**\nBrowsers have a deprecated `window.name` property, so `name` doesn't throw ReferenceError in browsers—it accesses the global property instead!\n\n**Memory trick:**\n- `{ prop: newName }` = Extract prop, create newName\n- Original property name is NOT a variable\n- Only the name after `:` becomes a variable",
+    tags: ["destructuring","objects","renaming"],
   },
 ];

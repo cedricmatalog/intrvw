@@ -8,14 +8,14 @@ export const objectsQuizzes: QuizQuestion[] = [
     subcategory: 'objects',
     difficulty: 'medium',
     options: [
-          "function language(lang) { this.languages.push(lang }",
-          "0",
-          "[]",
-          "undefined"
+          'function language(lang) { this.languages.push(lang }',
+          '0',
+          '[]',
+          'undefined'
     ],
     correctAnswer: 3,
-    explanation: "The `language` method is a `setter`. Setters don't hold an actual value, their purpose is to _modify_ properties. When calling a `setter` method, `undefined` gets returned.",
-    tags: ["javascript","quiz"],
+    explanation: "**Getters return values, setters don't** - they just modify properties!\n\n**Think of a setter like a mailbox slot** - you push mail in (modify), but pulling on it doesn't give you anything back!\n\n**Code breakdown:**\n```javascript\nset language(lang) {  // Setter function\n  return this.languages.push(lang);\n  // ⚠️ This return is ignored!\n}\n\nconsole.log(config.language);\n//          ^^^^^^^^^^^^^^\n//          Reading a setter → undefined\n```\n\n**Why undefined?**\n- Setters are for **writing** (setting values)\n- When you **read** a setter, JavaScript returns `undefined`\n- The `return` inside a setter is ignored\n\n**Compare:**\n```javascript\n// Getter - for reading ✅\nget language() {\n  return this.languages[0];\n}\nconsole.log(config.language); // Returns value\n\n// Setter - for writing ✅\nset language(lang) {\n  this.languages.push(lang);\n}\nconfig.language = 'ES'; // Sets value\nconsole.log(config.language); // undefined\n```\n\n**Memory trick:** SET = write only, GET = read only!",
+    tags: ['javascript', 'quiz', 'getters-setters', 'objects'],
   },
 
 {
@@ -25,14 +25,14 @@ export const objectsQuizzes: QuizQuestion[] = [
     subcategory: 'objects',
     difficulty: 'medium',
     options: [
-          "{name: \"Sarah\", age: 22}",
-          "{name: \"Sarah\", age: 23}",
-          "{name: \"Lydia\", age: 22}",
-          "{name: \"Lydia\", age: 23}"
+          '{name: "Sarah", age: 22}',
+          '{name: "Sarah", age: 23}',
+          '{name: "Lydia", age: 22}',
+          '{name: "Lydia", age: 23}'
     ],
     correctAnswer: 2,
-    explanation: "Both the `changeAge` and `changeAgeAndName` functions have a default parameter, namely a _newly_ created object `{ ...person }`. This object has copies of all the key/values in the `person` object.\n\nFirst, we invoke the `changeAge` function and pass the `person` object as its argument. This function increases the value of the `age` property by 1. `person` is now `{ name: \"Lydia\", age: 22 }`.\n\nThen, we invoke the `changeAgeAndName` function, however we don't pass a parameter. Instead, the value of `x` is equal to a _new_ object: `{ ...person }`. Since it's a new object, it doesn't affect the values of the properties on the `person` object. `person` is still equal to `{ name: \"Lydia\", age: 22 }`.",
-    tags: ["javascript","quiz"],
+    explanation: "**Default parameters with spread create NEW objects** - but only when no argument is passed!\n\n**Think of default parameters like backup plans** - you only use them when nothing is provided!\n\n**Step-by-step execution:**\n```javascript\n// 1. changeAge(person) - argument provided ✅\nchangeAge(person);\n//        ^^^^^^ - Uses actual person object\nx.age += 1;  // person.age: 21 → 22\nperson = { name: \"Lydia\", age: 22 }\n\n// 2. changeAgeAndName() - NO argument ⚠️\nchangeAgeAndName();\n//               ^^ - No argument!\n// Default kicks in: x = { ...person }\n// Creates NEW object: { name: \"Lydia\", age: 22 }\nx.age += 1;        // NEW object.age: 22 → 23\nx.name = \"Sarah\";  // NEW object.name: \"Sarah\"\n// Original person unchanged!\n\nperson = { name: \"Lydia\", age: 22 } ✅\n```\n\n**Visual:**\n```javascript\nchangeAge(person)   → Modifies original ✅\nchangeAge()         → Modifies copy ❌\n```\n\n**Memory trick:** No argument = default kicks in = new object = original untouched!",
+    tags: ['javascript', 'quiz', 'default-parameters', 'spread-operator'],
   },
 
 {
@@ -42,14 +42,14 @@ export const objectsQuizzes: QuizQuestion[] = [
     subcategory: 'objects',
     difficulty: 'medium',
     options: [
-          "{ name: \"Lydia\", age: 21 }, [\"name\", \"age\"]",
-          "{ name: \"Lydia\", age: 21 }, [\"name\"]",
-          "{ name: \"Lydia\"}, [\"name\", \"age\"]",
-          "{ name: \"Lydia\"}, [\"age\"]"
+          '{ name: "Lydia", age: 21 }, ["name", "age"]',
+          '{ name: "Lydia", age: 21 }, ["name"]',
+          '{ name: "Lydia"}, ["name", "age"]',
+          '{ name: "Lydia"}, ["age"]'
     ],
     correctAnswer: 1,
-    explanation: "With the `defineProperty` method, we can add new properties to an object, or modify existing ones. When we add a property to an object using the `defineProperty` method, they are by default _not enumerable_. The `Object.keys` method returns all _enumerable_ property names from an object, in this case only `\"name\"`.\n\nProperties added using the `defineProperty` method are immutable by default. You can override this behavior using the `writable`, `configurable` and `enumerable` properties. This way, the `defineProperty` method gives you a lot more control over the properties you're adding to an object.",
-    tags: ["javascript","quiz"],
+    explanation: "**defineProperty creates non-enumerable properties by default** - the property exists but is hidden from loops and Object.keys!\n\n**Think of it like invisible ink** - the property is there, but only visible with special detection!\n\n**What happens:**\n```javascript\nObject.defineProperty(person, \"age\", { value: 21 });\n//                                     ^^^^^^^^^^^^\n//                                     Default flags:\n//                                     enumerable: false ⚠️\n//                                     writable: false\n//                                     configurable: false\n\nconsole.log(person);\n// { name: \"Lydia\", age: 21 }\n// Console can see it! ✅\n\nconsole.log(Object.keys(person));\n// [\"name\"]\n// Object.keys can't see it! ❌\n```\n\n**Why the difference?**\n- `console.log()` shows **all** properties (even non-enumerable)\n- `Object.keys()` shows **only enumerable** properties\n\n**To make it enumerable:**\n```javascript\nObject.defineProperty(person, \"age\", {\n  value: 21,\n  enumerable: true,  // ✅ Now visible!\n});\n```\n\n**Memory trick:** defineProperty = hidden by default, must opt-in to visibility!",
+    tags: ['javascript', 'quiz', 'Object.defineProperty', 'enumerable'],
   },
 
 {
@@ -59,14 +59,14 @@ export const objectsQuizzes: QuizQuestion[] = [
     subcategory: 'objects',
     difficulty: 'medium',
     options: [
-          "{ x: 100, y: 20 }",
-          "{ x: 10, y: 20 }",
-          "{ x: 100 }",
-          "ReferenceError"
+          '{ x: 100, y: 20 }',
+          '{ x: 10, y: 20 }',
+          '{ x: 100 }',
+          'ReferenceError'
     ],
     correctAnswer: 1,
-    explanation: "`Object.freeze` makes it impossible to add, remove, or modify properties of an object (unless the property's value is another object).\n\nWhen we create the variable `shape` and set it equal to the frozen object `box`, `shape` also refers to a frozen object. You can check whether an object is frozen by using `Object.isFrozen`. In this case, `Object.isFrozen(shape)` would return true, since the variable `shape` has a reference to a frozen object.\n\nSince `shape` is frozen, and since the value of `x` is not an object, we cannot modify the property `x`. `x` is still equal to `10`, and `{ x: 10, y: 20 }` gets logged.",
-    tags: ["javascript","quiz"],
+    explanation: "**Object.freeze prevents all modifications** - frozen objects are completely immutable (for their direct properties)!\n\n**Think of freeze like putting an object in ice** - you can still look at it, but you can't change it!\n\n**What happens:**\n```javascript\nObject.freeze(box);\n// box is now immutable ❄️\n\nconst shape = box;\n// shape and box reference the SAME frozen object\n\nshape.x = 100;  // ⚠️ Silently fails (strict mode would throw)\n\nconsole.log(shape);  // { x: 10, y: 20 }\n//                        ^^^ Still 10!\n```\n\n**Freeze effects:**\n```javascript\nconst frozen = { a: 1 };\nObject.freeze(frozen);\n\nfrozen.a = 999;      // ❌ Can't modify\nfrozen.b = 2;        // ❌ Can't add\ndelete frozen.a;     // ❌ Can't delete\n\nObject.isFrozen(frozen);  // true ✅\n```\n\n**Memory trick:** freeze = read-only mode, all changes ignored!",
+    tags: ['javascript', 'quiz', 'Object.freeze', 'immutability'],
   },
 
 {
@@ -76,14 +76,14 @@ export const objectsQuizzes: QuizQuestion[] = [
     subcategory: 'objects',
     difficulty: 'medium',
     options: [
-          "person.name = \"Evan Bacon\"",
-          "person.age = 21",
-          "delete person.name",
-          "Object.assign(person, { age: 21 })"
+          'person.name = "Evan Bacon"',
+          'person.age = 21',
+          'delete person.name',
+          'Object.assign(person, { age: 21 })'
     ],
     correctAnswer: 0,
-    explanation: "With `Object.seal` we can prevent new properties from being _added_, or existing properties to be _removed_.\n\nHowever, you can still modify the value of existing properties.",
-    tags: ["javascript","quiz"],
+    explanation: "**Object.seal prevents adding/removing properties, but allows modifications** - like a sealed box where you can only change what's already inside!\n\n**Think of seal like a fixed-size container** - can't add or remove compartments, but can change what's in each one!\n\n**Seal vs Freeze comparison:**\n```javascript\nconst sealed = { name: \"Lydia\" };\nObject.seal(sealed);\n\nsealed.name = \"Evan\";     // ✅ Can modify existing\nsealed.age = 21;          // ❌ Can't add new\ndelete sealed.name;       // ❌ Can't delete\n\nconst frozen = { name: \"Lydia\" };\nObject.freeze(frozen);\n\nfrozen.name = \"Evan\";     // ❌ Can't modify\nfrozen.age = 21;          // ❌ Can't add new\ndelete frozen.name;       // ❌ Can't delete\n```\n\n**Why Object.assign fails:**\n```javascript\nObject.assign(person, { age: 21 });\n// Tries to ADD 'age' property\n// Seal prevents adding ❌\n```\n\n**Memory trick:** seal = modify YES, add/delete NO | freeze = everything NO!",
+    tags: ['javascript', 'quiz', 'Object.seal', 'immutability'],
   },
 
 {
@@ -93,14 +93,14 @@ export const objectsQuizzes: QuizQuestion[] = [
     subcategory: 'objects',
     difficulty: 'medium',
     options: [
-          "person.name = \"Evan Bacon\"",
-          "delete person.address",
-          "person.address.street = \"101 Main St\"",
-          "person.pet = { name: \"Mara\" }"
+          'person.name = "Evan Bacon"',
+          'delete person.address',
+          'person.address.street = "101 Main St"',
+          'person.pet = { name: "Mara" }'
     ],
     correctAnswer: 2,
-    explanation: "The `Object.freeze` method _freezes_ an object. No properties can be added, modified, or removed.\n\nHowever, it only _shallowly_ freezes the object, meaning that only _direct_ properties on the object are frozen. If the property is another object, like `address` in this case, the properties on that object aren't frozen, and can be modified.",
-    tags: ["javascript","quiz"],
+    explanation: "**Object.freeze is SHALLOW** - it only freezes the first level of properties, nested objects remain mutable!\n\n**Think of freeze like freezing the surface of a lake** - the top is solid ice, but the water underneath still flows!\n\n**Visual breakdown:**\n```javascript\nconst person = {\n  name: \"Lydia\",      // ❄️ Frozen (direct property)\n  address: {          // ❄️ Reference frozen\n    street: \"100\"     // 🌊 NOT frozen (nested property)\n  }\n};\n\nObject.freeze(person);\n```\n\n**What's frozen vs not:**\n```javascript\n// Direct properties - FROZEN ❄️\nperson.name = \"Evan\";        // ❌ Can't change\ndelete person.address;       // ❌ Can't delete reference\nperson.pet = { name: \"M\" };  // ❌ Can't add\n\n// Nested properties - NOT FROZEN 🌊\nperson.address.street = \"101\";  // ✅ CAN change!\nperson.address.city = \"NYC\";    // ✅ CAN add!\ndelete person.address.street;   // ✅ CAN delete!\n```\n\n**Why this happens:**\n```javascript\nObject.freeze(person);\n// Freezes: person's direct properties\n// person.address → Reference is frozen\n// BUT the object that reference points to is NOT frozen!\n```\n\n**Deep freeze solution:**\n```javascript\nfunction deepFreeze(obj) {\n  Object.freeze(obj);\n  Object.values(obj).forEach(value => {\n    if (typeof value === 'object' && value !== null) {\n      deepFreeze(value);  // Recursively freeze\n    }\n  });\n}\n\ndeepFreeze(person);\nperson.address.street = \"101\";  // ❌ Now this fails too!\n```\n\n**Real-world analogy:**\n```javascript\nconst house = {\n  owner: \"John\",     // ❄️ Can't change owner\n  rooms: {           // ❄️ Can't remove rooms object\n    bedroom: 3,      // 🌊 Can change number of bedrooms!\n    bathroom: 2      // 🌊 Can change number of bathrooms!\n  }\n};\n```\n\n**Memory trick:** Freeze stops at the first layer - nested objects need their own freeze!",
+    tags: ['javascript', 'quiz', 'Object.freeze', 'shallow-freeze', 'immutability'],
   },
 
 {
@@ -110,14 +110,14 @@ export const objectsQuizzes: QuizQuestion[] = [
     subcategory: 'objects',
     difficulty: 'medium',
     options: [
-          "[\"👻\", \"🎃\", \"🕸\"]",
-          "[\"👻\", \"🎃\", \"🕸\", \"💀\"]",
-          "[\"👻\", \"🎃\", \"🕸\", { item: \"💀\" }]",
-          "[\"👻\", \"🎃\", \"🕸\", \"[object Object]\"]"
+          '["👻", "🎃", "🕸"]',
+          '["👻", "🎃", "🕸", "💀"]',
+          '["👻", "🎃", "🕸", { item: "💀" }]',
+          '["👻", "🎃", "🕸", "[object Object]"]'
     ],
     correctAnswer: 1,
-    explanation: "By destructuring objects, we can unpack values from the right-hand object, and assign the unpacked value to the value of the same property name on the left-hand object. In this case, we're assigning the value \"💀\" to `spookyItems[3]`. This means that we're modifying the `spookyItems` array, we're adding the \"💀\" to it. When logging `spookyItems`, `[\"👻\", \"🎃\", \"🕸\", \"💀\"]` gets logged.",
-    tags: ["javascript","quiz"],
+    explanation: "**Destructuring assignment can modify arrays** - the left side doesn't have to be a simple variable!\n\n**Think of destructuring like a two-way mirror** - left side gets value from right side!\n\n**What's happening:**\n```javascript\n({ item: spookyItems[3] } = { item: \"💀\" });\n//       ^^^^^^^^^^^^^^       ^\n//       Target (left)         Source (right)\n//\n// Reads: \"Take 'item' from right side,\n//         assign it to spookyItems[3]\"\n```\n\n**Step-by-step:**\n```javascript\n// 1. Right side has: { item: \"💀\" }\n// 2. Extract value of 'item' property: \"💀\"\n// 3. Assign to left side target: spookyItems[3]\n// 4. spookyItems[3] = \"💀\"\n\n// Result:\nspookyItems = [\"👻\", \"🎃\", \"🕸\", \"💀\"]\n//             0     1     2     3\n```\n\n**Compare normal destructuring:**\n```javascript\n// Normal: creates new variable\nlet x;\n({ item: x } = { item: \"💀\" });\n// x = \"💀\"\n\n// Advanced: assigns to array index\n({ item: arr[0] } = { item: \"💀\" });\n// arr[0] = \"💀\"\n```\n\n**Memory trick:** Destructuring left side = assignment target, can be variable OR array index!",
+    tags: ['javascript', 'quiz', 'destructuring', 'arrays'],
   },
 
 {
@@ -127,13 +127,13 @@ export const objectsQuizzes: QuizQuestion[] = [
     subcategory: 'objects',
     difficulty: 'medium',
     options: [
-          "\"🥑\" and \"😍\"",
-          "\"🥑\" and \"😎\"",
-          "\"😍\" and \"😎\"",
-          "\"😎\" and \"😎\""
+          '"🥑" and "😍"',
+          '"🥑" and "😎"',
+          '"😍" and "😎"',
+          '"😎" and "😎"'
     ],
     correctAnswer: 1,
-    explanation: "The value of the `this` keyword is dependent on where you use it. In a **method**, like the `getStatus` method, the `this` keyword refers to _the object that the method belongs to_. The method belongs to the `data` object, so `this` refers to the `data` object. When we log `this.status`, the `status` property on the `data` object gets logged, which is `\"🥑\"`.\n\nWith the `call` method, we can change the object to which the `this` keyword refers. In **functions**, the `this` keyword refers to the _the object that the function belongs to_. We declared the `setTimeout` function on the _global object_, so within the `setTimeout` function, the `this` keyword refers to the _global object_. On the global object, there is a variable called _status_ with the value of `\"😎\"`. When logging `this.status`, `\"😎\"` gets logged.",
-    tags: ["javascript","quiz"],
+    explanation: "**The 'this' keyword depends on HOW a function is called** - normal call uses object, .call() changes it!\n\n**Think of 'this' like a chameleon** - it changes color based on where it sits!\n\n**Complete breakdown:**\n```javascript\nvar status = \"😎\";  // Global variable (on window/global)\n\nsetTimeout(() => {\n  const status = \"😍\";  // Local variable (in arrow function)\n\n  const data = {\n    status: \"🥑\",  // Object property\n    getStatus() {\n      return this.status;  // 'this' depends on call!\n    },\n  };\n\n  // Call 1: Normal method call\n  data.getStatus();\n  // When called as: object.method()\n  // 'this' = object (data)\n  // this.status = data.status = \"🥑\" ✅\n\n  // Call 2: Using .call(this)\n  data.getStatus.call(this);\n  // .call() changes what 'this' refers to\n  // Inside arrow function, 'this' = outer scope 'this'\n  // Arrow function 'this' = global 'this'\n  // this.status = global status = \"😎\" ✅\n});\n```\n\n**Why local status \"😍\" is ignored:**\n```javascript\nconst status = \"😍\";  // Local variable\n\nreturn this.status;\n//     ^^^^\n// 'this' doesn't look at local variables!\n// 'this' only looks at object properties\n```\n\n**Visual 'this' binding rules:**\n```javascript\n// Method call: this = object\ndata.getStatus();        // this = data\n\n// call/apply/bind: this = first argument\ndata.getStatus.call(x);  // this = x\n\n// Arrow function: this = outer scope\n() => this.status;       // this from parent scope\n\n// Regular function: this = global (non-strict)\nfunction() { this.x }    // this = global/window\n```\n\n**The three status values:**\n```javascript\nvar status = \"😎\";        // Global (window.status)\nconst status = \"😍\";      // Local variable\ndata.status = \"🥑\";       // Object property\n\n// Which one gets used?\nthis.status  // Depends on what 'this' is!\n```\n\n**Arrow function 'this' inheritance:**\n```javascript\nsetTimeout(() => {  // Arrow function\n  // Arrow functions inherit 'this' from outer scope\n  // Outer scope = global scope\n  // So 'this' here = global object\n\n  data.getStatus.call(this);\n  //                  ^^^^\n  //                  global object\n});\n```\n\n**Output explanation:**\n```javascript\n1. data.getStatus()\n   → Method call on 'data' object\n   → this = data\n   → this.status = \"🥑\"\n\n2. data.getStatus.call(this)\n   → .call() with arrow function's 'this'\n   → this = global object\n   → this.status = \"😎\" (global var)\n```\n\n**Memory trick:** Method call = object 'this', .call() = custom 'this', arrow function = inherited 'this'!",
+    tags: ['javascript', 'quiz', 'this', 'call', 'arrow-functions', 'scope'],
   }
 ];

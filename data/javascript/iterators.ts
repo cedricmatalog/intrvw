@@ -2,23 +2,6 @@ import { QuizQuestion } from '../../types/quiz';
 
 export const iteratorsQuizzes: QuizQuestion[] = [
 {
-    id: 'js-081',
-    question: "📝 What's the output?\n\n```javascript\nconst set = new Set([1, 1, 2, 3, 4]);\n\nconsole.log(set);\n```",
-    category: 'javascript',
-    subcategory: 'iterators',
-    difficulty: 'medium',
-    options: [
-          "[1, 1, 2, 3, 4]",
-          "[1, 2, 3, 4]",
-          "{1, 1, 2, 3, 4}",
-          "{1, 2, 3, 4}"
-    ],
-    correctAnswer: 3,
-    explanation: "The `Set` object is a collection of _unique_ values: a value can only occur once in a set.\n\nWe passed the iterable `[1, 1, 2, 3, 4]` with a duplicate value `1`. Since we cannot have two of the same values in a set, one of them is removed. This results in `{1, 2, 3, 4}`.",
-    tags: ["javascript","quiz"],
-  },
-
-{
     id: 'js-193',
     question: "📝 What's the output?\n\n```javascript\nconst obj = {\n  [Symbol.iterator]() {\n    let count = 0;\n    return {\n      next() {\n        count++;\n        if (count <= 3) {\n          return { value: count, done: false };\n        }\n        return { done: true };\n      }\n    };\n  }\n};\n\nconsole.log([...obj]);\n```",
     category: 'javascript',
@@ -31,8 +14,8 @@ export const iteratorsQuizzes: QuizQuestion[] = [
       "[]",
     ],
     correctAnswer: 0,
-    explanation: "By implementing `Symbol.iterator`, we make the object iterable. The spread operator `...` uses the iterator protocol, calling `next()` until `done` is true. The iterator returns values 1, 2, 3, resulting in the array `[1, 2, 3]`.",
-    tags: ['javascript', 'quiz'],
+    explanation: "**Symbol.iterator makes any object iterable** - it's the secret protocol that spread, for...of, and destructuring use!\n\n**Think of Symbol.iterator like a ticket dispenser** - it creates a machine (iterator) that hands out numbered tickets (values) one at a time until it's empty!\n\n**How it works:**\n```javascript\nconst obj = {\n  [Symbol.iterator]() {\n    // This method CREATES an iterator\n    let count = 0;\n    return {\n      next() {\n        // Each next() call gets one value\n        count++;\n        if (count <= 3) {\n          return { value: count, done: false };\n          //       ^^^^^ The actual value\n          //                    ^^^^^ Keep going!\n        }\n        return { done: true };  // No more values\n      }\n    };\n  }\n};\n```\n\n**Step-by-step execution:**\n```javascript\nconst iterator = obj[Symbol.iterator]();  // Get the iterator\n\n// Spread operator calls next() repeatedly:\niterator.next()  // { value: 1, done: false } → Add 1 to array\niterator.next()  // { value: 2, done: false } → Add 2 to array\niterator.next()  // { value: 3, done: false } → Add 3 to array\niterator.next()  // { done: true }            → Stop!\n\n// Result: [1, 2, 3] ✅\n```\n\n**The iterator protocol:**\n```javascript\n// Iterator must return object with:\n{\n  value: any,    // The actual value (optional if done is true)\n  done: boolean  // false = more values, true = finished\n}\n```\n\n**Built-in iterables use this:**\n```javascript\nconst arr = [10, 20, 30];\nconst iter = arr[Symbol.iterator]();\n\niter.next();  // { value: 10, done: false }\niter.next();  // { value: 20, done: false }\niter.next();  // { value: 30, done: false }\niter.next();  // { done: true }\n\n// Arrays, strings, Maps, Sets all implement Symbol.iterator!\n```\n\n**What uses iterators:**\n```javascript\n// All these use Symbol.iterator internally:\n[...obj]               // Spread operator ✅\nfor (const x of obj)   // for...of loop ✅\nArray.from(obj)        // Array.from ✅\nconst [a, b] = obj     // Destructuring ✅\n```\n\n**Memory trick:** Symbol.iterator = ticket dispenser that hands out values via next()!",
+    tags: ['javascript', 'quiz', 'iterators', 'Symbol.iterator'],
   },
 
 {
@@ -48,8 +31,8 @@ export const iteratorsQuizzes: QuizQuestion[] = [
       "10 20 {value: undefined, done: true}",
     ],
     correctAnswer: 0,
-    explanation: "Arrays have a built-in iterator. Calling `next()` returns an object with `value` and `done`. The first two calls return 10 and 20. The third call returns `{value: 30, done: false}` because there's still one value left. It's not done until we call next() again after the last element.",
-    tags: ['javascript', 'quiz'],
+    explanation: "**Iterators track their position** - each next() advances to the next value, done becomes true AFTER the last value!\n\n**Think of an iterator like reading a book** - you're still reading chapter 3 even if it's the last chapter. You're only 'done' when you try to turn to chapter 4!\n\n**Step-by-step:**\n```javascript\nconst arr = [10, 20, 30];\nconst iterator = arr[Symbol.iterator]();\n//              ^^^^^^^^^^^^^^^^^^^^^\n//              Get the iterator (like opening the book)\n\n// Call 1: Read position 0\niterator.next().value;\n// { value: 10, done: false }.value → 10 ✅\n\n// Call 2: Read position 1\niterator.next().value;\n// { value: 20, done: false }.value → 20 ✅\n\n// Call 3: Read position 2 (last element, but NOT done yet!)\niterator.next();\n// { value: 30, done: false } ✅\n// done: false because we're AT 30, not past it\n```\n\n**Why done is false:**\n```javascript\nconst arr = [10, 20, 30];\nconst iter = arr[Symbol.iterator]();\n\niter.next();  // Position 0: { value: 10, done: false } ← More left!\niter.next();  // Position 1: { value: 20, done: false } ← More left!\niter.next();  // Position 2: { value: 30, done: false } ← This is the last VALUE\niter.next();  // Position 3: { value: undefined, done: true } ← NOW done!\n//                          ^^^^^^^^^^^\n//                          No more values!\n```\n\n**Complete iteration:**\n```javascript\nconst arr = ['a', 'b'];\nconst iter = arr[Symbol.iterator]();\n\niter.next();  // { value: 'a', done: false } ← Has value\niter.next();  // { value: 'b', done: false } ← Last value, still not done\niter.next();  // { value: undefined, done: true } ← Done now!\n```\n\n**Visual timeline:**\n```javascript\nArray: [10, 20, 30]\n       ↑\n       Position 0: next() → { value: 10, done: false }\n           ↑\n           Position 1: next() → { value: 20, done: false }\n               ↑\n               Position 2: next() → { value: 30, done: false } ✅\n                   ↑\n                   Position 3: next() → { done: true }\n```\n\n**Memory trick:** done = true only AFTER you've passed the last element!",
+    tags: ['javascript', 'quiz', 'iterators', 'next'],
   },
 
 {
@@ -65,7 +48,7 @@ export const iteratorsQuizzes: QuizQuestion[] = [
       "Having numeric keys",
     ],
     correctAnswer: 1,
-    explanation: "An object is iterable if it implements the `Symbol.iterator` method that returns an iterator object. The iterator must have a `next()` method that returns objects with `value` and `done` properties. Arrays, strings, Maps, and Sets are built-in iterables.",
-    tags: ['javascript', 'quiz'],
+    explanation: "**Only Symbol.iterator makes objects iterable** - it's the universal contract for iteration!\n\n**Think of Symbol.iterator like a USB port** - it's the standard interface. Doesn't matter what's inside (array, string, custom object), if it has the port, it can connect!\n\n**The iterable contract:**\n```javascript\n// To be iterable, object MUST have Symbol.iterator method:\nconst iterable = {\n  [Symbol.iterator]() {\n    // Must return an iterator object with next() method\n    return {\n      next() {\n        // Must return { value, done }\n        return { value: someValue, done: false };\n      }\n    };\n  }\n};\n\n// Now it works with:\n[...iterable]           // ✅\nfor (const x of iterable) {}  // ✅\n```\n\n**Why other options don't work:**\n```javascript\n// ❌ Having length doesn't make it iterable:\nconst obj = { length: 3, 0: 'a', 1: 'b', 2: 'c' };\n[...obj];  // TypeError: obj is not iterable\n\n// ❌ Numeric keys don't make it iterable:\nconst obj = { 0: 'a', 1: 'b', 2: 'c' };\nfor (const x of obj) {}  // TypeError: not iterable\n\n// ✅ Arrays work because they HAVE Symbol.iterator:\nconst arr = ['a', 'b', 'c'];\narr[Symbol.iterator];  // function values() { [native code] }\n```\n\n**Built-in iterables:**\n```javascript\n// All these have Symbol.iterator:\nArray.prototype[Symbol.iterator]    // ✅\nString.prototype[Symbol.iterator]   // ✅\nMap.prototype[Symbol.iterator]      // ✅\nSet.prototype[Symbol.iterator]      // ✅\n\n// Plain objects DON'T:\nObject.prototype[Symbol.iterator]   // undefined ❌\n```\n\n**Custom iterable example:**\n```javascript\nconst range = {\n  from: 1,\n  to: 5,\n  [Symbol.iterator]() {\n    let current = this.from;\n    const last = this.to;\n    return {\n      next() {\n        if (current <= last) {\n          return { value: current++, done: false };\n        }\n        return { done: true };\n      }\n    };\n  }\n};\n\n[...range];  // [1, 2, 3, 4, 5] ✅\n```\n\n**Memory trick:** Symbol.iterator = the ONLY way to make objects iterable!",
+    tags: ['javascript', 'quiz', 'iterators', 'Symbol.iterator', 'protocols'],
   }
 ];

@@ -70,23 +70,6 @@ export const arraysQuizzes: QuizQuestion[] = [
   },
 
 {
-    id: 'js-049',
-    question: "🖥️ What's the output?\n\n```javascript\nconst { firstName: myName } = { firstName: \"Lydia\" };\n\nconsole.log(firstName);\n```",
-    category: 'javascript',
-    subcategory: 'arrays',
-    difficulty: 'medium',
-    options: [
-          "\"Lydia\"",
-          "\"myName\"",
-          "undefined",
-          "ReferenceError"
-    ],
-    correctAnswer: 3,
-    explanation: "By using [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) syntax we can unpack values from arrays, or properties from objects, into distinct variables:\n\n```javascript\nconst { firstName } = { firstName: \"Lydia\" };\n// ES5 version:\n// var firstName = { firstName: 'Lydia' }.firstName;\n\nconsole.log(firstName); // \"Lydia\"\n```\n\nAlso, a property can be unpacked from an object and assigned to a variable with a different name than the object property:\n\n```javascript\nconst { firstName: myName } = { firstName: \"Lydia\" };\n// ES5 version:\n// var myName = { firstName: 'Lydia' }.firstName;\n\nconsole.log(myName); // \"Lydia\"\nconsole.log(firstName); // Uncaught ReferenceError: firstName is not defined\n```\n\nTherefore, `firstName` does not exist as a variable, thus attempting to access its value will raise a `ReferenceError`.\n\n**Note:** Be aware of the `global scope` properties:\n\n```javascript\nconst { name: myName } = { name: \"Lydia\" };\n\nconsole.log(myName); // \"lydia\"\nconsole.log(name); // \"\" ----- Browser e.g. Chrome\nconsole.log(name); // ReferenceError: name is not defined  ----- NodeJS\n```\n\nWhenever Javascript is unable to find a variable within the _current scope_, it climbs up the [Scope chain](https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch3.md) and searches for it and if it reaches the top-level scope, aka **Global scope**, and still doesn't find it, it will throw a `ReferenceError`.\n\n- In **Browsers** such as _Chrome_, `name` is a _deprecated global scope property_. In this example, the code is running inside _global scope_ and there is no user-defined local variable for `name`, therefore it searches the predefined _variables/properties_ in the global scope which is in the case of browsers, it searches through `window` object and it will extract the [window.name](https://developer.mozilla.org/en-US/docs/Web/API/Window/name) value which is equal to an **empty string**.\n\n- In **NodeJS**, there is no such property on the `global` object, thus attempting to access a non-existent variable will raise a [ReferenceError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_defined).",
-    tags: ["javascript","quiz"],
-  },
-
-{
     id: 'js-107',
     question: "🖥️ What's the output?\n\n```javascript\nconst settings = {\n  username: \"lydiahallie\",\n  level: 19,\n  health: 90,\n};\n\nconst data = JSON.stringify(settings, [\"level\", \"health\"]);\nconsole.log(data);\n```",
     category: 'javascript',

@@ -8,14 +8,14 @@ export const referencesQuizzes: QuizQuestion[] = [
     subcategory: 'references',
     difficulty: 'medium',
     options: [
-          "Hello",
-          "Hey!",
-          "undefined",
-          "ReferenceError"
+          'Hello',
+          'Hey!',
+          'undefined',
+          'ReferenceError'
     ],
     correctAnswer: 0,
-    explanation: "In JavaScript, all objects interact by _reference_ when setting them equal to each other.\n\nFirst, variable `c` holds a value to an object. Later, we assign `d` with the same reference that `c` has to the object.\n\nWhen you change one object, you change all of them.",
-    tags: ["javascript","quiz"],
+    explanation: "**Objects are assigned by reference** - both variables point to the same object!\n\n**Think of it like two remotes controlling one TV** - change the channel on either remote, and the TV changes for both!\n\n**What happens:**\n```javascript\nlet c = { greeting: \"Hey!\" };  // c → Object in memory\nlet d;\n\nd = c;  // d → SAME object (not a copy!)\n// Both c and d now reference the same object\n\nc.greeting = \"Hello\";  // Modify the object via c\n\nconsole.log(d.greeting);  // \"Hello\" ✅\n// d sees the change because it points to the same object!\n```\n\n**Visual representation:**\n```javascript\nMemory:\n  Address 0x123: { greeting: \"Hey!\" }\n         ↑              ↑\n         c              d\n    (both point to same object)\n\nAfter c.greeting = \"Hello\":\n  Address 0x123: { greeting: \"Hello\" }\n         ↑              ↑\n         c              d\n    (both still point to same object)\n```\n\n**Key concept:**\n```javascript\n// Assignment copies the REFERENCE, not the object\nlet obj1 = { value: 1 };\nlet obj2 = obj1;  // obj2 references same object\n\nobj2.value = 2;\nconsole.log(obj1.value);  // 2 (both see the change!)\n```\n\n**Memory trick:** d = c copies the address, not the house. Both variables have keys to the same house!",
+    tags: ['javascript', 'quiz', 'references', 'objects'],
   },
 
 {
@@ -25,14 +25,14 @@ export const referencesQuizzes: QuizQuestion[] = [
     subcategory: 'references',
     difficulty: 'medium',
     options: [
-          "{ name: \"Lydia\", age: 21 }",
-          "{ name: \"Lydia\", age: 21, city: \"Amsterdam\" }",
-          "{ name: \"Lydia\", age: 21, city: undefined }",
-          "\"Amsterdam\""
+          '{ name: "Lydia", age: 21 }',
+          '{ name: "Lydia", age: 21, city: "Amsterdam" }',
+          '{ name: "Lydia", age: 21, city: undefined }',
+          '"Amsterdam"'
     ],
     correctAnswer: 0,
-    explanation: "We set the variable `city` equal to the value of the property called `city` on the `person` object. There is no property on this object called `city`, so the variable `city` has the value of `undefined`.\n\nNote that we are _not_ referencing the `person` object itself! We simply set the variable `city` equal to the current value of the `city` property on the `person` object.\n\nThen, we set `city` equal to the string `\"Amsterdam\"`. This doesn't change the person object: there is no reference to that object.\n\nWhen logging the `person` object, the unmodified object gets returned.",
-    tags: ["javascript","quiz"],
+    explanation: "**Assigning undefined creates no link to the object** - you're just working with a primitive value!\n\n**Think of it like copying a phone number** - if you change the copy, the original phone book doesn't change!\n\n**Step-by-step:**\n```javascript\nconst person = {\n  name: \"Lydia\",\n  age: 21,\n  // No 'city' property!\n};\n\nlet city = person.city;  // person.city is undefined\n// city = undefined (primitive value, not a reference!)\n\ncity = \"Amsterdam\";  // Reassign city variable\n// This only changes the 'city' variable\n// Does NOT affect person object!\n\nconsole.log(person);  // { name: \"Lydia\", age: 21 } ✅\n// No 'city' property was ever added\n```\n\n**Why this doesn't create a reference:**\n```javascript\n// When you access a non-existent property:\nperson.city  // undefined (primitive)\n\n// Primitives are copied by VALUE:\nlet city = undefined;  // Just a copy of undefined\ncity = \"Amsterdam\";    // Changes local variable only\n```\n\n**Compare with actual reference:**\n```javascript\nconst person = {\n  name: \"Lydia\",\n  address: { city: \"New York\" }  // Nested object\n};\n\n// This DOES create a reference:\nlet addr = person.address;  // Reference to object\naddr.city = \"Amsterdam\";    // Modifies person.address.city ✅\n\nconsole.log(person.address.city);  // \"Amsterdam\"\n```\n\n**Memory trick:** Accessing undefined property gives you undefined (primitive), not a reference!",
+    tags: ['javascript', 'quiz', 'references', 'primitives'],
   },
 
 {
@@ -42,14 +42,14 @@ export const referencesQuizzes: QuizQuestion[] = [
     subcategory: 'references',
     difficulty: 'medium',
     options: [
-          "null",
-          "[null]",
-          "[{}]",
-          "[{ name: \"Lydia\" }]"
+          'null',
+          '[null]',
+          '[{}]',
+          '[{ name: "Lydia" }]'
     ],
     correctAnswer: 3,
-    explanation: "First, we declare a variable `person` with the value of an object that has a `name` property.\n\nThen, we declare a variable called `members`. We set the first element of that array equal to the value of the `person` variable. Objects interact by _reference_ when setting them equal to each other. When you assign a reference from one variable to another, you make a _copy_ of that reference. (note that they don't have the _same_ reference!)\n\nThen, we set the variable `person` equal to `null`.\n\nWe are only modifying the value of the `person` variable, and not the first element in the array, since that element has a different (copied) reference to the object. The first element in `members` still holds its reference to the original object. When we log the `members` array, the first element still holds the value of the object, which gets logged.",
-    tags: ["javascript","quiz"],
+    explanation: "**Reassigning a variable doesn't affect copies of its previous reference** - the array still has the original reference!\n\n**Think of it like photocopying a business card** - throwing away the original doesn't erase the photocopy!\n\n**What happens:**\n```javascript\n// 1. Create object\nlet person = { name: \"Lydia\" };  // person → Object A\n\n// 2. Array stores COPY of reference\nconst members = [person];  // members[0] → Object A (copy of reference)\n\n// 3. Reassign person variable\nperson = null;  // person → null\n// BUT members[0] STILL points to Object A!\n\nconsole.log(members);  // [{ name: \"Lydia\" }] ✅\n```\n\n**Visual timeline:**\n```javascript\nStep 1:\n  Object A: { name: \"Lydia\" }\n  person → Object A\n\nStep 2:\n  Object A: { name: \"Lydia\" }\n  person → Object A\n  members[0] → Object A (independent reference!)\n\nStep 3:\n  Object A: { name: \"Lydia\" } (still exists!)\n  person → null\n  members[0] → Object A (unchanged!)\n```\n\n**Key insight:**\n```javascript\nlet a = { x: 1 };\nlet b = a;  // b gets COPY of reference\n\na = null;   // Only changes 'a' variable\n\nconsole.log(b);  // { x: 1 } (b still has the reference!)\n```\n\n**Compare with actual modification:**\n```javascript\nlet person = { name: \"Lydia\" };\nconst members = [person];\n\n// Modify the object (not reassign variable):\nperson.name = \"Sarah\";\n\nconsole.log(members);  // [{ name: \"Sarah\" }]\n// Both references see the change!\n```\n\n**Memory trick:** Reassigning variable = change what variable points to, doesn't affect other references!",
+    tags: ['javascript', 'quiz', 'references', 'null'],
   },
 
 {
@@ -62,10 +62,10 @@ export const referencesQuizzes: QuizQuestion[] = [
           "['🍕', '🍫', '🥑', '🍔']",
           "['🍝', '🍫', '🥑', '🍔']",
           "['🍝', '🍕', '🍫', '🥑', '🍔']",
-          "ReferenceError"
+          'ReferenceError'
     ],
     correctAnswer: 0,
-    explanation: "We set the value of the `favoriteFood` property on the `info` object equal to the string with the pizza emoji, `'🍕'`. A string is a primitive data type. In JavaScript, primitive data types don't interact by reference.\n\nIn JavaScript, primitive data types (everything that's not an object) interact by _value_. In this case, we set the value of the `favoriteFood` property on the `info` object equal to the value of the first element in the `food` array, the string with the pizza emoji in this case (`'🍕'`). A string is a primitive data type, and interact by value (see my [blogpost](https://www.theavocoder.com/complete-javascript/2018/12/21/by-value-vs-by-reference) if you're interested in learning more)\n\nThen, we change the value of the `favoriteFood` property on the `info` object. The `food` array hasn't changed, since the value of `favoriteFood` was merely a _copy_ of the value of the first element in the array, and doesn't have a reference to the same spot in memory as the element on `food[0]`. When we log food, it's still the original array, `['🍕', '🍫', '🥑', '🍔']`.",
-    tags: ["javascript","quiz"],
+    explanation: "**Primitives are copied by value, not reference** - changing the copy doesn't affect the original!\n\n**Think of it like writing down a number** - changing your note doesn't change the original number!\n\n**What happens:**\n```javascript\nconst food = [\"🍕\", \"🍫\", \"🥑\", \"🍔\"];\n\n// Get primitive value from array:\nconst info = { favoriteFood: food[0] };\n// food[0] = \"🍕\" (string primitive)\n// favoriteFood gets a COPY of the string \"🍕\"\n// No connection to food[0]!\n\ninfo.favoriteFood = \"🍝\";  // Changes the copy only\n\nconsole.log(food);  // ['🍕', '🍫', '🥑', '🍔'] ✅\n// Original array unchanged!\n```\n\n**Primitives vs Objects:**\n```javascript\n// Primitives (by value):\nlet a = \"pizza\";\nlet b = a;  // b gets COPY of value\nb = \"pasta\";\nconsole.log(a);  // \"pizza\" (unchanged)\n\n// Objects (by reference):\nlet obj1 = { food: \"pizza\" };\nlet obj2 = obj1;  // obj2 gets reference\nobj2.food = \"pasta\";\nconsole.log(obj1.food);  // \"pasta\" (changed!)\n```\n\n**If food contained objects:**\n```javascript\nconst food = [{ name: \"🍕\" }, { name: \"🍫\" }];\nconst info = { favoriteFood: food[0] };  // Reference!\n\ninfo.favoriteFood.name = \"🍝\";  // Modifies object\n\nconsole.log(food[0].name);  // \"🍝\" (changed!)\n// Because info.favoriteFood references the same object\n```\n\n**Memory trick:** String/number/boolean = copy by value, objects/arrays = copy by reference!",
+    tags: ['javascript', 'quiz', 'references', 'primitives', 'by-value'],
   },
 ];

@@ -67,6 +67,91 @@ export const ENHANCED_JS_SUBCATEGORIES: EnhancedCategoryMetadata[] = [
     updatedDate: '2025',
     label: '✨ Enhanced',
   },
+  {
+    subcategory: 'destructuring',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'objects',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'classes',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'prototypes',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'event-loop',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'generators',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'error-handling',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'references',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'iterators',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'map-set',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'operators',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'symbols',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'modules',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'internationalization',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'weak-collections',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'proxy-reflect',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
+  {
+    subcategory: 'object-fundamentals',
+    updatedDate: '2025',
+    label: '✨ Enhanced',
+  },
 ];
 
 /**
